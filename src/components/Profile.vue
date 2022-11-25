@@ -1,0 +1,56 @@
+<template>
+  <div class="profile">
+    <NotificationProfileIcon :active="props.notificationActive" />
+    <img :src="props.pfpUrl" alt="pfp" />
+    <div class="profile__name-status">
+      <p>{{ props.name }}</p>
+      <StatusChoose :statuses="temp" />
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import NotificationProfileIcon from "./icons/NotificationProfileIcon.vue";
+import StatusChoose from "./StatusChoose.vue";
+
+const temp = [
+  {
+    name: "Оператор",
+    default: true,
+  },
+  {
+    name: "Студент",
+  },
+  {
+    name: "Администратор",
+  },
+];
+
+const props = defineProps<{
+  notificationActive: boolean;
+  pfpUrl: string;
+  name: string;
+}>();
+</script>
+
+<style scoped lang="scss">
+.profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  &__name-status {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    > p {
+      margin: 0;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      color: #2b3674;
+    }
+  }
+}
+</style>
