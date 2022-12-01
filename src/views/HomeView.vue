@@ -49,11 +49,45 @@
         <ArrowListIcon :direciton="ArrowDirections.right" />
         <ArrowListIcon :direciton="ArrowDirections.down" />
       </div>
+      <div>
+        <CoinIcon color="gold" />
+        <CoinIcon color="silver" />
+        <CoinIcon color="bronze" />
+      </div>
+      <div>
+        <CoinIcon color="gold" :small="true" />
+        <CoinIcon color="silver" :small="true" />
+        <CoinIcon color="bronze" :small="true" />
+      </div>
     </div>
     <div class="components">
+      <ScheduleEvent
+        header="Все айтишники Университета Косыгина вместе идут смотреть на краисвых котов и кошечек"
+        organaizer="Организатор: Студенческий совет"
+        member-count="2 321 участника"
+        event-status="Мероприятия завершено"
+        date="08.09 - 11.09"
+        event-img="../src/assets/img/biba.svg"
+      />
+      <p class="light__background">
+        <Input theme="Фамилия" />
+      </p>
+      <CheckboxRounded />
+      <ScheduleDayCard
+        day="Понедельник"
+        :count-of-events="10"
+        style="width: 730px"
+      />
       <BreadCrumbs />
       <StatusChoose :statuses="arrayOfStatuses" />
       <ActionButton content="abiba" />
+      <p class="light__background" style="width: 300px">
+        <Filter :content="zalupa" />
+      </p>
+      <p class="light__background">
+        <Filter :content="zalupa2" :date="true" />
+      </p>
+
       <ActionButton content="abiba" :small="true" />
       <SwitchButton content="abiba" />
       <DocumentButton content="Сохранить изменения" color="blue" />
@@ -77,9 +111,13 @@
         pfpUrl="../src/assets/img/biba.svg"
       />
     </div>
-    <ServiceHeader
-      subtitle="Программы"
-      title="Основные образовательные программы"
+  </div>
+  <div>
+    <NotificationCard
+      img="../src/assets/img/biba.svg"
+      header="Внесение изменений РПД"
+      desc="Заведующий кафедры автоматики и промышленной электроники - Поздянков Иван Геннадьевич внёс изменения в отклоненную рабочую программу дисциплины: Адаптивные информационные и коммуникационные технологии "
+      how-long-ago="30 минут назад"
     />
   </div>
 </template>
@@ -134,9 +172,24 @@ import FileButton from "@/components/buttons/FileButton.vue";
 import FileDropDown from "@/components/FileDropDown.vue";
 import VerticalMenu from "@/components/VerticalMenu.vue";
 import Profile from "@/components/Profile.vue";
-import ServiceHeader from "@/components/ServiceHeader.vue";
+import CoinIcon from "@/components/icons/CoinIcon.vue";
+import ScheduleDayCard from "@/components/schedule/ScheduleDayCard.vue";
+import ScheduleEvent from "@/components/schedule/ScheduleEvent.vue";
+import Input from "@/components/Input.vue";
+import CheckboxRounded from "@/components/buttons/CheckboxRounded.vue";
+import Filter from "@/components/Filter.vue";
+import NotificationCard from "@/components/NotificationCard.vue";
 
 let timer: number;
+
+const zalupa: Array<string> = [
+  "Институт мехатроники и робототехники",
+  "Технологический институт текстильной и легкой промышленности",
+  "Институт химических технологий и промышленной экологии",
+  "Институт информационных технологий и цифровой трансформации",
+];
+
+const zalupa2: Array<string> = ["2019 год", "2020 год", "2021 год", "2022 год"];
 
 const currentStatus = ref<DocumentStatus>(DocumentStatus.processing);
 
@@ -178,6 +231,10 @@ onUnmounted(() => {
 </script>
 
 <style scoped lang="scss">
+.light__background {
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.658);
+}
 .walkthrough {
   background: #f4f7fe;
 
@@ -187,7 +244,6 @@ onUnmounted(() => {
 }
 
 .components {
-  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

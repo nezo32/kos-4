@@ -1,14 +1,24 @@
 <template>
-  <div class="viewpoint">
-    <RouterView />
+  <div class="app viewpoint">
+    <div>
+      <RouterView />
+    </div>
+    <Footer class="footer" />
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Footer from "./components/Footer.vue";
+</script>
 
 <style scoped lang="scss">
-.viewpoint {
-  max-width: 1280px;
+.app {
   margin: 0 auto;
+  max-width: 1280px;
+
+  display: flex;
+  flex-direction: column;
+  .viewpoint {
+  }
 }
 </style>
