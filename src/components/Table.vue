@@ -8,51 +8,15 @@
       </div>
     </div>
     <div class="table__tbody">
-      <div class="table__tbody__head">
-        <div class="table__tbody__head__element">
-          <p>Код</p>
-          <ArrowSwipePagesIcon :direciton="ArrowDirections.down" />
-        </div>
-        <div class="table__tbody__head__element">
-          <p>Направление подготовки</p>
-          <ArrowSwipePagesIcon :direciton="ArrowDirections.down" />
-        </div>
-        <div class="table__tbody__head__element">
-          <p>Профиль</p>
-          <ArrowSwipePagesIcon :direciton="ArrowDirections.down" />
-        </div>
-        <div class="table__tbody__head__element">
-          <p>Уровень</p>
-          <ArrowSwipePagesIcon :direciton="ArrowDirections.down" />
-        </div>
-        <div class="table__tbody__head__element">
-          <p>Форма</p>
-          <ArrowSwipePagesIcon :direciton="ArrowDirections.down" />
-        </div>
-        <div class="table__tbody__head__element">
-          <p>Заполнено</p>
-          <ArrowSwipePagesIcon :direciton="ArrowDirections.down" />
-        </div>
-      </div>
-      <div class="table__tbody__body">
-        <div class="table__tbody__body__element">
-          <p v-for="i in 10">1</p>
-        </div>
-        <div class="table__tbody__body__element"><p v-for="i in 10">1</p></div>
-        <div class="table__tbody__body__element"><p v-for="i in 10">1</p></div>
-        <div class="table__tbody__body__element"><p v-for="i in 10">1</p></div>
-        <div class="table__tbody__body__element"><p v-for="i in 10">1</p></div>
-        <div class="table__tbody__body__element"><p v-for="i in 10">1</p></div>
-      </div>
+      <TableColumn header="aboba" v-for="i in 6" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ArrowDirections } from "@/types/types";
 import FileDropDown from "./FileDropDown.vue";
-import ArrowSwipePagesIcon from "./icons/arrows/ArrowSwipePagesIcon.vue";
 import SearchFilter from "./SearchFilter.vue";
+import TableColumn from "./TableColumn.vue";
 
 const props = defineProps<{
   header: string;
@@ -93,47 +57,9 @@ const props = defineProps<{
   }
 
   &__tbody {
-    &__head {
-      width: 100%;
-
-      display: flex;
-      flex-direction: row;
-      gap: 15px;
-
-      border-bottom: 2px solid #f4f7fe;
-
-      &__element {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 5px;
-        > p {
-          font-weight: 500;
-          font-size: 14px;
-          line-height: 16px;
-          color: #a3aed0;
-          margin: 0;
-        }
-      }
-    }
-    &__body {
-      display: flex;
-      flex-direction: row;
-      gap: 15px;
-      &__element {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-
-        > p {
-          font-weight: 700;
-          font-size: 14px;
-          line-height: 16px;
-          color: #2b3674;
-          margin: 0;
-        }
-      }
-    }
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
 </style>

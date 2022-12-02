@@ -62,6 +62,8 @@ const props = defineProps<{
   }
 }
 .arrow__swipe__page__icon {
+  width: fit-content;
+  height: fit-content;
   font-size: 0;
 
   > svg:nth-child(1) {
