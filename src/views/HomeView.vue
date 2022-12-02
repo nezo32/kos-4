@@ -111,6 +111,19 @@
         pfpUrl="../src/assets/img/biba.svg"
       />
     </div>
+    <div class="components">
+      <CustomDatepicker />
+      <DocumentStatusCard status="Проверено" />
+      <SearchFilter />
+      <SetterDocumentProfessor
+        :allowed="[
+          'Иванов Максим Игоревич',
+          'Кошалапов Ромин Дотович',
+          'Бледный Иван Макарович',
+          'Болбшой Иван Иванович',
+        ]"
+      />
+    </div>
   </div>
   <div>
     <NotificationCard
@@ -119,6 +132,7 @@
       desc="Заведующий кафедры автоматики и промышленной электроники - Поздянков Иван Геннадьевич внёс изменения в отклоненную рабочую программу дисциплины: Адаптивные информационные и коммуникационные технологии "
       how-long-ago="30 минут назад"
     />
+    <Table header="ОПОП" />
   </div>
 </template>
 
@@ -179,6 +193,11 @@ import Input from "@/components/Input.vue";
 import CheckboxRounded from "@/components/buttons/CheckboxRounded.vue";
 import Filter from "@/components/Filter.vue";
 import NotificationCard from "@/components/NotificationCard.vue";
+import CustomDatepicker from "@/components/CustomDatepicker.vue";
+import DocumentStatusCard from "@/components/DocumentStatusCard.vue";
+import SearchFilter from "@/components/SearchFilter.vue";
+import SetterDocumentProfessor from "@/components/SetterDocumentProfessor.vue";
+import Table from "@/components/Table.vue";
 
 let timer: number;
 
@@ -236,7 +255,7 @@ onUnmounted(() => {
   background: rgba(255, 255, 255, 0.658);
 }
 .walkthrough {
-  background: #f4f7fe;
+  background: #a8a8a8;
 
   display: flex;
   flex-direction: row;

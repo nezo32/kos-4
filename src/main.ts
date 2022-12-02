@@ -5,6 +5,7 @@ import App from './App.vue'
 import router from './router'
 
 import './assets/main.css'
+import '@vuepic/vue-datepicker/dist/main.css'
 
 const app = createApp(App)
 

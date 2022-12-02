@@ -2,9 +2,8 @@
   <div class="filter">
     <div class="filter__header" @click="clicked = !clicked">
       <span>{{ selected }}</span>
-      <FilterIcon v-if="!props.date && !props.search" />
-      <DatepickerIcon v-if="props.date == true && !props.search" />
-      <SearchIcon v-if="props.search == true && !props.date" />
+      <FilterIcon v-if="!props.date" />
+      <DatepickerIcon v-if="props.date == true" />
     </div>
     <div class="filter__after" v-if="clicked">
       <p
@@ -29,7 +28,6 @@ import SearchIcon from "./icons/filters/SearchIcon.vue";
 const props = defineProps<{
   content: Array<string>;
   date?: boolean;
-  search?: boolean;
 }>();
 
 const selected = ref(props.content[0]);

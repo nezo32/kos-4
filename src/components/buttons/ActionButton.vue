@@ -22,6 +22,12 @@ if (props.small) {
 </script>
 
 <style scoped lang="scss">
+.action__button.active {
+  > button {
+    background: #016ae7;
+    color: white;
+  }
+}
 .small {
   padding: 3px 10px 3px 11px !important;
   border: 1px solid #016ae7 !important;

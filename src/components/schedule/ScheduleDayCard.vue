@@ -16,15 +16,16 @@
         class="schedule__card__content"
         v-if="direction == ArrowDirections.down"
       >
-        <ScheduleEvent
-          v-for="i in 3"
-          header="Все айтишники Университета Косыгина вместе идут смотреть на краисвых котов и кошечек"
-          organaizer="Организатор: Студенческий совет"
-          member-count="2 321 участника"
-          event-status="Мероприятия завершено"
-          date="08.09 - 11.09"
-          event-img="../src/assets/img/biba.svg"
-        />
+        <div v-for="i in 3">
+          <ScheduleEvent
+            header="Все айтишники Университета Косыгина вместе идут смотреть на краисвых котов и кошечек"
+            organaizer="Организатор: Студенческий совет"
+            member-count="2 321 участника"
+            event-status="Мероприятия завершено"
+            date="08.09 - 11.09"
+            event-img="../src/assets/img/biba.svg"
+          />
+        </div>
       </div>
     </Transition>
   </div>

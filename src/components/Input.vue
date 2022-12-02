@@ -2,27 +2,38 @@
   <div class="custom__input" :class="objectStyleAll">
     <input
       type="text"
-      @focusin="
-        objectStyleAll.blue = true;
-        objectStyleAll.pos = true;
-      "
-      @focusout="objectStyleAll.blue = false"
+      @focusin="onFocusIn()"
+      ref="input"
+      @focusout="onFocusOut()"
     />
     <span>{{ props.theme }}</span>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 
 const props = defineProps<{
   theme: string;
 }>();
 
+const input = ref<HTMLInputElement | null>(null);
+
 const objectStyleAll = reactive({
   blue: false,
   pos: false,
 });
+
+function onFocusIn() {
+  objectStyleAll.blue = true;
+  objectStyleAll.pos = true;
+}
+function onFocusOut() {
+  objectStyleAll.blue = false;
+  input?.value?.value == ""
+    ? (objectStyleAll.pos = false)
+    : (objectStyleAll.pos = true);
+}
 </script>
 
 <style scoped lang="scss">
@@ -40,7 +51,7 @@ const objectStyleAll = reactive({
 
       color: #a3aed0;
       font-weight: 400;
-      font-size: 10px;
+      font-size: 12px;
       line-height: 140%;
 
       background: white;
@@ -75,7 +86,7 @@ const objectStyleAll = reactive({
   }
 
   > span {
-    transition: all 0.5 ease-in-out;
+    transition: all 0.1s ease-in-out;
 
     z-index: 0;
 

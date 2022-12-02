@@ -1,0 +1,63 @@
+@media screen and (max-width: 900px) {
+  .datepicker {
+    width: 100%;
+    height: fit-content;
+
+    .dp__main {
+      padding: 0 10px 0 10px;
+      width: 100%;
+      height: fit-content;
+    }
+
+    .dp__month_year_row {
+      margin-top: 5px;
+      display: none;
+    }
+
+    .dp__calendar {
+      width: 100%;
+      padding-bottom: 0;
+    }
+    .dp__calendar_wrap {
+      padding: 0px 24px 0px 24px;
+    }
+    .dp__calendar_header {
+      justify-content: space-between;
+      &_item {
+        width: fit-content;
+        flex-grow: 0;
+      }
+      width: 100%;
+    }
+    .dp__calendar_row {
+      justify-content: space-between;
+
+      margin: 15px 0px;
+    }
+    .dp__calendar_item {
+      flex-grow: 0;
+    }
+    .dp__calendar_header_item {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 140%;
+
+      color: #2b3674;
+
+      flex-grow: 0;
+    }
+
+    .dp__cell_inner {
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 15px;
+      color: #2b3674;
+    }
+    .dp__active_date {
+      color: white;
+    }
+    .dp__today {
+      color: white;
+    }
+  }
+}
