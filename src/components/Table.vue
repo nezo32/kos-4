@@ -61,13 +61,6 @@ const props = defineProps<{
 
 <style scoped lang="scss">
 .table {
-  --w1: 58px;
-  --w2: 274px;
-  --w3: 271px;
-  --w4: 124px;
-  --w5: 93px;
-  --w6: calc(100% - var(--w1) - var(--w2) - var(--w3) - var(--w4) - var(--w5));
-
   display: flex;
   flex-direction: column;
 
@@ -105,6 +98,7 @@ const props = defineProps<{
 
       display: flex;
       flex-direction: row;
+      gap: 15px;
 
       border-bottom: 2px solid #f4f7fe;
 
@@ -125,9 +119,11 @@ const props = defineProps<{
     &__body {
       display: flex;
       flex-direction: row;
+      gap: 15px;
       &__element {
         display: flex;
         flex-direction: column;
+        gap: 20px;
 
         > p {
           font-weight: 700;
