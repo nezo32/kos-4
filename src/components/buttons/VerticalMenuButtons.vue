@@ -9,6 +9,8 @@
       <ScienceIcon v-if="props.icon == 'science'" />
       <EventsIcon v-if="props.icon == 'events'" />
       <ProfessorsIcon v-if="props.icon == 'professors'" />
+      <MyDataIcon v-if="props.icon == 'data'" />
+      <SecurityIcon v-if="props.icon == 'security'" />
 
       {{ props.content }}
     </router-link>
@@ -21,9 +23,11 @@ import EventsIcon from "../icons/menu/EventsIcon.vue";
 import ExitIcon from "../icons/menu/ExitIcon.vue";
 import HomeIcon from "../icons/menu/HomeIcon.vue";
 import ManagementIcon from "../icons/menu/ManagementIcon.vue";
+import MyDataIcon from "../icons/menu/MyDataIcon.vue";
 import NotificationMenuIcon from "../icons/menu/NotificationMenuIcon.vue";
 import ProfessorsIcon from "../icons/menu/ProfessorsIcon.vue";
 import ScienceIcon from "../icons/menu/ScienceIcon.vue";
+import SecurityIcon from "../icons/menu/SecurityIcon.vue";
 
 const props = defineProps<{
   content: string;
@@ -36,7 +40,9 @@ const props = defineProps<{
     | "education"
     | "science"
     | "events"
-    | "professors";
+    | "professors"
+    | "security"
+    | "data";
 }>();
 </script>
 

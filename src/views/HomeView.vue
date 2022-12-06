@@ -69,10 +69,14 @@
         date="08.09 - 11.09"
         event-img="../src/assets/img/biba.svg"
       />
+      <Forms header="Наименование института" type="dropdown" />
+      <Forms header="Наименование института" type="date" />
+      <Forms type="input" />
       <p class="light__background">
         <Input theme="Фамилия" />
       </p>
       <CheckboxRounded />
+      <CheckboxRounded :small="true" />
       <ScheduleDayCard
         day="Понедельник"
         :count-of-events="10"
@@ -123,6 +127,8 @@
           'Болбшой Иван Иванович',
         ]"
       />
+      <KIDButton content="Далее" />
+      <KIDButton content="Назад" />
     </div>
   </div>
   <div>
@@ -179,7 +185,7 @@ import CompleteIcon from "@/components/icons/status/CompleteIcon.vue";
 import ExclamationIcon from "@/components/icons/status/ExclamationIcon.vue";
 import GraphIcon from "@/components/icons/status/GraphIcon.vue";
 import ThickButton from "@/components/buttons/ThickButton.vue";
-import KosyginIDButton from "@/components/buttons/KosyginIDButton.vue";
+import KosyginIDButton from "@/components/buttons/KosyginIDMenuButton.vue";
 import CheckBox from "@/components/buttons/CheckBox.vue";
 import VerticalMenuButtons from "@/components/buttons/VerticalMenuButtons.vue";
 import FileButton from "@/components/buttons/FileButton.vue";
@@ -198,6 +204,8 @@ import DocumentStatusCard from "@/components/DocumentStatusCard.vue";
 import SearchFilter from "@/components/SearchFilter.vue";
 import SetterDocumentProfessor from "@/components/SetterDocumentProfessor.vue";
 import Table from "@/components/Table.vue";
+import KIDButton from "@/components/buttons/KIDButton.vue";
+import Forms from "@/components/Forms.vue";
 
 let timer: number;
 
@@ -255,7 +263,7 @@ onUnmounted(() => {
   background: rgba(255, 255, 255, 0.658);
 }
 .walkthrough {
-  background: #a8a8a8;
+  background: #e8d5ff;
 
   display: flex;
   flex-direction: row;

@@ -1,32 +1,54 @@
 <template>
-  <div class="checkbox" @click="active = !active">
-    <div class="checkbox__inner" v-if="active"></div>
+  <div
+    class="checkbox__rounded"
+    @click="active = !active"
+    :class="{ small: props!.small }"
+  >
+    <div class="checkbox__rounded__inner" v-if="active"></div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 
+const props = defineProps<{ small?: boolean }>();
+
 const active = ref(false);
 </script>
 
 <style scoped lang="scss">
-.checkbox {
+.checkbox__rounded {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  border-radius: 50%;
+  border: 2px solid #016ae7;
+
   width: 16px;
   height: 16px;
 
-  border: 2px solid #016ae7;
-  border-radius: 50%;
-
   padding: 2px;
 
-  &__inner {
+  > div {
+    flex-shrink: 0;
+
     width: 100%;
     height: 100%;
+
     background: #016ae7;
     border-radius: 50%;
   }
 
-  cursor: pointer;
+  &.small {
+    width: 12px;
+    height: 12px;
+    border: 1px solid #016ae7;
+
+    padding: 2px;
+  }
 }
 </style>
