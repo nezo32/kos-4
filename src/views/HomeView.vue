@@ -1,6 +1,24 @@
 <template>
   <div class="walkthrough">
     <div class="icons">
+      <SecurityIcon />
+      <MyDataIcon />
+      <OpenCloseIcon type="open" />
+      <OpenCloseIcon type="close" />
+
+      <UniversityLogo type="large" />
+      <UniversityLogo type="small" />
+      <AnalyticsLogo type="large" />
+      <AnalyticsLogo type="small" />
+      <ScheduleLogo type="large" />
+      <ScheduleLogo type="small" />
+      <ActivityRatingLogo type="large" />
+      <ActivityRatingLogo type="small" />
+      <PassportTableLogo type="large" />
+      <PassportTableLogo type="small" />
+      <MoodleLogo type="large" />
+      <MoodleLogo type="small" />
+
       <HomeIcon />
       <ManagementIcon />
       <NotificationMenuIcon />
@@ -127,8 +145,8 @@
           'Болбшой Иван Иванович',
         ]"
       />
-      <KIDButton content="Далее" />
-      <KIDButton content="Назад" />
+      <KIDButton content="Далее" :general="true" />
+      <KIDButton content="Назад" :general="false" />
     </div>
   </div>
   <div>
@@ -195,7 +213,7 @@ import Profile from "@/components/Profile.vue";
 import CoinIcon from "@/components/icons/CoinIcon.vue";
 import ScheduleDayCard from "@/components/schedule/ScheduleDayCard.vue";
 import ScheduleEvent from "@/components/schedule/ScheduleEvent.vue";
-import Input from "@/components/Input.vue";
+import Input from "@/components/CustomInput.vue";
 import CheckboxRounded from "@/components/buttons/CheckboxRounded.vue";
 import Filter from "@/components/Filter.vue";
 import NotificationCard from "@/components/NotificationCard.vue";
@@ -206,6 +224,15 @@ import SetterDocumentProfessor from "@/components/SetterDocumentProfessor.vue";
 import Table from "@/components/Table.vue";
 import KIDButton from "@/components/buttons/KIDButton.vue";
 import Forms from "@/components/Forms.vue";
+import SecurityIcon from "@/components/icons/menu/SecurityIcon.vue";
+import MyDataIcon from "@/components/icons/menu/MyDataIcon.vue";
+import OpenCloseIcon from "@/components/icons/security_KID/OpenCloseIcon.vue";
+import UniversityLogo from "@/components/logos/UniversityLogo.vue";
+import AnalyticsLogo from "@/components/logos/AnalyticsLogo.vue";
+import ScheduleLogo from "@/components/logos/ScheduleLogo.vue";
+import ActivityRatingLogo from "@/components/logos/ActivityRatingLogo.vue";
+import PassportTableLogo from "@/components/logos/PassportTableLogo.vue";
+import MoodleLogo from "@/components/logos/MoodleLogo.vue";
 
 let timer: number;
 

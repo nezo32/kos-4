@@ -1,6 +1,7 @@
 <template>
   <div class="custom__input" :class="objectStyleAll">
     <input
+      :class="{ footer__feedback__style: props.footer }"
       type="text"
       @focusin="onFocusIn()"
       ref="input"
@@ -15,6 +16,7 @@ import { reactive, ref } from "vue";
 
 const props = defineProps<{
   theme: string;
+  footer?: boolean;
 }>();
 
 const input = ref<HTMLInputElement | null>(null);
@@ -58,7 +60,7 @@ function onFocusOut() {
     }
   }
 
-  width: 370px;
+  width: 100%;
 
   position: relative;
 
@@ -82,6 +84,12 @@ function onFocusOut() {
 
     &::placeholder {
       color: #a3aed0;
+    }
+
+    &.footer__feedback__style {
+      font-weight: 300;
+      font-size: 18px;
+      line-height: 140%;
     }
   }
 

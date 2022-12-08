@@ -1,14 +1,14 @@
 <template>
   <button
     class="KID__button"
-    :class="{ next: props.content == 'Далее', back: props.content == 'Назад' }"
+    :class="{ next: props.general, back: !props.general }"
   >
     {{ props.content }}
   </button>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ content: "Далее" | "Назад" }>();
+const props = defineProps<{ content: string; general: boolean }>();
 </script>
 
 <style scoped lang="scss">
@@ -33,7 +33,7 @@ const props = defineProps<{ content: "Далее" | "Назад" }>();
 
   cursor: pointer;
 
-  padding: 12px 60px;
+  padding: 11px 45px;
 
   border-radius: 10px;
   border: 1px solid #016ae7;

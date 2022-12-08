@@ -1,7 +1,7 @@
 <template>
   <div class="vertical__menu">
     <div class="vertical__menu__logo">
-      <Logo />
+      <KosyginLogo />
     </div>
     <div class="vertical__menu__buttons">
       <VerticalMenuButtons content="Программы" icon="home" url="/" />
@@ -26,7 +26,7 @@
 <script setup lang="ts">
 import KosyginIDButton from "./buttons/KosyginIDMenuButton.vue";
 import VerticalMenuButtons from "./buttons/VerticalMenuButtons.vue";
-import Logo from "./logos/Logo.vue";
+import KosyginLogo from "./logos/KosyginLogo.vue";
 </script>
 
 <style scoped lang="scss">
