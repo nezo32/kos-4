@@ -44,7 +44,9 @@
           <div>
             <h2>Техподдержка</h2>
             <p>Почта: cit@rguk.ru</p>
-            <p @click="feedbackActive = true">Форма обратной связи</p>
+            <p @click="feedbackActive = true" style="cursor: pointer">
+              Форма обратной связи
+            </p>
           </div>
         </div>
       </div>

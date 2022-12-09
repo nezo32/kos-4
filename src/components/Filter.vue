@@ -77,6 +77,8 @@ const clicked = ref(false);
     top: 65px;
     left: -15px;
 
+    z-index: 100;
+
     background: #ffffff;
     border-radius: 10px;
 

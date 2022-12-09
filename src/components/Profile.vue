@@ -40,6 +40,8 @@ const props = defineProps<{
   align-items: center;
   gap: 20px;
   &__name-status {
+    z-index: 100;
+
     display: flex;
     flex-direction: column;
     gap: 6px;
