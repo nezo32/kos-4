@@ -1,5 +1,5 @@
 <template>
-  <div class="professor__setter">
+  <div class="professor__setter" ref="outsideDetectionComponent">
     <ActionButton
       :small="true"
       content="Назначить"
@@ -21,12 +21,19 @@
 import { ref } from "vue";
 import ActionButton from "./buttons/ActionButton.vue";
 import SearchFilter from "./SearchFilter.vue";
+import detect from "@/detectOutsideElement";
 
 const opened = ref(false);
 
 const props = defineProps<{
   allowed: Array<string>;
 }>();
+
+const outsideDetectionComponent = ref();
+
+detect(outsideDetectionComponent, () => {
+  if (opened.value) opened.value = !opened.value;
+});
 </script>
 
 <style scoped lang="scss">

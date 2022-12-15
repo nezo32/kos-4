@@ -17,11 +17,11 @@ body {
 
   --global-font: "Roboto";
 
-  > img[rounded] {
+  img[rounded] {
     border-radius: 100%;
   }
 
-  > img[smooth] {
+  img[smooth] {
     border-radius: 8px;
   }
 }
