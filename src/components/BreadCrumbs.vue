@@ -1,6 +1,9 @@
 <template>
   <div class="breadcrumbs">
-    <span v-for="element of path.split('/')">{{ element }}</span>
+    <span v-for="(element, index) of splittedPath" :key="index">
+      <a :href="element">{{ element }}</a>
+      <span v-if="index != splittedPath.length - 1">/</span>
+    </span>
   </div>
 </template>
 
@@ -8,6 +11,7 @@
 import { ref } from "vue";
 
 const path = ref("abiba/cringe/clown");
+const splittedPath = path.value.split("/");
 </script>
 
 <style scoped lang="scss">
@@ -16,14 +20,25 @@ const path = ref("abiba/cringe/clown");
   flex-direction: row;
   gap: 5px !important;
 
-  & > span:nth-last-child(1) {
-    &::after {
-      padding-left: 0;
-      content: "";
+  > span {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    > span {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 16px;
+      color: #a3aed0;
     }
   }
 
-  > span {
+  span > a {
+    max-width: 276px;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
     font-weight: 500;
     font-size: 14px;
     line-height: 16px;
@@ -31,16 +46,10 @@ const path = ref("abiba/cringe/clown");
     align-items: center;
     color: #a3aed0;
 
-    &::after {
-      padding-left: 5px;
-      content: "/";
-    }
+    text-decoration: none;
 
     cursor: pointer;
-  }
-
-  &:hover {
-    > span {
+    &:hover {
       color: #707eae;
     }
   }

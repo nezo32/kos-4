@@ -1,0 +1,27 @@
+body {
+  --backgroud: #f4f7fe;
+  --main-text: #2b3674;
+  --elements: #016ae7;
+  --breadcrumbs: #707eae;
+  --unactive-text: #a3aed0;
+  --button-hover: #055ec8;
+
+  --black: black;
+  --white: white;
+  --grey: #989898;
+
+  --accepted: #21dc3f;
+  --rejected: #ff2d52;
+  --graph-main: #6ad2ff;
+  --graph-secondary: #05cd99;
+
+  --global-font: "Roboto";
+
+  > img[rounded] {
+    border-radius: 100%;
+  }
+
+  > img[smooth] {
+    border-radius: 8px;
+  }
+}

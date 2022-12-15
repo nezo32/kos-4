@@ -9,7 +9,9 @@
     <div class="professor__setter__after" v-if="opened">
       <SearchFilter />
       <div>
-        <p v-for="i in props.allowed" @click="opened = !opened">{{ i }}</p>
+        <p v-for="i in props.allowed" @click="opened = !opened" :key="i">
+          {{ i }}
+        </p>
       </div>
     </div>
   </div>

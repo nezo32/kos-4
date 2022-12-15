@@ -14,8 +14,8 @@
 </template>
 
 <script setup lang="ts">
-import FileDropDown from "./FileDropDown.vue";
-import SearchFilter from "./SearchFilter.vue";
+import FileDropDown from "../FileDropDown.vue";
+import SearchFilter from "../SearchFilter.vue";
 import TableColumn from "./TableColumn.vue";
 
 const props = defineProps<{

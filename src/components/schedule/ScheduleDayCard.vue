@@ -16,7 +16,7 @@
         class="schedule__card__content"
         v-if="direction == ArrowDirections.down"
       >
-        <div v-for="i in 3">
+        <div v-for="i in 3" :key="i">
           <ScheduleEvent
             header="Все айтишники Университета Косыгина вместе идут смотреть на краисвых котов и кошечек"
             organaizer="Организатор: Студенческий совет"

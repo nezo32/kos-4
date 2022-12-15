@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div class="footer" ref="detectOutside">
     <div class="footer__logo">
       <FooterLogo />
       <span>
@@ -89,8 +89,14 @@ import Input from "./CustomInput.vue";
 import FooterLogo from "./logos/FooterLogo.vue";
 import KIDButton from "./buttons/KIDButton.vue";
 import { ref } from "vue";
+import detect from "@/detectOutsideElement";
 
 const feedbackActive = ref(false);
+const detectOutside = ref();
+
+detect(detectOutside, () => {
+  if (feedbackActive.value) feedbackActive.value = !feedbackActive.value;
+});
 </script>
 
 <style scoped lang="scss">

@@ -11,7 +11,8 @@
 import Footer from "./components/Footer.vue";
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
+@import "@/assets/sass/global.scss";
 .app {
   margin: 0 auto;
   max-width: 1280px;

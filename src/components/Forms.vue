@@ -1,5 +1,5 @@
 <template>
-  <div class="form">
+  <div class="form" ref="outsideDetectionComponent">
     <p v-if="props.header">{{ props.header }}<HintIcon :active="true" /></p>
     <div class="form__input" v-if="props.type === 'input'">
       <input type="text" />
@@ -17,22 +17,28 @@
         class="form__dropdown__list"
         v-if="props.type === 'dropdown' && active"
       >
-        <p v-for="i in tired" @click="selected = i">{{ i }}</p>
+        <p v-for="i in tired" @click="selected = i" :key="i">{{ i }}</p>
       </div>
     </div>
-    <div class="form__date" v-if="props.type === 'date'">
-      <input type="text" placeholder="Технологический" disabled />
-      <CalendarIcon />
-    </div>
+    <VueDatePicker v-model="date" v-if="props.type === 'date'" locale="ru">
+      <template #trigger>
+        <div class="form__date">
+          <input type="text" :placeholder="date" disabled />
+          <CalendarIcon />
+        </div>
+      </template>
+    </VueDatePicker>
   </div>
 </template>
 
 <script setup lang="ts">
+import detect from "@/detectOutsideElement";
 import ArrowFormIcon from "./icons/arrows/ArrowFormIcon.vue";
 import HintIcon from "./icons/HintIcon.vue";
 import { ArrowDirections } from "@/types/types";
 import { ref } from "vue";
 import CalendarIcon from "./icons/CalendarIcon.vue";
+import VueDatePicker from "@vuepic/vue-datepicker";
 
 const props = defineProps<{
   type: "input" | "dropdown" | "date";
@@ -48,9 +54,16 @@ const tired = [
 
 const active = ref(false);
 const selected = ref(tired[0]);
+const date = ref();
+
+const outsideDetectionComponent = ref();
+
+detect(outsideDetectionComponent, () => {
+  if (active.value) active.value = !active.value;
+});
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .form {
   display: flex;
   flex-direction: column;
@@ -58,7 +71,47 @@ const selected = ref(tired[0]);
 
   width: 100%;
 
+  .dp__main {
+    width: 100%;
+    > div {
+      width: 100%;
+      > div {
+        padding: 11px 15px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        > input {
+          width: 100%;
+          border: none;
+          outline: none;
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 140%;
+          color: #2b3674;
+
+          background: none;
+
+          &::placeholder {
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 140%;
+            color: #2b3674;
+          }
+        }
+      }
+    }
+  }
+
+  &__input {
+    padding: 11px 15px;
+  }
+
   &__dropdown {
+    padding: 11px 15px;
+
     position: relative;
     > &__list {
       top: 60px;
@@ -138,7 +191,6 @@ const selected = ref(tired[0]);
     }
 
     background: #ffffff;
-    padding: 11px 15px;
     border: 1px solid #a3aed0;
     border-radius: 10px;
   }

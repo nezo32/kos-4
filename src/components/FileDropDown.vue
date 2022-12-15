@@ -1,5 +1,5 @@
 <template>
-  <div class="file__drop-down">
+  <div class="file__drop-down" ref="outsideDetectionComponent">
     <div class="file__drop-down__button" @click="active = !active">
       <svg
         width="24"
@@ -15,12 +15,12 @@
       </svg>
     </div>
     <div class="file__drop-down__content" v-if="active">
-      <FileButton content="Редактировать" />
-      <FileButton content="Скачать список Xlsx" />
-      <FileButton content="Скачать файлы PDF" />
-      <FileButton content="Скачать файлы WORD" />
-      <FileButton content="Проверено" />
-      <FileButton content="Отклонено" />
+      <FileButton content="Редактировать" @click="active = !active" />
+      <FileButton content="Скачать список Xlsx" @click="active = !active" />
+      <FileButton content="Скачать файлы PDF" @click="active = !active" />
+      <FileButton content="Скачать файлы WORD" @click="active = !active" />
+      <FileButton content="Проверено" @click="active = !active" />
+      <FileButton content="Отклонено" @click="active = !active" />
     </div>
   </div>
 </template>
@@ -28,8 +28,14 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import FileButton from "./buttons/FileButton.vue";
+import detect from "@/detectOutsideElement";
 
 const active = ref(false);
+const outsideDetectionComponent = ref();
+
+detect(outsideDetectionComponent, () => {
+  if (active.value) active.value = !active.value;
+});
 </script>
 
 <style scoped lang="scss">

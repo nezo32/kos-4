@@ -1,5 +1,5 @@
 <template>
-  <div class="status__choose">
+  <div class="status__choose" ref="outsideDetect">
     <div class="status__choose__header" @click="changeArrowDir()">
       <div>
         <span> {{ selected }}</span>
@@ -24,6 +24,8 @@ import { onMounted, ref } from "vue";
 
 import ArrowListIcon from "@/components/icons/arrows/ArrowListIcon.vue";
 
+import detect from "@/detectOutsideElement";
+
 const props = defineProps({
   statuses: Array<ProfileStatus>,
 });
@@ -32,6 +34,11 @@ const arrowDirection = ref<ArrowDirections>(ArrowDirections.right);
 
 const opened = ref<Boolean>(false);
 const selected = ref<String>("");
+const outsideDetect = ref();
+
+detect(outsideDetect, () => {
+  if (opened.value) opened.value = !opened.value;
+});
 
 function changeArrowDir() {
   arrowDirection.value == ArrowDirections.right

@@ -5,7 +5,7 @@
       @click="changePage(-1)"
     />
     <ins ref="pages">
-      <template v-for="i in props.countPages">
+      <template v-for="i in props.countPages" :key="i">
         <p
           :selected="selectedPage == i"
           v-if="

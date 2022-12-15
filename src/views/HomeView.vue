@@ -147,6 +147,8 @@
       />
       <KIDButton content="Далее" :general="true" />
       <KIDButton content="Назад" :general="false" />
+      <TableFillRow :procent="50" />
+      <TableProfessorEntry />
     </div>
   </div>
   <div>
@@ -221,7 +223,7 @@ import CustomDatepicker from "@/components/CustomDatepicker.vue";
 import DocumentStatusCard from "@/components/DocumentStatusCard.vue";
 import SearchFilter from "@/components/SearchFilter.vue";
 import SetterDocumentProfessor from "@/components/SetterDocumentProfessor.vue";
-import Table from "@/components/Table.vue";
+import Table from "@/components/table/Table.vue";
 import KIDButton from "@/components/buttons/KIDButton.vue";
 import Forms from "@/components/Forms.vue";
 import SecurityIcon from "@/components/icons/menu/SecurityIcon.vue";
@@ -233,6 +235,8 @@ import ScheduleLogo from "@/components/logos/ScheduleLogo.vue";
 import ActivityRatingLogo from "@/components/logos/ActivityRatingLogo.vue";
 import PassportTableLogo from "@/components/logos/PassportTableLogo.vue";
 import MoodleLogo from "@/components/logos/MoodleLogo.vue";
+import TableFillRow from "@/components/table/TableFillRow.vue";
+import TableProfessorEntry from "@/components/table/TableProfessorEntry.vue";
 
 let timer: number;
 

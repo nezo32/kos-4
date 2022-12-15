@@ -1,13 +1,14 @@
 <template>
-  <div class="filter">
+  <div class="filter" ref="outsideDetectionComponent">
     <div class="filter__header" @click="clicked = !clicked">
       <span>{{ selected }}</span>
       <FilterIcon v-if="!props.date" />
-      <DatepickerIcon v-if="props.date == true" />
+      <DatepickerIcon v-if="props.date" />
     </div>
     <div class="filter__after" v-if="clicked">
       <p
         v-for="i in props.content"
+        :key="i"
         @click="
           selected = i;
           clicked = !clicked;
@@ -23,7 +24,7 @@
 import { ref } from "vue";
 import DatepickerIcon from "./icons/filters/DatepickerIcon.vue";
 import FilterIcon from "./icons/filters/FilterIcon.vue";
-import SearchIcon from "./icons/filters/SearchIcon.vue";
+import detect from "@/detectOutsideElement";
 
 const props = defineProps<{
   content: Array<string>;
@@ -32,6 +33,11 @@ const props = defineProps<{
 
 const selected = ref(props.content[0]);
 const clicked = ref(false);
+const outsideDetectionComponent = ref();
+
+detect(outsideDetectionComponent, () => {
+  if (clicked.value) clicked.value = !clicked.value;
+});
 </script>
 
 <style scoped lang="scss">

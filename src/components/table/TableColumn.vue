@@ -5,13 +5,13 @@
       <ArrowSwipePagesIcon :direciton="ArrowDirections.down" />
     </div>
     <div class="table__column__body">
-      <p v-for="i in 10">{{ i }}</p>
+      <p v-for="i in 10" :key="i">{{ i }}</p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import ArrowSwipePagesIcon from "./icons/arrows/ArrowSwipePagesIcon.vue";
+import ArrowSwipePagesIcon from "@/components/icons/arrows/ArrowSwipePagesIcon.vue";
 import { ArrowDirections } from "@/types/types";
 
 const props = defineProps<{
