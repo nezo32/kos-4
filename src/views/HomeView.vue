@@ -161,9 +161,162 @@
     </div>
     <div class="home__component">
       <h1>Иконки</h1>
+      <h3>Иконки меню</h3>
+      <section>
+        <label style="color: var(--elements)">
+          <HomeIcon />
+          <ManagementIcon />
+          <NotificationMenuIcon />
+          <ExitIcon />
+          <EducationIcon />
+          <EventsIcon />
+          <ProfessorsIcon />
+          <ScienceIcon />
+          <SecurityIcon />
+          <MyDataIcon />
+        </label>
+        <label style="color: var(--unactive-text)">
+          <HomeIcon />
+          <ManagementIcon />
+          <NotificationMenuIcon />
+          <ExitIcon />
+          <EducationIcon />
+          <EventsIcon />
+          <ProfessorsIcon />
+          <ScienceIcon />
+          <SecurityIcon />
+          <MyDataIcon />
+        </label>
+      </section>
+      <h3>Иконки статуса документа</h3>
+      <section><DocumentStatusIcon :status="currentStatus" /></section>
+      <h3>Дополнительные иконки</h3>
+      <section>
+        <label>
+          <DatepickerIcon />
+          <FilterIcon />
+          <SearchIcon />
+          <FilterResetIcon />
+        </label>
+        <label>
+          <ArrowSwipePagesIcon :direciton="ArrowDirections.left" />
+          <ArrowSwipePagesIcon :direciton="ArrowDirections.right" />
+          <ArrowSwipePagesIcon :direciton="ArrowDirections.up" />
+          <ArrowSwipePagesIcon :direciton="ArrowDirections.down" />
+          <CalendarIcon
+            style="color: var(--unactive-text); width: 20px; height: 20px"
+          />
+        </label>
+      </section>
+      <section>
+        <label>
+          <ArrowFormIcon :direciton="ArrowDirections.left" />
+          <ArrowFormIcon :direciton="ArrowDirections.down" />
+          <CalendarIcon style="color: var(--black)" />
+          <section><HintIcon active /> <HintIcon /></section>
+        </label>
+        <label>
+          <KosyginIDIcon />
+          <VKIcon />
+          <UnivIcon />
+          <TelegramIcon />
+        </label>
+      </section>
+      <section>
+        <ManyPeopleIcon />
+        <ExclamationHumanIcon />
+        <PlusHumanIcon />
+        <CompleteHumanIcon />
+        <CompleteIcon />
+        <ExclamationIcon />
+        <GraphIcon />
+      </section>
+      <ChangeProfilePictureIcon />
+      <section>
+        <PhoneSecurityIcon />
+        <LockSecurityIcon />
+        <ShieldSecurityIcon />
+        <PCSecurityIcon />
+        <SettingsSecurityIcon />
+        <OpenCloseIcon type="open" />
+        <OpenCloseIcon type="close" />
+      </section>
+      <section>
+        <HumanScheduleIcon />
+        <LocationScheduleIcon />
+        <StarScheduleIcon />
+        <PeopleScheduleIcon />
+        <SubdivisionScheduleIcon />
+        <DotScheduleIcon color="green" />
+        <DotScheduleIcon color="red" />
+        <RoundedPlusScheduleIcon />
+        <EventScheduleIcon />
+      </section>
+      <h3>Логотип университета</h3>
+      <section>
+        <label>
+          <KosyginLogo />
+          <FooterLogo />
+        </label>
+      </section>
+      <h3>Иконки выбора статуса</h3>
+      <section>
+        <label>
+          <NotificationProfileIcon :active="active" />
+        </label>
+        <label>
+          <ArrowListIcon :direciton="ArrowDirections.right" />
+          <ArrowListIcon :direciton="ArrowDirections.down" />
+        </label>
+      </section>
+      <h3>Иконки монет</h3>
+      <section>
+        <label>
+          <CoinIcon color="gold" />
+          <CoinIcon color="silver" />
+          <CoinIcon color="bronze" />
+        </label>
+        <label>
+          <CoinIcon color="gold" small />
+          <CoinIcon color="silver" small />
+          <CoinIcon color="bronze" small />
+        </label>
+      </section>
+      <h3>Логотипы сервисов</h3>
+      <section>
+        <label>
+          <section>
+            <UniversityLogo type="large" />
+            <AnalyticsLogo type="large" />
+            <ActivityRatingLogo type="large" />
+            <PassportTableLogo type="large" />
+            <MoodleLogo type="large" />
+          </section>
+          <section>
+            <UniversityLogo type="small" />
+            <AnalyticsLogo type="small" />
+            <ActivityRatingLogo type="small" />
+            <PassportTableLogo type="small" />
+            <MoodleLogo type="small" />
+          </section>
+        </label>
+      </section>
+      <h3>Логотипы браузеров</h3>
+      <section>
+        <ChromeLogo />
+        <EdgeLogo />
+        <FirefoxLogo />
+        <IELogo />
+        <OperaLogo />
+        <SafariLogo />
+        <TorLogo />
+        <UCLogo />
+        <YandexLogo />
+      </section>
     </div>
     <div class="home__component">
       <h1>Хлебные крошки</h1>
+      <section><Breadcrumbs /></section>
     </div>
     <div class="home__component">
       <h1>Выбор статуса</h1>
@@ -207,8 +360,9 @@ import type { ProfileStatus } from "@/types/types";
 
 import { onMounted, onUnmounted, ref } from "vue";
 
+import EventScheduleIcon from "@/components/icons/schedule/EventScheduleIcon.vue";
 import DocumentStatusIcon from "@/components/icons/DocumentStatusIcon.vue";
-import ExitIconVue from "@/components/icons/menu/ExitIcon.vue";
+import ExitIcon from "@/components/icons/menu/ExitIcon.vue";
 import HomeIcon from "@/components/icons/menu/HomeIcon.vue";
 import ManagementIcon from "@/components/icons/menu/ManagementIcon.vue";
 import NotificationMenuIcon from "@/components/icons/menu/NotificationMenuIcon.vue";
@@ -226,7 +380,7 @@ import UnivIcon from "@/components/icons/social/UnivIcon.vue";
 import TelegramIcon from "@/components/icons/social/TelegramIcon.vue";
 import NotificationProfileIcon from "@/components/icons/NotificationProfileIcon.vue";
 import ArrowListIcon from "@/components/icons/arrows/ArrowListIcon.vue";
-import BreadCrumbs from "@/components/BreadCrumbs.vue";
+import Breadcrumbs from "@/components/Breadcrumbs.vue";
 import StatusChoose from "@/components/StatusChoose.vue";
 import ActionButton from "@/components/buttons/ActionButton.vue";
 import SwitchButton from "@/components/buttons/SwitchButton.vue";
@@ -276,6 +430,30 @@ import PassportTableLogo from "@/components/logos/PassportTableLogo.vue";
 import MoodleLogo from "@/components/logos/MoodleLogo.vue";
 import TableFillRow from "@/components/table/TableFillRow.vue";
 import TableProfessorEntry from "@/components/table/TableProfessorEntry.vue";
+import ChangeProfilePictureIcon from "@/components/icons/ChangeProfilePictureIcon.vue";
+import PhoneSecurityIcon from "@/components/icons/security_KID/PhoneSecurityIcon.vue";
+import LockSecurityIcon from "@/components/icons/security_KID/LockSecurityIcon.vue";
+import ShieldSecurityIcon from "@/components/icons/security_KID/ShieldSecurityIcon.vue";
+import PCSecurityIcon from "@/components/icons/security_KID/PCSecurityIcon.vue";
+import SettingsSecurityIcon from "@/components/icons/security_KID/SettingsSecurityIcon.vue";
+import HumanScheduleIcon from "@/components/icons/schedule/HumanScheduleIcon.vue";
+import LocationScheduleIcon from "@/components/icons/schedule/LocationScheduleIcon.vue";
+import StarScheduleIcon from "@/components/icons/schedule/StarScheduleIcon.vue";
+import PeopleScheduleIcon from "@/components/icons/schedule/PeopleScheduleIcon.vue";
+import SubdivisionScheduleIcon from "@/components/icons/schedule/SubdivisionScheduleIcon.vue";
+import DotScheduleIcon from "@/components/icons/schedule/DotScheduleIcon.vue";
+import RoundedPlusScheduleIcon from "@/components/icons/schedule/RoundedPlusScheduleIcon.vue";
+import KosyginLogo from "@/components/logos/KosyginLogo.vue";
+import FooterLogo from "@/components/logos/FooterLogo.vue";
+import ChromeLogo from "@/components/logos/browsers/ChromeLogo.vue";
+import EdgeLogo from "@/components/logos/browsers/EdgeLogo.vue";
+import FirefoxLogo from "@/components/logos/browsers/FirefoxLogo.vue";
+import IELogo from "@/components/logos/browsers/IELogo.vue";
+import OperaLogo from "@/components/logos/browsers/OperaLogo.vue";
+import SafariLogo from "@/components/logos/browsers/SafariLogo.vue";
+import TorLogo from "@/components/logos/browsers/TorLogo.vue";
+import UCLogo from "@/components/logos/browsers/UCLogo.vue";
+import YandexLogo from "@/components/logos/browsers/YandexLogo.vue";
 
 let timer: number;
 
@@ -379,7 +557,7 @@ onUnmounted(() => {
       color: var(--main-text);
     }
 
-    > article {
+    article {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -401,6 +579,20 @@ onUnmounted(() => {
           color: var(--main-text);
         }
       }
+    }
+
+    section {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="hint__icon">
+  <div class="hint__icon" style="cursor: pointer">
     <svg
       v-if="!props.active"
       width="12"
