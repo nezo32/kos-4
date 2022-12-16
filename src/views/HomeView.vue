@@ -1,164 +1,203 @@
 <template>
-  <div class="walkthrough">
-    <div class="icons">
-      <SecurityIcon />
-      <MyDataIcon />
-      <OpenCloseIcon type="open" />
-      <OpenCloseIcon type="close" />
-
-      <UniversityLogo type="large" />
-      <UniversityLogo type="small" />
-      <AnalyticsLogo type="large" />
-      <AnalyticsLogo type="small" />
-      <ScheduleLogo type="large" />
-      <ScheduleLogo type="small" />
-      <ActivityRatingLogo type="large" />
-      <ActivityRatingLogo type="small" />
-      <PassportTableLogo type="large" />
-      <PassportTableLogo type="small" />
-      <MoodleLogo type="large" />
-      <MoodleLogo type="small" />
-
-      <HomeIcon />
-      <ManagementIcon />
-      <NotificationMenuIcon />
-      <ExitIconVue />
-      <EducationIcon />
-      <EventsIcon />
-      <ProfessorsIcon />
-      <ScienceIcon />
-
-      <ManyPeopleIcon />
-      <ExclamationHumanIcon />
-      <CompleteHumanIcon />
-      <PlusHumanIcon />
-      <CompleteIcon />
-      <ExclamationIcon />
-      <GraphIcon />
-
-      <DocumentStatusIcon :status="currentStatus" />
-      <DatepickerIcon />
-      <FilterIcon />
-      <SearchIcon />
-      <FilterResetIcon />
-      <div>
-        <ArrowSwipePagesIcon
-          :direciton="ArrowDirections.up"
-        /><ArrowSwipePagesIcon :direciton="ArrowDirections.down" />
-      </div>
-      <div>
-        <ArrowSwipePagesIcon
-          :direciton="ArrowDirections.left"
-        /><ArrowSwipePagesIcon :direciton="ArrowDirections.right" />
-      </div>
-      <div>
-        <ArrowFormIcon :direciton="ArrowDirections.right" /><ArrowFormIcon
-          :direciton="ArrowDirections.down"
-        />
-      </div>
-      <CalendarIcon />
-      <div><HintIcon :active="true" /> <HintIcon :active="false" /></div>
-      <KosyginIDIcon />
-      <VKIcon />
-      <UnivIcon />
-      <TelegramIcon />
-      <NotificationProfileIcon :active="active" />
-      <div>
-        <ArrowListIcon :direciton="ArrowDirections.right" />
-        <ArrowListIcon :direciton="ArrowDirections.down" />
-      </div>
-      <div>
-        <CoinIcon color="gold" />
-        <CoinIcon color="silver" />
-        <CoinIcon color="bronze" />
-      </div>
-      <div>
-        <CoinIcon color="gold" :small="true" />
-        <CoinIcon color="silver" :small="true" />
-        <CoinIcon color="bronze" :small="true" />
-      </div>
+  <div class="home">
+    <div class="home__component">
+      <h1>Палитра</h1>
+      <h3>Основная палитра</h3>
+      <article>
+        <div>
+          <div style="background: var(--background)"></div>
+          <span>Фон</span>
+        </div>
+        <div>
+          <div
+            style="background: var(--white); border: 1px solid var(--grey)"
+          ></div>
+          <span>Белый</span>
+        </div>
+      </article>
+      <article>
+        <div>
+          <div style="background: var(--main-text)"></div>
+          <span>Основной текст</span>
+        </div>
+        <div>
+          <div style="background: var(--elements)"></div>
+          <span>Элементы</span>
+        </div>
+      </article>
+      <article>
+        <div>
+          <div style="background: var(--breadcrumbs)"></div>
+          <span>Хлебные крошки</span>
+        </div>
+        <div>
+          <div style="background: var(--unactive-text)"></div>
+          <span>Неактивный текст</span>
+        </div>
+      </article>
+      <article>
+        <div>
+          <div style="background: var(--black)"></div>
+          <span>Черный цвет</span>
+        </div>
+        <div>
+          <div style="background: var(--button-hover)"></div>
+          <span>Ховер кнопок</span>
+        </div>
+      </article>
+      <article>
+        <div>
+          <div style="background: var(--grey)"></div>
+          <span>Серый цвет</span>
+        </div>
+      </article>
+      <h3>Вспомогательная палитра</h3>
+      <article>
+        <div>
+          <div style="background: var(--rejected)"></div>
+          <span>Отклонено</span>
+        </div>
+        <div>
+          <div style="background: var(--resolved)"></div>
+          <span>Утверждено</span>
+        </div>
+      </article>
+      <article>
+        <div>
+          <div style="background: var(--graph-main)"></div>
+          <span>График</span>
+        </div>
+        <div>
+          <div style="background: var(--graph-secondary)"></div>
+          <span>График</span>
+        </div>
+      </article>
     </div>
-    <div class="components">
-      <ScheduleEvent
-        header="Все айтишники Университета Косыгина вместе идут смотреть на краисвых котов и кошечек"
-        organaizer="Организатор: Студенческий совет"
-        member-count="2 321 участника"
-        event-status="Мероприятия завершено"
-        date="08.09 - 11.09"
-        event-img="../src/assets/img/biba.svg"
-      />
-      <Forms header="Наименование института" type="dropdown" />
-      <Forms header="Наименование института" type="date" />
-      <Forms type="input" />
-      <p class="light__background">
-        <Input theme="Фамилия" />
+    <div class="home__component">
+      <h1>Шрифты</h1>
+      <h2>Roboto</h2>
+      <p page__header>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus eius
+        labore, pariatur et officiis quo, quasi a nobis officia doloribus quod
+        est? Assumenda voluptates facere nostrum harum. Autem, doloremque rem!
       </p>
-      <CheckboxRounded />
-      <CheckboxRounded :small="true" />
-      <ScheduleDayCard
-        day="Понедельник"
-        :count-of-events="10"
-        style="width: 730px"
-      />
-      <BreadCrumbs />
-      <StatusChoose :statuses="arrayOfStatuses" />
-      <ActionButton content="abiba" />
-      <p class="light__background" style="width: 300px">
-        <Filter :content="zalupa" />
+      <p table-card__header>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus eius
+        labore, pariatur et officiis quo, quasi a nobis officia doloribus quod
+        est? Assumenda voluptates facere nostrum harum. Autem, doloremque rem!
       </p>
-      <p class="light__background">
-        <Filter :content="zalupa2" :date="true" />
+      <p card__header>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus eius
+        labore, pariatur et officiis quo, quasi a nobis officia doloribus quod
+        est? Assumenda voluptates facere nostrum harum. Autem, doloremque rem!
       </p>
-
-      <ActionButton content="abiba" :small="true" />
-      <SwitchButton content="abiba" />
-      <DocumentButton content="Сохранить изменения" color="blue" />
-      <DocumentButton content="Очистить всё" color="red" />
-      <ThickButton content="Подробнее" />
-      <PageSwitcher :count-pages="99" />
-      <KosyginIDButton />
-      <CheckBox />
-      <VerticalMenuButtons content="Программы" icon="home" url="/" />
-      <VerticalMenuButtons
-        content="Руководители ОП"
-        icon="management"
-        url="/management"
-      />
-      <FileButton content="Скачать список Xlsx" />
-      <FileDropDown />
-      <VerticalMenu />
-      <Profile
-        :notification-active="false"
-        name="Попов Дмитрий"
-        pfpUrl="../src/assets/img/biba.svg"
-      />
+      <p input__header>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus eius
+        labore, pariatur et officiis quo, quasi a nobis officia doloribus quod
+        est? Assumenda voluptates facere nostrum harum. Autem, doloremque rem!
+      </p>
+      <p card__text>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus eius
+        labore, pariatur et officiis quo, quasi a nobis officia doloribus quod
+        est? Assumenda voluptates facere nostrum harum. Autem, doloremque rem!
+      </p>
+      <p forms__text>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus eius
+        labore, pariatur et officiis quo, quasi a nobis officia doloribus quod
+        est? Assumenda voluptates facere nostrum harum. Autem, doloremque rem!
+      </p>
+      <p text>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus eius
+        labore, pariatur et officiis quo, quasi a nobis officia doloribus quod
+        est? Assumenda voluptates facere nostrum harum. Autem, doloremque rem!
+      </p>
+      <p menu__button__text>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus eius
+        labore, pariatur et officiis quo, quasi a nobis officia doloribus quod
+        est? Assumenda voluptates facere nostrum harum. Autem, doloremque rem!
+      </p>
+      <p card__name__text>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus eius
+        labore, pariatur et officiis quo, quasi a nobis officia doloribus quod
+        est? Assumenda voluptates facere nostrum harum. Autem, doloremque rem!
+      </p>
+      <p table__action__text>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus eius
+        labore, pariatur et officiis quo, quasi a nobis officia doloribus quod
+        est? Assumenda voluptates facere nostrum harum. Autem, doloremque rem!
+      </p>
+      <p status__choose__text>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus eius
+        labore, pariatur et officiis quo, quasi a nobis officia doloribus quod
+        est? Assumenda voluptates facere nostrum harum. Autem, doloremque rem!
+      </p>
+      <p breadcrumbs__text>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus eius
+        labore, pariatur et officiis quo, quasi a nobis officia doloribus quod
+        est? Assumenda voluptates facere nostrum harum. Autem, doloremque rem!
+      </p>
+      <p search__text>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus eius
+        labore, pariatur et officiis quo, quasi a nobis officia doloribus quod
+        est? Assumenda voluptates facere nostrum harum. Autem, doloremque rem!
+      </p>
+      <p fill__card__text>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus eius
+        labore, pariatur et officiis quo, quasi a nobis officia doloribus quod
+        est? Assumenda voluptates facere nostrum harum. Autem, doloremque rem!
+      </p>
+      <p small__text>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus eius
+        labore, pariatur et officiis quo, quasi a nobis officia doloribus quod
+        est? Assumenda voluptates facere nostrum harum. Autem, doloremque rem!
+      </p>
     </div>
-    <div class="components">
-      <CustomDatepicker />
-      <DocumentStatusCard status="Проверено" />
-      <SearchFilter />
-      <SetterDocumentProfessor
-        :allowed="[
-          'Иванов Максим Игоревич',
-          'Кошалапов Ромин Дотович',
-          'Бледный Иван Макарович',
-          'Болбшой Иван Иванович',
-        ]"
-      />
-      <KIDButton content="Далее" :general="true" />
-      <KIDButton content="Назад" :general="false" />
-      <TableFillRow :procent="50" />
-      <TableProfessorEntry />
+    <div class="home__component">
+      <h1>Фото-карточки</h1>
+      <article>
+        <img src="@/assets/img/template.png" alt="temp" rounded />
+        <img src="@/assets/img/template.png" alt="temp" smooth />
+      </article>
     </div>
-  </div>
-  <div>
-    <NotificationCard
-      img="../src/assets/img/biba.svg"
-      header="Внесение изменений РПД"
-      desc="Заведующий кафедры автоматики и промышленной электроники - Поздянков Иван Геннадьевич внёс изменения в отклоненную рабочую программу дисциплины: Адаптивные информационные и коммуникационные технологии "
-      how-long-ago="30 минут назад"
-    />
-    <Table header="ОПОП" />
+    <div class="home__component">
+      <h1>Иконки</h1>
+    </div>
+    <div class="home__component">
+      <h1>Хлебные крошки</h1>
+    </div>
+    <div class="home__component">
+      <h1>Выбор статуса</h1>
+    </div>
+    <div class="home__component">
+      <h1>Календарь</h1>
+    </div>
+    <div class="home__component">
+      <h1>Кнопки</h1>
+    </div>
+    <div class="home__component">
+      <h1>Вертикальное меню</h1>
+    </div>
+    <div class="home__component">
+      <h1>Расписание</h1>
+    </div>
+    <div class="home__component">
+      <h1>Шапка сервиса</h1>
+    </div>
+    <div class="home__component">
+      <h1>Блок фильтров</h1>
+    </div>
+    <div class="home__component">
+      <h1>Уведомления</h1>
+    </div>
+    <div class="home__component">
+      <h1>Инпуты</h1>
+    </div>
+    <div class="home__component">
+      <h1>Таблицы</h1>
+    </div>
+    <div class="home__component">
+      <h1>Компоненты форм</h1>
+    </div>
   </div>
 </template>
 
@@ -289,34 +328,80 @@ onUnmounted(() => {
 </script>
 
 <style scoped lang="scss">
-.light__background {
-  padding: 30px;
-  background: rgba(255, 255, 255, 0.658);
-}
-.walkthrough {
-  background: #e8d5ff;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.components {
+.home {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 15px;
-}
-.icons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  > div {
+  gap: 50px;
+
+  &__component {
+    background: #ffffff;
+    border-radius: 50px;
+
+    width: 100%;
+
     display: flex;
-    flex-direction: row;
-    align-content: center;
-    gap: 15px;
+    flex-direction: column;
+
+    & > * {
+      padding: 25px 100px;
+    }
+
+    > h1 {
+      border-top-left-radius: 50px;
+      border-top-right-radius: 50px;
+      background-color: var(--background);
+
+      font-weight: 500;
+      font-size: 100px;
+      line-height: 117px;
+      color: var(--main-text);
+
+      margin: 0;
+    }
+
+    > h3 {
+      margin: 0;
+      color: var(--main-text);
+      font-weight: 700;
+      font-size: 34px;
+      line-height: 140%;
+    }
+
+    > h2 {
+      font-weight: 500;
+      font-size: 64px;
+      line-height: 75px;
+      color: #2b3674;
+    }
+
+    > p {
+      color: var(--main-text);
+    }
+
+    > article {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: 0;
+      > div {
+        display: flex;
+        flex-direction: row;
+        gap: 25px;
+        align-items: center;
+        > div {
+          width: 130px;
+          height: 130px;
+          border-radius: 100%;
+        }
+        > span {
+          font-weight: 500;
+          font-size: 32px;
+          line-height: 140%;
+          color: var(--main-text);
+        }
+      }
+    }
   }
 }
 </style>

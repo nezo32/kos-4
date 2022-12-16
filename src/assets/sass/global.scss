@@ -1,5 +1,6 @@
 body {
-  --backgroud: #f4f7fe;
+  --background: #f4f7fe;
+
   --main-text: #2b3674;
   --elements: #016ae7;
   --breadcrumbs: #707eae;
@@ -10,7 +11,7 @@ body {
   --white: white;
   --grey: #989898;
 
-  --accepted: #21dc3f;
+  --resolved: #21dc3f;
   --rejected: #ff2d52;
   --graph-main: #6ad2ff;
   --graph-secondary: #05cd99;
@@ -24,4 +25,118 @@ body {
   img[smooth] {
     border-radius: 8px;
   }
+
+  [page__header] {
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 140%;
+  }
+
+  [table-card__header] {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  [card__header] {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+  }
+
+  [input__header] {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+  }
+
+  [card__text] {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 140%;
+  }
+
+  [forms__text] {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 140%;
+  }
+
+  [text] {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 140%;
+  }
+
+  [menu__button__text] {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  [card__name__text] {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  [table__action__text] {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+  }
+
+  [status__choose__text] {
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 18px;
+  }
+
+  [table__text] {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  [breadcrumbs__text] {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  [search__text] {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  [fill__card__text] {
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+  }
+
+  [small__text] {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 140%;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+span,
+div,
+a,
+input,
+article,
+textarea,
+button,
+p {
+  font-family: "Roboto";
+  font-style: normal;
+  margin: 0;
 }

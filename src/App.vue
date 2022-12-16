@@ -20,4 +20,8 @@ import Footer from "./components/Footer.vue";
   display: flex;
   flex-direction: column;
 }
+
+body {
+  background: var(--grey);
+}
 </style>
