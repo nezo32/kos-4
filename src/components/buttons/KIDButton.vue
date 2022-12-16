@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ content: string; general: boolean }>();
+const props = defineProps<{ content: string; general?: boolean }>();
 </script>
 
 <style scoped lang="scss">

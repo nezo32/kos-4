@@ -1,9 +1,11 @@
 <template>
-  <div class="app viewpoint">
-    <div>
+  <div class="app">
+    <div class="viewpoint">
       <RouterView />
     </div>
-    <Footer class="footer" />
+    <div class="footer">
+      <Footer />
+    </div>
   </div>
 </template>
 
@@ -14,11 +16,18 @@ import Footer from "./components/Footer.vue";
 <style lang="scss">
 @import "@/assets/sass/global.scss";
 .app {
-  margin: 0 auto;
-  max-width: 1280px;
-
   display: flex;
   flex-direction: column;
+}
+.viewpoint {
+  max-width: 1280px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.footer {
+  background-color: var(--white);
+  width: 100%;
 }
 
 body {

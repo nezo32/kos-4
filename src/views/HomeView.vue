@@ -320,36 +320,109 @@
     </div>
     <div class="home__component">
       <h1>Выбор статуса</h1>
+      <section>
+        <Profile
+          :notification-active="active"
+          pfp-url="https://remote-tools-images.s3.amazonaws.com/best+discord+pfp/blog+12/anime/anime/1+(1).jpg"
+          name="Попов Дмитрий"
+        />
+      </section>
     </div>
     <div class="home__component">
       <h1>Календарь</h1>
+      <CustomDatepicker />
     </div>
     <div class="home__component">
       <h1>Кнопки</h1>
+      <section>
+        <ActionButton content="Назначить" />
+        <ActionButton content="Назначить" small />
+      </section>
+      <section>
+        <ThickButton content="Подробнее" />
+      </section>
+      <section>
+        <KIDButton content="Далее" general />
+        <KIDButton content="Назад" />
+      </section>
+      <section>
+        <SwitchButton content="Рабочая программа дисциплины" />
+      </section>
+      <section>
+        <DocumentButton content="Сохранить изменения" color="blue" />
+        <DocumentButton content="Очистить всё" color="red" />
+      </section>
+      <section>
+        <CheckBox />
+        <CheckboxRounded />
+        <CheckboxRounded small />
+      </section>
+      <section>
+        <PageSwitcher :count-pages="54" />
+      </section>
+      <section>
+        <FileDropDown />
+      </section>
     </div>
     <div class="home__component">
       <h1>Вертикальное меню</h1>
+      <section>
+        <VerticalMenu />
+      </section>
     </div>
     <div class="home__component">
       <h1>Расписание</h1>
+      <section>
+        <label>
+          <ScheduleEvent
+            event-img="https://remote-tools-images.s3.amazonaws.com/best+discord+pfp/blog+12/anime/anime/1+(1).jpg"
+            date="08.09 - 11.09"
+            event-status="Мероприятие завершено"
+            member-count="2321 участника"
+            organaizer="Студенческий совет"
+            header="Все айтишники Университета Косыгина вместе идут смотреть на краисвых котов и кошечек"
+          />
+          <ScheduleDayCard day="Понедельник" :count-of-events="3" />
+        </label>
+      </section>
     </div>
     <div class="home__component">
       <h1>Шапка сервиса</h1>
+      <ServiceHeader title="Основные образовательные программы" />
     </div>
     <div class="home__component">
       <h1>Блок фильтров</h1>
+      <section>
+        <Filter :content="zalupa" />
+        <Filter :content="zalupa" date />
+        <SearchFilter />
+      </section>
     </div>
     <div class="home__component">
       <h1>Уведомления</h1>
+      <section>
+        <NotificationCard
+          img="https://remote-tools-images.s3.amazonaws.com/best+discord+pfp/blog+12/anime/anime/1+(1).jpg"
+          how-long-ago="30 минут назад"
+          header="Внесение изменнеий РПД"
+          desc="Заведующий кафедры автоматики и промышленной электроники - Поздянков Иван Геннадьевич внёс изменения в отклоненную рабочую программу дисциплины: Адаптивные информационные и коммуникационные технологии "
+        />
+      </section>
     </div>
     <div class="home__component">
       <h1>Инпуты</h1>
+      <section>
+        <CustomInput theme="Фамилия" style="width: 280px" />
+      </section>
     </div>
     <div class="home__component">
       <h1>Таблицы</h1>
     </div>
     <div class="home__component">
       <h1>Компоненты форм</h1>
+      <Forms type="date" />
+      <Forms type="dropdown" header="Наименование института" />
+      <Forms type="input" />
     </div>
   </div>
 </template>
@@ -454,6 +527,9 @@ import SafariLogo from "@/components/logos/browsers/SafariLogo.vue";
 import TorLogo from "@/components/logos/browsers/TorLogo.vue";
 import UCLogo from "@/components/logos/browsers/UCLogo.vue";
 import YandexLogo from "@/components/logos/browsers/YandexLogo.vue";
+import KosyginIDMenuButton from "@/components/buttons/KosyginIDMenuButton.vue";
+import ServiceHeader from "@/components/ServiceHeader.vue";
+import CustomInput from "@/components/CustomInput.vue";
 
 let timer: number;
 
@@ -513,7 +589,7 @@ onUnmounted(() => {
   gap: 50px;
 
   &__component {
-    background: #ffffff;
+    background: var(--white);
     border-radius: 50px;
 
     width: 100%;

@@ -57,6 +57,7 @@ detect(outsideDetectionComponent, () => {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     gap: 15px;
     background: #f4f7fe;
     border-radius: 20px;
@@ -80,7 +81,7 @@ detect(outsideDetectionComponent, () => {
     gap: 5px;
 
     position: absolute;
-    top: 65px;
+    top: 80px;
     left: -15px;
 
     z-index: 100;

@@ -105,9 +105,9 @@ detect(detectOutside, () => {
 
   display: flex;
   flex-direction: row;
+  justify-content: center;
   gap: 70px;
 
-  margin: 0 auto;
   padding: 40px 0px;
 
   &__logo {

@@ -69,8 +69,6 @@ detect(outsideDetectionComponent, () => {
   flex-direction: column;
   gap: 10px;
 
-  width: 100%;
-
   .dp__main {
     width: 100%;
     > div {
