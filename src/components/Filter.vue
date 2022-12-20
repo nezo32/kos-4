@@ -81,7 +81,7 @@ detect(outsideDetectionComponent, () => {
     gap: 5px;
 
     position: absolute;
-    top: 80px;
+    top: 64px;
     left: -15px;
 
     z-index: 100;

@@ -1,11 +1,50 @@
 <template>
   <div class="datepicker">
-    <Datepicker locale="ru" :inline="true" :transitions="{ open: `false` }" />
+    <Datepicker
+      v-model="date"
+      ref="datepicker"
+      locale="ru"
+      @internalModelChange="dateHandler"
+      :inline="true"
+      :transitions="{ open: `false` }"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import Datepicker from "@vuepic/vue-datepicker";
+import { ref, onMounted } from "vue";
+
+const props = defineProps<{
+  date: Date;
+}>();
+const emit = defineEmits(["update:date"]);
+
+const date = ref<Date | null>(null);
+const datepicker = ref();
+/* const cmptd = computed({
+  get() {
+    return props.modelValue;
+  },
+  set(newValue: Date) {
+    console.log("newValue", newValue);
+    emit("update:modelValue", newValue);
+  },
+}); */
+
+const dateHandler = (date: Date) => {
+  emit("update:date", date);
+};
+
+onMounted(() => {
+  /* setInterval(() => {
+    cmptd.value = new Date();
+  }, 100);
+  */
+  if (datepicker) {
+    datepicker.value?.updateInternalModelValue(new Date());
+  }
+});
 </script>
 
 <style lang="scss">
@@ -14,10 +53,12 @@ import Datepicker from "@vuepic/vue-datepicker";
   height: 300px;
 
   .dp__month_year_row {
-    padding: 0px 28px;
+    padding: 0px 14px;
     font-weight: 400;
     font-size: 16px;
     line-height: 140%;
+
+    margin-bottom: 5px;
   }
 
   .dp__menu {
@@ -36,55 +77,58 @@ import Datepicker from "@vuepic/vue-datepicker";
     justify-items: center;
     flex-shrink: none;
 
-    width: 27px;
-    height: 27px;
+    width: 26px;
+    height: 26px;
   }
 
   .dp__cell_inner {
-    width: 27px;
-    height: 27px;
+    width: 26px;
+    height: 26px;
 
     font-weight: 500;
     font-size: 16px;
     line-height: 19px;
 
-    padding: 4px;
+    text-align: center;
 
     border: none;
   }
 
   .dp__calendar_header {
-    gap: 4px;
+    gap: 15px;
+    margin-bottom: 3px;
   }
 
-  .dp__calendar_header_item {
-    font-weight: 300;
+  .dp__calendar_wrap .dp__calendar_header_item {
+    font-weight: 500;
     font-size: 16px;
-    line-height: 140%;
+    line-height: 19px;
 
-    height: 22px;
+    width: 26px;
+    height: 26px;
 
-    color: #989898;
+    color: #a3aed0;
   }
 
   .dp__calendar {
-    padding-bottom: 12px;
+    padding-bottom: 5px;
   }
 
   .dp__calendar_row {
     width: 100%;
-    gap: 12px;
-    margin: 12px 0px;
+    gap: 15px;
+    margin: 15px 0px;
   }
 
   .dp__active_date {
-    background: #ff2d52;
+    background: #ff2d52 !important;
+    color: white !important;
   }
 
   .dp__date_hover:hover {
     border-radius: 50%;
-    background: #ff2d52;
-    color: white;
+    background: white;
+    color: #ff2d52;
   }
 
   .dp__active_date {
@@ -94,8 +138,8 @@ import Datepicker from "@vuepic/vue-datepicker";
   .dp__today {
     border: none;
     border-radius: 50%;
-    background: #ff2d52;
-    color: white;
+    background: none;
+    color: #2b3674;
   }
 
   .dp__theme_light {
@@ -107,6 +151,8 @@ import Datepicker from "@vuepic/vue-datepicker";
   .dp__calendar_wrap {
     font-family: "Roboto" !important;
     font-style: normal;
+
+    padding: 0 14px;
   }
 
   .dp__main {

@@ -105,7 +105,7 @@ onMounted(() => {
     gap: 6px;
 
     > option {
-      padding: 1px 27px 1px 5px;
+      padding: 1px 27px 1px 10px;
 
       cursor: pointer;
 

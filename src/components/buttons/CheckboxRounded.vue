@@ -46,7 +46,7 @@ const active = ref(false);
   &.small {
     width: 12px;
     height: 12px;
-    border: 1px solid #016ae7;
+    border: 2px solid #016ae7;
 
     padding: 2px;
   }

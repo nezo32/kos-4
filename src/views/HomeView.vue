@@ -330,7 +330,7 @@
     </div>
     <div class="home__component">
       <h1>Календарь</h1>
-      <CustomDatepicker />
+      <CustomDatepicker :date="date" />
     </div>
     <div class="home__component">
       <h1>Кнопки</h1>
@@ -417,6 +417,9 @@
     </div>
     <div class="home__component">
       <h1>Таблицы</h1>
+      <p style="background-color: var(--background); border-radius: 50px">
+        <TableTest />
+      </p>
     </div>
     <div class="home__component">
       <h1>Компоненты форм</h1>
@@ -530,6 +533,9 @@ import YandexLogo from "@/components/logos/browsers/YandexLogo.vue";
 import KosyginIDMenuButton from "@/components/buttons/KosyginIDMenuButton.vue";
 import ServiceHeader from "@/components/ServiceHeader.vue";
 import CustomInput from "@/components/CustomInput.vue";
+import TableTest from "@/components/table/TableTest.vue";
+
+const date = ref();
 
 let timer: number;
 
@@ -649,6 +655,8 @@ onUnmounted(() => {
           border-radius: 100%;
         }
         > span {
+          width: 300px;
+
           font-weight: 500;
           font-size: 32px;
           line-height: 140%;

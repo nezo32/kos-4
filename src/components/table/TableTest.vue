@@ -1,31 +1,15 @@
 <template>
   <div class="table">
-    <table>
-      <tbody>
-        <tr>
-          <th v-for="(v, i) of headers" :key="i">
-            <p style="color: var(--unactive-text)" breadcrumbs__text>
-              {{ v }}
-              <ArrowSwipePagesIcon
-                :direciton="arrowdirection[i]"
-                @click="changeSort(i)"
-              />
-            </p>
-          </th>
-        </tr>
-        <tr v-for="(v, i) of aboba">
-          <td
-            v-for="(v2, i2) of v"
-            :key="i2"
-            table__text
-            style="color: var(--main-text)"
-            :class="{ excellent: v2 == '100%' }"
-          >
-            {{ v2 }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table__body">
+      <div class="table__body__column" v-for="i in aboba[0].length" :key="i">
+        <p
+          style="color: var(--main-text)"
+          :class="{ excellent: aboba[0][i - 1] == '100%' }"
+        >
+          {{ aboba[0][i - 1] }}
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -141,49 +125,19 @@ onMounted(() => {
 }
 
 .table {
-  background: #ffffff;
-  border-radius: 20px;
+  &__body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    &__column {
+      display: flex;
+      flex-direction: column;
 
-  padding: 20px 20px 20px 20px;
-  width: 100%;
-  > table {
-    > tbody {
-      > tr {
-        > th {
-          padding: 2px 3px 3px 15px;
-          text-align: start;
-
-          > p {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 5px;
-          }
-        }
-
-        > td {
-          padding: 15px 0px 5px 15px;
-
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          max-width: 287.5px;
-        }
-      }
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 287.5px;
     }
   }
 }
-
-/* .table {
-  padding: 20px;
-
-  background: #ffffff;
-  border-radius: 20px;
-
-  &__rows {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-} */
 </style>

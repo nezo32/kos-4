@@ -42,8 +42,8 @@ const props = defineProps<{
 
     text-align: center;
 
-    padding: 5px 34px;
-    width: 235px;
+    padding: 10px 34px;
+    min-width: 235px;
     border-radius: 10px;
     background: none;
 
