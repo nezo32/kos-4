@@ -1,14 +1,27 @@
 <template>
   <div class="search__filter">
     <div class="search__filter__header">
-      <input type="text" placeholder="Поиск" />
+      <input type="text" placeholder="Поиск" v-model="value" />
       <SearchIcon />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 import SearchIcon from "./icons/filters/SearchIcon.vue";
+
+const props = defineProps(["modelValue"]);
+const emits = defineEmits(["update:modelValue"]);
+
+const value = computed({
+  get() {
+    return props.modelValue;
+  },
+  set(value) {
+    emits("update:modelValue", value);
+  },
+});
 </script>
 
 <style scoped lang="scss">

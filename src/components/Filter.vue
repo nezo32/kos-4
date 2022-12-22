@@ -1,18 +1,27 @@
 <template>
   <div class="filter" ref="outsideDetectionComponent">
-    <div class="filter__header" @click="clicked = !clicked">
-      <span>{{ selected }}</span>
+    <div class="filter__header">
+      <input
+        @click="clicked = true"
+        v-model="input"
+        type="text"
+        class="search__text"
+        :placeholder="placeholder"
+        :title="input"
+      />
       <FilterIcon v-if="!props.date" />
       <DatepickerIcon v-if="props.date" />
     </div>
-    <div class="filter__after" v-if="clicked">
+    <div class="filter__after" v-if="clicked && cont.length">
       <p
-        v-for="i in props.content"
+        v-for="i in cont"
         :key="i"
         @click="
-          selected = i;
+          input = i;
+          value = i;
           clicked = !clicked;
         "
+        :title="i"
       >
         {{ i }}
       </p>
@@ -21,31 +30,56 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch, computed } from "vue";
 import DatepickerIcon from "./icons/filters/DatepickerIcon.vue";
 import FilterIcon from "./icons/filters/FilterIcon.vue";
 import detect from "@/detectOutsideElement";
 
 const props = defineProps<{
   content: Array<string>;
+  placeholder: string;
   date?: boolean;
+  modelValue?: string;
 }>();
 
-const selected = ref(props.content[0]);
+const emit = defineEmits(["update:modelValue"]);
+
+const cont = ref<Array<string>>(props.content);
 const clicked = ref(false);
 const outsideDetectionComponent = ref();
+const input = ref("");
+
+const value = computed({
+  get() {
+    return props.modelValue;
+  },
+  set(value) {
+    emit("update:modelValue", value);
+  },
+});
 
 detect(outsideDetectionComponent, () => {
   if (clicked.value) clicked.value = !clicked.value;
+  if (input.value == "") value.value = "";
+});
+
+watch(input, async (n) => {
+  cont.value = [];
+  props.content.forEach((el) => {
+    if (n != undefined)
+      if (el.toUpperCase().includes(n.toUpperCase())) cont.value.push(el);
+  });
 });
 </script>
 
 <style scoped lang="scss">
 .filter {
+  width: 100%;
   position: relative;
 
   &__header {
-    cursor: pointer;
+    box-sizing: border-box;
+    width: 100%;
 
     & > *:nth-child(2) {
       flex-shrink: 0;
@@ -63,18 +97,31 @@ detect(outsideDetectionComponent, () => {
     border-radius: 20px;
     padding: 14px 12px;
 
-    > span {
+    box-sizing: border-box;
+
+    > input {
+      cursor: pointer;
+      width: 100%;
+
+      outline: none;
+      border: none;
+      background: none;
+
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 16px;
-      color: #a3aed0;
+
+      color: var(--main-text);
+
+      &::placeholder {
+        color: var(--unactive-text);
+      }
     }
   }
   &__after {
     width: fit-content;
+
+    max-width: 512px;
 
     display: flex;
     flex-direction: column;
@@ -92,6 +139,8 @@ detect(outsideDetectionComponent, () => {
     padding: 15px;
     > p {
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       cursor: pointer;
 

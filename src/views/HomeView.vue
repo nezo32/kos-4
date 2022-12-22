@@ -361,7 +361,7 @@
         <PageSwitcher :count-pages="54" />
       </section>
       <section>
-        <FileDropDown />
+        <FileDropDown :content="params"/>
       </section>
     </div>
     <div class="home__component">
@@ -393,9 +393,9 @@
     <div class="home__component">
       <h1>Блок фильтров</h1>
       <section>
-        <Filter :content="zalupa" />
-        <Filter :content="zalupa" date />
-        <SearchFilter />
+        <Filter :content="zalupa" placeholder="Институт" v-model="input2" style="width: 250px; flex-shrink: 0;"/>
+        <Filter :content="zalupa" placeholder="Институт" v-model="input1"/>
+        <SearchFilter v-model="input3"/>
       </section>
     </div>
     <div class="home__component">
@@ -418,7 +418,7 @@
     <div class="home__component">
       <h1>Таблицы</h1>
       <p style="background-color: var(--background); border-radius: 50px">
-        <TableTest />
+        <Table title="ОПОП" :headers="head" :content="cont" :dropdown-params="params"/>
       </p>
     </div>
     <div class="home__component">
@@ -434,7 +434,7 @@
 import { ArrowDirections, DocumentStatus } from "@/types/types";
 import type { ProfileStatus } from "@/types/types";
 
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, ref, watch } from "vue";
 
 import EventScheduleIcon from "@/components/icons/schedule/EventScheduleIcon.vue";
 import DocumentStatusIcon from "@/components/icons/DocumentStatusIcon.vue";
@@ -533,15 +533,50 @@ import YandexLogo from "@/components/logos/browsers/YandexLogo.vue";
 import KosyginIDMenuButton from "@/components/buttons/KosyginIDMenuButton.vue";
 import ServiceHeader from "@/components/ServiceHeader.vue";
 import CustomInput from "@/components/CustomInput.vue";
-import TableTest from "@/components/table/TableTest.vue";
 
 const date = ref();
 
 let timer: number;
 
+const input1 = ref('');
+const input2 = ref('');
+const input3 = ref('');
+
+const params = ref(["Скачать", "Редактировать"]);
+const head = ref(["Код", "Направление подготовки", "Профиль", "Уровень", "Форма", "Заполнено"]);
+const cont = ref([[
+  "38.03.04",
+  "1",
+  "Проектирование и художественное оформление трикотажных изделий",
+  "Ассистент-стажер",
+  "Очно-заочная",
+  "100%"
+],[
+  "38.03.04",
+  "1",
+  "Проектирование и художественное оформление трикотажных изделий",
+  "Ассистент-стажер",
+  "Очно-заочная",
+  "100%"
+],[
+  "38.03.04",
+  "Технология полиграфического и упаковочного производства",
+  "Проектирование и художественное оформление трикотажных изделий",
+  "Ассистент-стажер",
+  "Очно-заочная",
+  "99%"
+],[
+  "38.03.04",
+  "1",
+  "Проектирование и художественное оформление трикотажных изделий",
+  "Ассистент-стажер",
+  "Очно-заочная",
+  "100%"
+]])
+
 const zalupa: Array<string> = [
   "Институт мехатроники и робототехники",
-  "Технологический институт текстильной и легкой промышленности",
+  "Технологический институт текстильной и легкой промышленностиТехнологический институт текстильной и легкой промышленности",
   "Институт химических технологий и промышленной экологии",
   "Институт информационных технологий и цифровой трансформации",
 ];
@@ -666,6 +701,8 @@ onUnmounted(() => {
     }
 
     section {
+      
+
       display: flex;
       flex-direction: row;
       align-items: center;

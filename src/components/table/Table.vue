@@ -1,31 +1,39 @@
 <template>
   <div class="table">
-    <table>
-      <tbody>
-        <tr>
-          <th v-for="(v, i) of headers" :key="i">
-            <p style="color: var(--unactive-text)" breadcrumbs__text>
-              {{ v }}
-              <ArrowSwipePagesIcon
-                :direciton="arrowdirection[i]"
-                @click="changeSort(i)"
-              />
-            </p>
-          </th>
-        </tr>
-        <tr v-for="(v, i) of aboba">
-          <td
-            v-for="(v2, i2) of v"
-            :key="i2"
-            table__text
-            style="color: var(--main-text)"
-            :class="{ excellent: v2 == '100%' }"
-          >
-            {{ v2 }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table__head">
+      <h3 class="table-card__header">{{ title }}</h3>
+      <section>
+        <SearchFilter />
+        <FileDropDown :content="dropdownParams" />
+      </section>
+    </div>
+    <div class="table__body">
+      <div
+        class="table__body__column"
+        v-for="(header, index) of headers"
+        :key="index"
+      >
+        <section class="breadcrumbs__text">
+          {{ header }}
+          <ArrowSwipePagesIcon
+            :direciton="arrowdirection[index]"
+            @click="sort(index)"
+          />
+        </section>
+        <p
+          class="table__text"
+          :title="v[index]"
+          v-for="(v, i) of sortingContent"
+          :key="i"
+          :class="{ excellent: v[index] == '100%' }"
+        >
+          {{ v[index] }}
+        </p>
+      </div>
+    </div>
+    <div class="table__foot">
+      <PageSwitcher :count-pages="54" />
+    </div>
   </div>
 </template>
 
@@ -34,55 +42,20 @@ import { ArrowDirections } from "@/types/types";
 import { ref, onMounted } from "vue";
 import FileDropDown from "../FileDropDown.vue";
 import ArrowSwipePagesIcon from "../icons/arrows/ArrowSwipePagesIcon.vue";
+import PageSwitcher from "../PageSwitcher.vue";
 import SearchFilter from "../SearchFilter.vue";
 
-const headers = ref([
-  "Код",
-  "Направление подготовки",
-  "Профиль",
-  "Уровень",
-  "Форма",
-  "Заполнено",
-]);
+const props = defineProps<{
+  headers: string[];
+  content: string[][];
+  title: string;
+  dropdownParams: string[];
+}>();
 
-const aboba = ref([
-  [
-    "38.03.04",
-    "Технология полиграфического и упаковочного производства",
-    "Фотоискусство и мультимедиадизайн",
-    "Ассистент-стажер",
-    "Очно-заочная",
-    "100%",
-  ],
-  [
-    "50.03.02",
-    "Дирижирование",
-    "Отечественная филология (русский язык и литература)",
-    "Магистр",
-    "Очная",
-    "23%",
-  ],
-  [
-    "01.03.02",
-    "Народная художественная культура",
-    "Технологии менеджмента в сервисе",
-    "Магистр",
-    "Заочная",
-    "45%",
-  ],
-  [
-    "29.03.02",
-    "Реклама и связи с общественностью",
-    "Технологический дизайн и эко-брендинг упаковки",
-    "Ассистент-стажер",
-    "Заочная",
-    "52%",
-  ],
-]);
+const sortingContent = ref<Array<Array<string>>>(props.content);
 
 const arrowdirection = ref<Array<ArrowDirections>>([]);
-
-function changeSort(i: number) {
+function sort(i: number) {
   arrowdirection.value = arrowdirection.value.map((el, index) => {
     return i != index ? ArrowDirections.down : el;
   });
@@ -102,7 +75,7 @@ function changeSort(i: number) {
 
   if (arrowdirection.value[i] == ArrowDirections.down) {
     arrowdirection.value[i] = ArrowDirections.up;
-    aboba.value.sort((a, b) => {
+    sortingContent.value.sort((a, b) => {
       x = a[i].toUpperCase();
       y = b[i].toUpperCase();
 
@@ -115,7 +88,7 @@ function changeSort(i: number) {
     });
   } else {
     arrowdirection.value[i] = ArrowDirections.down;
-    aboba.value.sort((a, b) => {
+    sortingContent.value.sort((a, b) => {
       x = a[i].toUpperCase();
       y = b[i].toUpperCase();
 
@@ -129,9 +102,11 @@ function changeSort(i: number) {
 }
 
 onMounted(() => {
-  headers.value.forEach((el, i) => {
+  props.headers.forEach((el, i) => {
     arrowdirection.value.push(ArrowDirections.down);
   });
+
+  sort(0);
 });
 </script>
 
@@ -141,49 +116,63 @@ onMounted(() => {
 }
 
 .table {
-  background: #ffffff;
+  background-color: white;
   border-radius: 20px;
+  padding: 20px 20px 30px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  &__head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    > section {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+  &__body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
-  padding: 20px 20px 20px 20px;
-  width: 100%;
-  > table {
-    > tbody {
-      > tr {
-        > th {
-          padding: 2px 3px 3px 15px;
-          text-align: start;
+    &__column {
+      display: flex;
+      flex-direction: column;
 
-          > p {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 5px;
-          }
-        }
+      flex: none;
+      order: 1;
+      flex-grow: 1;
 
-        > td {
-          padding: 15px 0px 5px 15px;
+      max-width: 287.5px;
 
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          max-width: 287.5px;
-        }
+      > section {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 2px 0px 3px 15px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: var(--unactive-text);
+        border-bottom: 2px solid #f4f7fe;
+        border-collapse: collapse;
+      }
+      > p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 15px 0px 5px 15px;
+        color: var(--main-text);
       }
     }
   }
-}
-
-/* .table {
-  padding: 20px;
-
-  background: #ffffff;
-  border-radius: 20px;
-
-  &__rows {
+  &__foot {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    justify-content: center;
+    padding: 5px 0px;
   }
-} */
+}
 </style>

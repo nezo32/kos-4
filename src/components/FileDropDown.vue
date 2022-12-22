@@ -15,12 +15,12 @@
       </svg>
     </div>
     <div class="file__drop-down__content" v-if="active">
-      <FileButton content="Редактировать" @click="active = !active" />
-      <FileButton content="Скачать список Xlsx" @click="active = !active" />
-      <FileButton content="Скачать файлы PDF" @click="active = !active" />
-      <FileButton content="Скачать файлы WORD" @click="active = !active" />
-      <FileButton content="Проверено" @click="active = !active" />
-      <FileButton content="Отклонено" @click="active = !active" />
+      <FileButton
+        v-for="(v, i) of content"
+        :key="i"
+        :content="v"
+        @click="active = !active"
+      />
     </div>
   </div>
 </template>
@@ -29,6 +29,10 @@
 import { ref } from "vue";
 import FileButton from "./buttons/FileButton.vue";
 import detect from "@/detectOutsideElement";
+
+defineProps<{
+  content: Array<string>;
+}>();
 
 const active = ref(false);
 const outsideDetectionComponent = ref();
