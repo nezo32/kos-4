@@ -346,7 +346,7 @@
         <KIDButton content="Назад" />
       </section>
       <section>
-        <SwitchButton content="Рабочая программа дисциплины" />
+        <SwitchButton :content="content" />
       </section>
       <section>
         <DocumentButton content="Сохранить изменения" color="blue" />
@@ -423,9 +423,10 @@
     </div>
     <div class="home__component">
       <h1>Компоненты форм</h1>
-      <Forms type="date" />
-      <Forms type="dropdown" header="Наименование института" />
-      <Forms type="input" />
+      <Forms type="date" :content="zalupa" v-model="forms1"/>
+      <Forms type="dropdown" header="Наименование института" :content="zalupa" v-model="forms1"/>
+      <Forms type="input" :content="zalupa" v-model="forms1"/>
+      {{ forms1 }}
     </div>
   </div>
 </template>
@@ -542,8 +543,11 @@ const input1 = ref('');
 const input2 = ref('');
 const input3 = ref('');
 
+const forms1 = ref('');
+
 const params = ref(["Скачать", "Редактировать"]);
 const head = ref(["Код", "Направление подготовки", "Профиль", "Уровень", "Форма", "Заполнено"]);
+const content = ref(["Рабочая программа дисциплины", "Рабочая программа дисциплины", "Рабочая программа дисциплины"])
 const cont = ref([[
   "38.03.04",
   "1",
