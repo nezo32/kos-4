@@ -495,7 +495,7 @@ import SearchFilter from "@/components/SearchFilter.vue";
 import SetterDocumentProfessor from "@/components/SetterDocumentProfessor.vue";
 import Table from "@/components/table/Table.vue";
 import KIDButton from "@/components/buttons/KIDButton.vue";
-import Forms from "@/components/Forms.vue";
+import Forms from "@/components/forms/Forms.vue";
 import SecurityIcon from "@/components/icons/menu/SecurityIcon.vue";
 import MyDataIcon from "@/components/icons/menu/MyDataIcon.vue";
 import OpenCloseIcon from "@/components/icons/security_KID/OpenCloseIcon.vue";
@@ -580,7 +580,7 @@ const cont = ref([[
 
 const zalupa: Array<string> = [
   "Институт мехатроники и робототехники",
-  "Технологический институт текстильной и легкой промышленностиТехнологический институт текстильной и легкой промышленности",
+  "Технологический институт текстильной и легкой промышленностиТехнологический институт текстильной и легкой промышленностипромышленностиТехнологический институт текстильной и легкой промышленности",
   "Институт химических технологий и промышленной экологии",
   "Институт информационных технологий и цифровой трансформации",
 ];

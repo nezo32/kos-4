@@ -1,6 +1,11 @@
 {
   "name": "ui-kit-kosygin",
   "version": "0.0.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
@@ -8,6 +13,9 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+  },
+  "publishConfig": {
+    "access": "restricted"
   },
   "dependencies": {
     "@vuepic/vue-datepicker": "^3.6.0",
