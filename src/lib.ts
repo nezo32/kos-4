@@ -18,7 +18,7 @@ export { default as KUnivIcon } from "./components/icons/social/UnivIcon.vue";
 export { default as KTelegramIcon } from "./components/icons/social/TelegramIcon.vue";
 export { default as KNotificationProfileIcon } from "./components/icons/NotificationProfileIcon.vue";
 export { default as KArrowListIcon } from "./components/icons/arrows/ArrowListIcon.vue";
-export { default as KBreadcrumbs } from "./components/Breadcrumbs.vue";
+export { default as KBreadcrumbs } from "./components/BreadCrumbs.vue";
 export { default as KStatusChoose } from "./components/StatusChoose.vue";
 export { default as KActionButton } from "./components/buttons/ActionButton.vue";
 export { default as KSwitchButton } from "./components/buttons/SwitchButton.vue";
@@ -95,6 +95,26 @@ export { default as KYandexLogo } from "./components/logos/browsers/YandexLogo.v
 export { default as KKosyginIDMenuButton } from "./components/buttons/KosyginIDMenuButton.vue";
 export { default as KServiceHeader } from "./components/ServiceHeader.vue";
 export { default as KCustomInput } from "./components/CustomInput.vue";
+
+export enum DocumentStatus {
+    processing,
+    checking,
+    approved,
+    missing,
+    rejected
+}
+
+export interface ProfileStatus {
+    name: string;
+    default?: boolean;
+}
+
+export enum ArrowDirections {
+    up,
+    down,
+    left,
+    right,
+}
 
 /* export const Icons = {
     KRoundedPlusScheduleIcon,

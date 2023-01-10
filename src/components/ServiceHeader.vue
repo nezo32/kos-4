@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import Breadcrumbs from "./Breadcrumbs.vue";
+import Breadcrumbs from "./BreadCrumbs.vue";
 import Profile from "./Profile.vue";
 
 const props = defineProps<{
