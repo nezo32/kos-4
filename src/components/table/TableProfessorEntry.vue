@@ -1,11 +1,13 @@
 <template>
   <div class="table__professor__entry">
-    <img src="@/assets/img/images.png" alt="professor" smooth />
+    <img :src="src" alt="professor" smooth />
     <p>Малохин Владислав</p>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineProps<{ src: string }>();
+</script>
 
 <style scoped lang="scss">
 .table__professor__entry {

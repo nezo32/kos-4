@@ -1,0 +1,12 @@
+{
+    "include": ["./src/lib.ts"],
+    "compilerOptions": {
+        "emitDeclarationOnly": true,
+        "declaration": true,
+        "declarationDir": "./dist/types",
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["./src/*"]
+        },
+    }
+}
