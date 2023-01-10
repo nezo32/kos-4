@@ -13,7 +13,6 @@ build:
         - node_modules/
   script:
     - yarn
-    - yarn build
     #set up .npmrc :clown:
     - echo "@kosygin-rsu:registry=https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/" >> .npmrc
     - echo "//gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}" >> .npmrc
