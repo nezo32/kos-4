@@ -23,3 +23,4 @@ build:
     - echo "-- build completed succesfully"
   only:
     - master
+    - develop
