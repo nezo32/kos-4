@@ -96,26 +96,6 @@ export { default as KKosyginIDMenuButton } from "./components/buttons/KosyginIDM
 export { default as KServiceHeader } from "./components/ServiceHeader.vue";
 export { default as KCustomInput } from "./components/CustomInput.vue";
 
-export enum DocumentStatus {
-    processing,
-    checking,
-    approved,
-    missing,
-    rejected
-}
-
-export interface ProfileStatus {
-    name: string;
-    default?: boolean;
-}
-
-export enum ArrowDirections {
-    up,
-    down,
-    left,
-    right,
-}
-
 /* export const Icons = {
     KRoundedPlusScheduleIcon,
     KChangeProfilePictureIcon,
