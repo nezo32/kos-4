@@ -366,8 +366,13 @@
     </div>
     <div class="home__component">
       <h1>Вертикальное меню</h1>
-      <section>
-        <VerticalMenu />
+      <section style="height: 1000px; background: black;">
+        <VerticalMenu>
+          <VerticalMenuButtons content="Программы" icon="home" url="/" />
+          <VerticalMenuButtons content="Общее расписание" icon="management" url="/management" />
+          <VerticalMenuButtons content="Уведомления" icon="notification" url="/notifications"/>
+          <VerticalMenuButtons content="Выход" icon="exit" url="/logout" />
+        </VerticalMenu>
       </section>
     </div>
     <div class="home__component">
@@ -457,7 +462,7 @@ import UnivIcon from "@/components/icons/social/UnivIcon.vue";
 import TelegramIcon from "@/components/icons/social/TelegramIcon.vue";
 import NotificationProfileIcon from "@/components/icons/NotificationProfileIcon.vue";
 import ArrowListIcon from "@/components/icons/arrows/ArrowListIcon.vue";
-import Breadcrumbs from "@/components/BreadCrumbs.vue.js";
+import Breadcrumbs from "@/components/BreadCrumbs.vue";
 import StatusChoose from "@/components/StatusChoose.vue";
 import ActionButton from "@/components/buttons/ActionButton.vue";
 import SwitchButton from "@/components/buttons/SwitchButton.vue";

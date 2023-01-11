@@ -4,18 +4,7 @@
       <KosyginLogo />
     </div>
     <div class="vertical__menu__buttons">
-      <VerticalMenuButtons content="Программы" icon="home" url="/" />
-      <VerticalMenuButtons
-        content="Руководители ОП"
-        icon="management"
-        url="/management"
-      />
-      <VerticalMenuButtons
-        content="Уведомления"
-        icon="notification"
-        url="/notifications"
-      />
-      <VerticalMenuButtons content="Выход" icon="exit" url="/logout" />
+      <slot></slot>
     </div>
     <div class="vertical__menu__id">
       <KosyginIDButton />
@@ -31,6 +20,8 @@ import KosyginLogo from "./logos/KosyginLogo.vue";
 
 <style scoped lang="scss">
 .vertical__menu {
+  height: fit-content;
+
   background: #ffffff;
   border-radius: 0px 0px 20px 20px;
 
