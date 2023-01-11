@@ -95,6 +95,7 @@ export { default as KYandexLogo } from "./components/logos/browsers/YandexLogo.v
 export { default as KKosyginIDMenuButton } from "./components/buttons/KosyginIDMenuButton.vue";
 export { default as KServiceHeader } from "./components/ServiceHeader.vue";
 export { default as KCustomInput } from "./components/CustomInput.vue";
+export { default as KFooter } from "./components/Footer.vue";
 
 /* export const Icons = {
     KRoundedPlusScheduleIcon,
