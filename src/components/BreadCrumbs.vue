@@ -10,7 +10,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-const path = ref("abiba/cringe/clown");
+const props = defineProps<{ path?: string }>();
+
+const path = ref<string>("abiba/cringe/clown" || props.path);
+
 const splittedPath = path.value.split("/");
 </script>
 
