@@ -97,6 +97,9 @@ export { default as KServiceHeader } from "./components/ServiceHeader.vue";
 export { default as KCustomInput } from "./components/CustomInput.vue";
 export { default as KFooter } from "./components/Footer.vue";
 
+import "./assets/main.css";
+import "./assets/sass/global.scss";
+
 /* export const Icons = {
     KRoundedPlusScheduleIcon,
     KChangeProfilePictureIcon,
