@@ -379,7 +379,7 @@
       <h1>Расписание</h1>
       <section>
         <label>
-          <ScheduleEvent
+          <ScheduleEventCard
             event-img="https://remote-tools-images.s3.amazonaws.com/best+discord+pfp/blog+12/anime/anime/1+(1).jpg"
             date="08.09 - 11.09"
             event-status="Мероприятие завершено"
@@ -387,7 +387,7 @@
             organaizer="Студенческий совет"
             header="Все айтишники Университета Косыгина вместе идут смотреть на краисвых котов и кошечек"
           />
-          <ScheduleDayCard day="Понедельник" :count-of-events="3" />
+          <ScheduleDayCard day="Понедельник" subtitle="aboba" :content="event"/>
         </label>
       </section>
     </div>
@@ -437,7 +437,7 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowDirections, DocumentStatus } from "@/types/types";
+import { ArrowDirections, DocumentStatus, type ScheduleEvent } from "@/types/types";
 import type { ProfileStatus } from "@/types/types";
 
 import { onMounted, onUnmounted, ref, watch } from "vue";
@@ -489,7 +489,7 @@ import VerticalMenu from "@/components/VerticalMenu.vue";
 import Profile from "@/components/Profile.vue";
 import CoinIcon from "@/components/icons/CoinIcon.vue";
 import ScheduleDayCard from "@/components/schedule/ScheduleDayCard.vue";
-import ScheduleEvent from "@/components/schedule/ScheduleEvent.vue";
+import ScheduleEventCard from "@/components/schedule/ScheduleEvent.vue";
 import Input from "@/components/CustomInput.vue";
 import CheckboxRounded from "@/components/buttons/CheckboxRounded.vue";
 import Filter from "@/components/Filter.vue";
@@ -543,6 +543,36 @@ import CustomInput from "@/components/CustomInput.vue";
 const date = ref();
 
 let timer: number;
+
+const event = ref<Array<ScheduleEvent>>([
+  {
+    date: 'a',
+    eventImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Leopard_in_the_Colchester_Zoo.jpg/1200px-Leopard_in_the_Colchester_Zoo.jpg',
+    eventStatus: 'a',
+    header: "a",
+    memberCount: "a",
+    organaizer: "a",
+    schedule: true,
+  },
+  {
+    date: 'a',
+    eventImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Leopard_in_the_Colchester_Zoo.jpg/1200px-Leopard_in_the_Colchester_Zoo.jpg',
+    eventStatus: 'a',
+    header: "a",
+    memberCount: "a",
+    organaizer: "a",
+    schedule: true,
+  },
+  {
+    date: 'a',
+    eventImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Leopard_in_the_Colchester_Zoo.jpg/1200px-Leopard_in_the_Colchester_Zoo.jpg',
+    eventStatus: 'a',
+    header: "a",
+    memberCount: "a",
+    organaizer: "a",
+    schedule: true,
+  }
+]);
 
 const input1 = ref('');
 const input2 = ref('');

@@ -1,11 +1,12 @@
 <template>
   <div class="schedule__card">
     <div class="schedule__card__header">
-      <div>
-        <h5>{{ props.day }}</h5>
-        <span>Состоялось {{ props.countOfEvents }} мероприятий</span>
+      <div style="color: var(--main-text)">
+        <h5 class="input__header">{{ props.day }}</h5>
+        <span class="table__action__text">{{ props.subtitle }}</span>
       </div>
       <ArrowFormIcon
+        style="color: var(--main-text)"
         class="schedule__card__header__arrow"
         @click="changeDirection()"
         :direciton="direction"
@@ -16,14 +17,15 @@
         class="schedule__card__content"
         v-if="direction == ArrowDirections.down"
       >
-        <div v-for="i in 3" :key="i">
-          <ScheduleEvent
-            header="Все айтишники Университета Косыгина вместе идут смотреть на краисвых котов и кошечек"
-            organaizer="Организатор: Студенческий совет"
-            member-count="2 321 участника"
-            event-status="Мероприятия завершено"
-            date="08.09 - 11.09"
-            event-img="../src/assets/img/biba.svg"
+        <div v-for="(v, i) of props.content" :key="i">
+          <ScheduleEventCard
+            :header="v.header"
+            :organaizer="v.organaizer"
+            :member-count="v.memberCount"
+            :event-status="v.eventStatus"
+            :date="v.date"
+            :event-img="v.eventImg"
+            :schedule="v.schedule"
           />
         </div>
       </div>
@@ -33,13 +35,14 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { ArrowDirections } from "@/types/types";
+import { ArrowDirections, type ScheduleEvent } from "@/types/types";
 import ArrowFormIcon from "../icons/arrows/ArrowFormIcon.vue";
-import ScheduleEvent from "./ScheduleEvent.vue";
+import ScheduleEventCard from "./ScheduleEvent.vue";
 
 const props = defineProps<{
   day: string;
-  countOfEvents: number;
+  subtitle: string;
+  content: Array<ScheduleEvent>;
 }>();
 
 const direction = ref(ArrowDirections.right);
@@ -64,23 +67,6 @@ function changeDirection() {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
-    > div {
-      > h5 {
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 23px;
-        color: #2b3674;
-
-        margin: 0;
-      }
-      > span {
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 140%;
-        color: #2b3674;
-      }
-    }
 
     &__arrow {
       transition: all 0.25s ease-in-out;
