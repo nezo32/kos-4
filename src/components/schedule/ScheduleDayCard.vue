@@ -60,7 +60,6 @@ function changeDirection() {
 .schedule__card {
   background: #ffffff;
   border-radius: 10px;
-  width: 100%;
   padding: 15px 20px 15px 20px;
   &__header {
     display: flex;
