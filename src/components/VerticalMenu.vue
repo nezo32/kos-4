@@ -36,6 +36,9 @@ import KosyginLogo from "./logos/KosyginLogo.vue";
     border-bottom: 1px solid #f4f7fe;
   }
   &__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     margin-left: 10px;
   }
   &__id {
