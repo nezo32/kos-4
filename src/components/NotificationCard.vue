@@ -1,12 +1,12 @@
 <template>
-  <div class="notification">
+  <div class="notification__card">
     <img :src="props.img" alt="alert" />
-    <div class="notification__content">
+    <div class="notification__card__content">
       <h2>{{ props.header }}</h2>
       <p>{{ props.desc }}</p>
       <span>{{ props.howLongAgo }}</span>
     </div>
-    <div class="notification__close">
+    <div class="notification__card__close">
       <DocumentStatusIcon :status="DocumentStatus.rejected" />
     </div>
   </div>
@@ -25,7 +25,7 @@ const props = defineProps<{
 </script>
 
 <style scoped lang="scss">
-.notification {
+.notification__card {
   padding: 15px 0 10px 0;
   border-bottom: 2px solid #f4f7fe;
 
