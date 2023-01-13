@@ -51,7 +51,6 @@ onMounted(() => {
 .datepicker {
   width: 300px;
   height: 300px;
-
   .dp__month_year_row {
     padding: 0px 14px;
     font-weight: 400;
