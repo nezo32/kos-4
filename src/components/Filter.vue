@@ -134,6 +134,7 @@ watch(input, async (n) => {
     z-index: 100;
 
     background: #ffffff;
+    box-shadow: 3px 3px 16px #eaedf3;
     border-radius: 10px;
 
     padding: 15px;
