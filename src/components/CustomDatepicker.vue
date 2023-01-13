@@ -81,6 +81,10 @@ onMounted(() => {
     height: 26px;
   }
 
+  .dp__overlay_cell_active {
+    background: var(--rejected);
+  }
+
   .dp__cell_inner {
     width: 26px;
     height: 26px;

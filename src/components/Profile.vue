@@ -1,6 +1,9 @@
 <template>
   <div class="profile">
-    <NotificationProfileIcon :active="props.notificationActive" />
+    <NotificationProfileIcon
+      style="color: var(--main-text)"
+      :active="props.notificationActive"
+    />
     <img :src="props.pfpUrl" alt="pfp" rounded width="50" height="50" />
     <div class="profile__name-status">
       <p>{{ props.name }}</p>
