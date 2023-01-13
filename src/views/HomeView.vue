@@ -398,9 +398,12 @@
     <div class="home__component">
       <h1>Блок фильтров</h1>
       <section>
-        <Filter :content="zalupa" placeholder="Институт" v-model="input2" style="width: 250px; flex-shrink: 0;"/>
-        <Filter :content="zalupa" placeholder="Институт" v-model="input1"/>
+        <Filter :content="zalupa" :trigger="bool" placeholder="Институт" v-model="input2" style="width: 250px; flex-shrink: 0;"/>
+        <Filter :content="zalupa" :trigger="bool" placeholder="Институт" v-model="input1"/>
         <SearchFilter v-model="input3"/>
+        {{ input2 }}
+        {{ bool }}
+        <FilterResetIcon @click="bool = !bool;" style="flex-shrink: 0"/>
       </section>
     </div>
     <div class="home__component">
@@ -577,6 +580,8 @@ const event = ref<Array<ScheduleEvent>>([
 const input1 = ref('');
 const input2 = ref('');
 const input3 = ref('');
+
+const bool = ref(false);
 
 const forms1 = ref('');
 

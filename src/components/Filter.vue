@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, computed } from "vue";
+import { ref, watch, computed, watchEffect } from "vue";
 import DatepickerIcon from "./icons/filters/DatepickerIcon.vue";
 import FilterIcon from "./icons/filters/FilterIcon.vue";
 import detect from "@/detectOutsideElement";
@@ -40,9 +40,10 @@ const props = defineProps<{
   placeholder: string;
   date?: boolean;
   modelValue?: string;
+  trigger?: boolean;
 }>();
 
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["update:modelValue", "null"]);
 
 const cont = ref<Array<string>>(props.content);
 const clicked = ref(false);
@@ -69,6 +70,10 @@ watch(input, async (n) => {
     if (n != undefined)
       if (el.toUpperCase().includes(n.toUpperCase())) cont.value.push(el);
   });
+});
+
+watchEffect(() => {
+  props.trigger ? (input.value = "") : (input.value = "");
 });
 </script>
 
