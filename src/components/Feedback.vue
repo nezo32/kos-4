@@ -65,6 +65,8 @@ detect(detectOutside, () => {
   }
 
   &__content {
+    z-index: 100;
+
     position: absolute;
 
     bottom: 239px;
