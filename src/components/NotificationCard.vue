@@ -1,6 +1,6 @@
 <template>
   <div class="notification__card">
-    <img :src="props.img" alt="alert" />
+    <img rounded :src="props.img" alt="alert" />
     <div class="notification__card__content">
       <h2>{{ props.header }}</h2>
       <p>{{ props.desc }}</p>
@@ -26,7 +26,7 @@ const props = defineProps<{
 
 <style scoped lang="scss">
 .notification__card {
-  padding: 15px 0 10px 0;
+  padding: 0px 0px 10px 0;
   border-bottom: 2px solid #f4f7fe;
 
   position: relative;
