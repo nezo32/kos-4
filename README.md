@@ -1,46 +1,125 @@
 # ui-kit-kosygin
 
-This template should help get you started developing with Vue 3 in Vite.
+UI Kit for Kosygin RSU services
 
-## Recommended IDE Setup
+## Colors
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+--background: #f4f7fe;
 
-## Type Support for `.vue` Imports in TS
+--main-text: #2b3674;
+--elements: #016ae7;
+--breadcrumbs: #707eae;
+--unactive-text: #a3aed0;
+--button-hover: #055ec8;
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+--black: black;
+--white: white;
+--grey: #989898;
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+--resolved: #21dc3f;
+--rejected: #ff2d52;
+--graph-main: #6ad2ff;
+--graph-secondary: #05cd99;
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+--global-font: "Roboto";
 
-## Customize configuration
+## Components
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-yarn
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-yarn dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-yarn build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-yarn lint
-```
+KEventScheduleIcon
+KDocumentStatusIcon
+KExitIcon
+KHomeIcon
+KManagementIcon
+KNotificationMenuIcon
+KDatepickerIcon
+KFilterIcon
+KArrowSwipePagesIcon
+KSearchIcon
+KFilterResetIcon
+KArrowFormIcon
+KCalendarIcon
+KHintIcon
+KKosyginIDIcon
+KVKIcon
+KUnivIcon
+KTelegramIcon
+KNotificationProfileIcon
+KArrowListIcon
+KBreadcrumbs
+KStatusChoose
+KActionButton
+KSwitchButton
+KDocumentButton
+KPageSwitcher
+KEducationIcon
+KEventsIcon
+KProfessorsIcon
+KScienceIcon
+KManyPeopleIcon
+KExclamationHumanIcon
+KCompleteHumanIcon
+KPlusHumanIcon
+KCompleteIcon
+KExclamationIcon
+KGraphIcon
+KThickButton
+KKosyginIDButton
+KCheckBox
+KVerticalMenuButtons
+KFileButton
+KFileDropDown
+KVerticalMenu
+KProfile
+KCoinIcon
+KScheduleDayCard
+KScheduleEvent
+KInput
+KCheckboxRounded
+KFilter
+KNotificationCard
+KCustomDatepicker
+KDocumentStatusCard
+KSearchFilter
+KSetterDocumentProfessor
+KTable
+KKIDButton
+KForms
+KSecurityIcon
+KMyDataIcon
+KOpenCloseIcon
+KUniversityLogo
+KAnalyticsLogo
+KScheduleLogo
+KActivityRatingLogo
+KPassportTableLogo
+KMoodleLogo
+KTableFillRow
+KTableProfessorEntry
+KChangeProfilePictureIcon
+KPhoneSecurityIcon
+KLockSecurityIcon
+KShieldSecurityIcon
+KPCSecurityIcon
+KSettingsSecurityIcon
+KHumanScheduleIcon
+KLocationScheduleIcon
+KStarScheduleIcon
+KPeopleScheduleIcon
+KSubdivisionScheduleIcon
+KDotScheduleIcon
+KRoundedPlusScheduleIcon
+KKosyginLogo
+KFooterLogo
+KChromeLogo
+KEdgeLogo
+KFirefoxLogo
+KIELogo
+KOperaLogo
+KSafariLogo
+KTorLogo
+KUCLogo
+KYandexLogo
+KKosyginIDMenuButton
+KServiceHeader
+KCustomInput
+KFooter
