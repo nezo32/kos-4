@@ -19,107 +19,107 @@ body {
   --global-font: "Roboto";
 
   img[rounded] {
-    border-radius: 100%;
+    border-radius: 100% !important;
   }
 
   img[smooth] {
-    border-radius: 8px;
+    border-radius: 8px !important;
   }
 
   .page__header {
-    font-weight: 700;
-    font-size: 34px;
-    line-height: 140%;
+    font-weight: 700 !important;
+    font-size: 34px !important;
+    line-height: 140% !important;
   }
 
   .table-card__header {
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 28px;
+    font-weight: 700 !important;
+    font-size: 24px !important;
+    line-height: 28px !important;
   }
 
   .card__header {
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 23px;
+    font-weight: 700 !important;
+    font-size: 20px !important;
+    line-height: 23px !important;
   }
 
   .input__header {
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 23px;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    line-height: 23px !important;
   }
 
   .card__text {
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 140%;
+    font-weight: 500 !important;
+    font-size: 18px !important;
+    line-height: 140% !important;
   }
 
   .forms__text {
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 140%;
+    font-weight: 400 !important;
+    font-size: 18px !important;
+    line-height: 140% !important;
   }
 
   .text {
-    font-weight: 300;
-    font-size: 18px;
-    line-height: 140%;
+    font-weight: 300 !important;
+    font-size: 18px !important;
+    line-height: 140% !important;
   }
 
   .menu__button__text {
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 19px;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    line-height: 19px !important;
   }
 
   .card__name__text {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 19px;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    line-height: 19px !important;
   }
 
   .table__action__text {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 140%;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 140% !important;
   }
 
   .status__choose__text {
-    font-weight: 300;
-    font-size: 15px;
-    line-height: 18px;
+    font-weight: 300 !important;
+    font-size: 15px !important;
+    line-height: 18px !important;
   }
 
   .table__text {
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 16px;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    line-height: 16px !important;
   }
 
   .breadcrumbs__text {
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 16px;
+    font-weight: 500 !important;
+    font-size: 14px !important ;
+    line-height: 16px !important;
   }
 
   .search__text {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    line-height: 16px !important;
   }
 
   .fill__card__text {
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 13px;
+    font-weight: 500 !important;
+    font-size: 12px !important;
+    line-height: 13px !important;
   }
 
   .small__text {
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 140%;
+    font-weight: 400 !important;
+    font-size: 12px !important;
+    line-height: 140% !important;
   }
 }
 
@@ -136,7 +136,7 @@ article,
 textarea,
 button,
 p {
-  font-family: "Roboto";
-  font-style: normal;
+  font-family: "Roboto" !important;
+  font-style: normal !important;
   margin: 0;
 }
