@@ -17,16 +17,19 @@
         class="schedule__card__content"
         v-if="direction == ArrowDirections.down"
       >
-        <div v-for="(v, i) of props.content" :key="i">
-          <ScheduleEventCard
-            :header="v.header"
-            :organaizer="v.organaizer"
-            :member-count="v.memberCount"
-            :event-status="v.eventStatus"
-            :date="v.date"
-            :event-img="v.eventImg"
-            :schedule="v.schedule"
-          />
+        <div>
+          <div v-for="(v, i) of props.content" :key="i">
+            <ScheduleEventCard
+              ref="card"
+              :header="v.header"
+              :organaizer="v.organaizer"
+              :member-count="v.memberCount"
+              :event-status="v.eventStatus"
+              :date="v.date"
+              :event-img="v.eventImg"
+              :schedule="v.schedule"
+            />
+          </div>
         </div>
       </div>
     </Transition>
@@ -47,16 +50,32 @@ const props = defineProps<{
 
 const direction = ref(ArrowDirections.right);
 
+const card = ref();
+
+const maxHeight = ref(`${props.content.length * 153}px`);
+
 function changeDirection() {
-  setTimeout(() => {
-    direction.value == ArrowDirections.right
-      ? (direction.value = ArrowDirections.down)
-      : (direction.value = ArrowDirections.right);
-  }, 100);
+  direction.value == ArrowDirections.right
+    ? (direction.value = ArrowDirections.down)
+    : (direction.value = ArrowDirections.right);
 }
 </script>
 
 <style scoped lang="scss">
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.35s ease-in-out;
+}
+
+.v-enter-to,
+.v-leave-from {
+  max-height: v-bind(maxHeight) !important;
+}
+
+.v-enter-from,
+.v-leave-to {
+  max-height: 0px !important;
+}
 .schedule__card {
   background: #ffffff;
   border-radius: 10px;
@@ -72,6 +91,7 @@ function changeDirection() {
     }
   }
   &__content {
+    overflow: hidden;
     margin-bottom: 15px;
   }
 }
