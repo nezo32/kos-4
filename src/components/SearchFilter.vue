@@ -11,8 +11,13 @@
 import { computed } from "vue";
 import SearchIcon from "./icons/filters/SearchIcon.vue";
 
-const props = defineProps(["modelValue"]);
+const props = defineProps<{
+  modelValue?: any;
+  radius?: "10" | "20";
+}>();
 const emits = defineEmits(["update:modelValue"]);
+
+const borderRadius = computed(() => (props.radius || "10") + "px");
 
 const value = computed({
   get() {
@@ -41,7 +46,7 @@ const value = computed({
     justify-content: space-between;
     gap: 15px;
     background: #f4f7fe;
-    border-radius: 10px;
+    border-radius: v-bind(borderRadius);
     padding: 11px 12px;
 
     > input {

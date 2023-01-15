@@ -401,6 +401,7 @@
         <Filter :content="zalupa" :trigger="bool" placeholder="Институт" v-model="input2" style="width: 250px; flex-shrink: 0;"/>
         <Filter :content="zalupa" :trigger="bool" placeholder="Институт" v-model="input1"/>
         <SearchFilter v-model="input3"/>
+        <SearchFilter v-model="input3" radius="20"/>
         {{ input2 }}
         {{ bool }}
         <FilterResetIcon @click="bool = !bool;" style="flex-shrink: 0"/>

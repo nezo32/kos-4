@@ -14,7 +14,6 @@
 
 <script setup lang="ts">
 import KosyginIDButton from "./buttons/KosyginIDMenuButton.vue";
-import VerticalMenuButtons from "./buttons/VerticalMenuButtons.vue";
 import KosyginLogo from "./logos/KosyginLogo.vue";
 </script>
 
