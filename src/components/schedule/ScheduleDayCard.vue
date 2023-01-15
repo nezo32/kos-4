@@ -20,7 +20,6 @@
         <div>
           <div v-for="(v, i) of props.content" :key="i">
             <ScheduleEventCard
-              ref="card"
               :header="v.header"
               :organaizer="v.organaizer"
               :member-count="v.memberCount"
@@ -49,8 +48,6 @@ const props = defineProps<{
 }>();
 
 const direction = ref(ArrowDirections.right);
-
-const card = ref();
 
 const maxHeight = ref(`${props.content.length * 153}px`);
 
