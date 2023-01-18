@@ -100,6 +100,8 @@ export { default as KFooter } from "./components/Footer.vue";
 import "./assets/main.css";
 import "./assets/sass/global.scss";
 
+export { default as KDetectOutsideElement } from "./detectOutsideElement";
+
 /* export const Icons = {
     KRoundedPlusScheduleIcon,
     KChangeProfilePictureIcon,
