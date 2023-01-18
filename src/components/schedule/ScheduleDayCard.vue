@@ -1,6 +1,6 @@
 <template>
   <div class="schedule__card">
-    <div class="schedule__card__header">
+    <div class="schedule__card__header" @click="changeDirection()">
       <div style="color: var(--main-text)">
         <h5 class="input__header">{{ props.day }}</h5>
         <span class="table__action__text">{{ props.subtitle }}</span>
@@ -8,7 +8,6 @@
       <ArrowFormIcon
         style="color: var(--main-text)"
         class="schedule__card__header__arrow"
-        @click="changeDirection()"
         :direciton="direction"
       />
     </div>
