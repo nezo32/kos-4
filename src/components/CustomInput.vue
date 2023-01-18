@@ -77,8 +77,6 @@ function onFocusOut() {
     }
   }
 
-  width: 100%;
-
   position: relative;
 
   border: 1px solid #a3aed0;
