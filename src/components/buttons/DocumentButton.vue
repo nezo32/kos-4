@@ -1,9 +1,7 @@
 <template>
-  <div class="document__button">
-    <button :class="{ [props.color]: true }">
-      {{ props.content }}
-    </button>
-  </div>
+  <button class="document__button" :class="{ [props.color]: true }">
+    {{ props.content }}
+  </button>
 </template>
 
 <script setup lang="ts">
@@ -15,7 +13,7 @@ const props = defineProps<{
 
 <style scoped lang="scss">
 .document__button {
-  > .red {
+  &.red {
     border: 1px solid #ff2d52;
     color: #ff2d52;
 
@@ -23,7 +21,8 @@ const props = defineProps<{
       background: #ff2d52;
     }
   }
-  > .blue {
+
+  &.blue {
     border: 1px solid #016ae7;
     color: #016ae7;
 
@@ -32,23 +31,21 @@ const props = defineProps<{
     }
   }
 
-  > button {
-    text-align: center;
+  text-align: center;
 
-    padding: 10.5px 34px;
-    min-width: 235px;
-    border-radius: 10px;
-    background: none;
+  padding: 10.5px 34px;
+  min-width: 235px;
+  border-radius: 10px;
+  background: none;
 
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 16px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
 
-    &:hover {
-      color: white;
-    }
-
-    cursor: pointer;
+  &:hover {
+    color: white;
   }
+
+  cursor: pointer;
 }
 </style>
