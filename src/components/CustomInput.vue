@@ -53,6 +53,20 @@ function onFocusOut() {
 
 <style scoped lang="scss">
 .custom__input {
+  &[disabled] {
+    > input {
+      pointer-events: none;
+    }
+    > span {
+      left: 20px;
+      top: -8px;
+      background: white;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 140%;
+    }
+  }
+
   display: flex;
   flex-direction: row;
   align-items: center;

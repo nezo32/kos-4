@@ -421,7 +421,7 @@
     <div class="home__component">
       <h1>Инпуты</h1>
       <section>
-        <CustomInput :date="true" v-model="ip" theme="Фамилия" style="width: 280px" />
+        <CustomInput disabled :date="true" v-model="ip" theme="Фамилия" style="width: 280px" />
         {{ ip }}
       </section>
     </div>
@@ -546,7 +546,7 @@ import CustomInput from "@/components/CustomInput.vue";
 
 const date = ref();
 
-const ip = ref<string>();
+const ip = ref<string>("1230");
 
 let timer: number;
 
