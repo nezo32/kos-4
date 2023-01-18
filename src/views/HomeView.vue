@@ -421,7 +421,8 @@
     <div class="home__component">
       <h1>Инпуты</h1>
       <section>
-        <CustomInput theme="Фамилия" style="width: 280px" />
+        <CustomInput :date="true" v-model="ip" theme="Фамилия" style="width: 280px" />
+        {{ ip }}
       </section>
     </div>
     <div class="home__component">
@@ -494,7 +495,6 @@ import Profile from "@/components/Profile.vue";
 import CoinIcon from "@/components/icons/CoinIcon.vue";
 import ScheduleDayCard from "@/components/schedule/ScheduleDayCard.vue";
 import ScheduleEventCard from "@/components/schedule/ScheduleEvent.vue";
-import Input from "@/components/CustomInput.vue";
 import CheckboxRounded from "@/components/buttons/CheckboxRounded.vue";
 import Filter from "@/components/Filter.vue";
 import NotificationCard from "@/components/NotificationCard.vue";
@@ -545,6 +545,8 @@ import ServiceHeader from "@/components/ServiceHeader.vue";
 import CustomInput from "@/components/CustomInput.vue";
 
 const date = ref();
+
+const ip = ref<string>();
 
 let timer: number;
 

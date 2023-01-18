@@ -46,7 +46,6 @@ export { default as KProfile } from "./components/Profile.vue";
 export { default as KCoinIcon } from "./components/icons/CoinIcon.vue";
 export { default as KScheduleDayCard } from "./components/schedule/ScheduleDayCard.vue";
 export { default as KScheduleEvent } from "./components/schedule/ScheduleEvent.vue";
-export { default as KInput } from "./components/CustomInput.vue";
 export { default as KCheckboxRounded } from "./components/buttons/CheckboxRounded.vue";
 export { default as KFilter } from "./components/Filter.vue";
 export { default as KNotificationCard } from "./components/NotificationCard.vue";
@@ -96,116 +95,9 @@ export { default as KKosyginIDMenuButton } from "./components/buttons/KosyginIDM
 export { default as KServiceHeader } from "./components/ServiceHeader.vue";
 export { default as KCustomInput } from "./components/CustomInput.vue";
 export { default as KFooter } from "./components/Footer.vue";
+export { default as KCustomInputDropdown } from "./components/CustomInputDropdown.vue"
 
 import "./assets/main.css";
 import "./assets/sass/global.scss";
 
 export { default as KDetectOutsideElement } from "./detectOutsideElement";
-
-/* export const Icons = {
-    KRoundedPlusScheduleIcon,
-    KChangeProfilePictureIcon,
-    KPhoneSecurityIcon,
-    KLockSecurityIcon,
-    KShieldSecurityIcon,
-    KPCSecurityIcon,
-    KSettingsSecurityIcon,
-    KHumanScheduleIcon,
-    KLocationScheduleIcon,
-    KStarScheduleIcon,
-    KPeopleScheduleIcon,
-    KSubdivisionScheduleIcon,
-    KDotScheduleIcon,
-    KOpenCloseIcon,
-    KMyDataIcon,
-    KSecurityIcon,
-    KCoinIcon,
-    KCompleteHumanIcon,
-    KPlusHumanIcon,
-    KCompleteIcon,
-    KExclamationIcon,
-    KGraphIcon,
-    KThickButton,
-    KEventScheduleIcon,
-    KDocumentStatusIcon,
-    KExitIcon,
-    KHomeIcon,
-    KManagementIcon,
-    KNotificationMenuIcon,
-    KDatepickerIcon,
-    KFilterIcon,
-    KArrowSwipePagesIcon,
-    KSearchIcon,
-    KFilterResetIcon,
-    KArrowFormIcon,
-    KCalendarIcon,
-    KHintIcon,
-    KKosyginIDIcon,
-    KVKIcon,
-    KUnivIcon,
-    KTelegramIcon,
-    KNotificationProfileIcon,
-    KArrowListIcon,
-    KEducationIcon,
-    KEventsIcon,
-    KProfessorsIcon,
-    KScienceIcon,
-    KManyPeopleIcon,
-    KExclamationHumanIcon,
-}
-
-export const Components = {
-    KProfile,
-    KSetterDocumentProfessor,
-    KTable,
-    KKIDButton,
-    KForms,
-    KTableFillRow,
-    KTableProfessorEntry,
-    KKosyginIDMenuButton,
-    KVerticalMenu,
-    KFileDropDown,
-    KScheduleDayCard,
-    KScheduleEvent,
-    KInput,
-    KCheckboxRounded,
-    KFilter,
-    KNotificationCard,
-    KCustomDatepicker,
-    KDocumentStatusCard,
-    KSearchFilter,
-    KKosyginIDButton,
-    KCheckBox,
-    KVerticalMenuButtons,
-    KFileButton,
-    KBreadcrumbs,
-    KStatusChoose,
-    KActionButton,
-    KSwitchButton,
-    KDocumentButton,
-    KPageSwitcher,
-    KServiceHeader,
-    KCustomInput,
-}
-
-export const Logos = {
-    KKosyginLogo,
-    KOperaLogo,
-    KSafariLogo,
-    KTorLogo,
-    KUCLogo,
-    KYandexLogo,
-
-    KFooterLogo,
-    KChromeLogo,
-    KEdgeLogo,
-    KFirefoxLogo,
-    KIELogo,
-    KUniversityLogo,
-    KAnalyticsLogo,
-    KScheduleLogo,
-    KActivityRatingLogo,
-    KPassportTableLogo,
-    KMoodleLogo,
-
-} */

@@ -4,22 +4,35 @@
       :class="{ footer__feedback__style: props.footer }"
       type="text"
       @focusin="onFocusIn()"
-      ref="input"
+      v-model="input"
       @focusout="onFocusOut()"
     />
+    <CalendarIcon v-if="date" style="color: var(--unactive-text)" />
     <span>{{ props.theme }}</span>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from "vue";
+import { reactive, computed } from "vue";
+import CalendarIcon from "./icons/CalendarIcon.vue";
 
 const props = defineProps<{
   theme: string;
   footer?: boolean;
+  date?: boolean;
+  modelValue?: any;
 }>();
 
-const input = ref<HTMLInputElement | null>(null);
+const emit = defineEmits(["update:modelValue"]);
+
+const input = computed({
+  get() {
+    return props.modelValue;
+  },
+  set(value) {
+    emit("update:modelValue", value);
+  },
+});
 
 const objectStyleAll = reactive({
   blue: false,
@@ -32,7 +45,7 @@ function onFocusIn() {
 }
 function onFocusOut() {
   objectStyleAll.blue = false;
-  input?.value?.value == ""
+  input.value == "" || input.value == undefined
     ? (objectStyleAll.pos = false)
     : (objectStyleAll.pos = true);
 }
@@ -40,6 +53,10 @@ function onFocusOut() {
 
 <style scoped lang="scss">
 .custom__input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
   &.blue {
     border: 1px solid #016ae7;
     > span {
