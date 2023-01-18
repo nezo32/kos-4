@@ -33,16 +33,9 @@ const props = defineProps<{
   }
 
   > button {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
     text-align: center;
 
-    padding: 10px 34px;
+    padding: 10.5px 34px;
     min-width: 235px;
     border-radius: 10px;
     background: none;

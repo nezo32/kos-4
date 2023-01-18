@@ -33,7 +33,7 @@ const props = defineProps<{ content: string; general?: boolean }>();
 
   cursor: pointer;
 
-  padding: 11px 45px;
+  padding: 10.5px 45px;
 
   border-radius: 10px;
   border: 1px solid #016ae7;
