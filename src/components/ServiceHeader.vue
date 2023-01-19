@@ -7,7 +7,7 @@
     <div class="service__header__profile">
       <Profile
         :notification-active="false"
-        name="Попов Дмитрий"
+        :name="name || 'Попов Дмитрий'"
         :pfpUrl="pfp"
       />
     </div>
@@ -20,6 +20,7 @@ import Profile from "./Profile.vue";
 
 const props = defineProps<{
   title: string;
+  name?: string;
   pfp?: string;
 }>();
 </script>
