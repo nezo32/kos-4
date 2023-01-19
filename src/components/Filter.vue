@@ -100,7 +100,7 @@ watchEffect(() => {
     gap: 15px;
     background: #f4f7fe;
     border-radius: 20px;
-    padding: 14px 12px;
+    padding: 12px;
 
     box-sizing: border-box;
 

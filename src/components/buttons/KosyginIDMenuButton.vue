@@ -1,10 +1,12 @@
 <template>
-  <div class="kosygin-id__button">
-    <button>
-      <h5><KosyginIDIcon />Kosygin ID</h5>
-      <p>Единый аккаунт для всех сервисов университета!</p>
-    </button>
-  </div>
+  <a href="https://www.example.com" style="text-decoration: none">
+    <div class="kosygin-id__button" @click="">
+      <button>
+        <h5><KosyginIDIcon />Kosygin ID</h5>
+        <p>Единый аккаунт для всех сервисов университета!</p>
+      </button>
+    </div>
+  </a>
 </template>
 
 <script setup lang="ts">

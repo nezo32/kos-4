@@ -77,6 +77,7 @@ function changeDirection() {
   border-radius: 10px;
   padding: 15px 20px 15px 20px;
   &__header {
+    cursor: pointer;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

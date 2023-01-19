@@ -47,7 +47,7 @@ const value = computed({
     gap: 15px;
     background: #f4f7fe;
     border-radius: v-bind(borderRadius);
-    padding: 11px 12px;
+    padding: 12px;
 
     > input {
       width: 205px;
