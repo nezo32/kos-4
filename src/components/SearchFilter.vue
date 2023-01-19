@@ -1,6 +1,6 @@
 <template>
   <div class="search__filter">
-    <div class="search__filter__header">
+    <div class="search__filter__header" :class="{ disabled }">
       <input type="text" :placeholder="title || 'Поиск'" v-model="value" />
       <SearchIcon />
     </div>
@@ -16,6 +16,7 @@ const props = defineProps<{
   radius?: "10" | "20";
   title?: string;
   trigger?: boolean;
+  disabled?: boolean;
 }>();
 const emits = defineEmits(["update:modelValue"]);
 
@@ -40,7 +41,9 @@ watchEffect(() => {
   position: relative;
 
   &__header {
-    cursor: pointer;
+    &.disabled {
+      pointer-events: none;
+    }
 
     & > *:nth-child(2) {
       flex-shrink: 0;
@@ -56,6 +59,8 @@ watchEffect(() => {
     padding: 12px;
 
     > input {
+      cursor: pointer;
+
       width: 205px;
 
       white-space: nowrap;

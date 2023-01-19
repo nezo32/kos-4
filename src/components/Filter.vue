@@ -2,7 +2,8 @@
   <div class="filter" ref="outsideDetectionComponent">
     <div class="filter__header">
       <input
-        @click="clicked = true"
+        :class="{ disabled }"
+        @click="!disabled ? (clicked = true) : (clicked = false)"
         v-model="input"
         type="text"
         class="search__text"
@@ -30,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, computed, watchEffect } from "vue";
+import { ref, watch, computed, watchEffect, onMounted } from "vue";
 import DatepickerIcon from "./icons/filters/DatepickerIcon.vue";
 import FilterIcon from "./icons/filters/FilterIcon.vue";
 import detect from "@/detectOutsideElement";
@@ -41,6 +42,7 @@ const props = defineProps<{
   date?: boolean;
   modelValue?: string;
   trigger?: boolean;
+  disabled?: boolean;
 }>();
 
 const emit = defineEmits(["update:modelValue", "null"]);
@@ -75,6 +77,10 @@ watch(input, async (n) => {
 watchEffect(() => {
   props.trigger ? (input.value = "") : (input.value = "");
 });
+
+onMounted(() => {
+  input.value = value.value || "";
+});
 </script>
 
 <style scoped lang="scss">
@@ -105,6 +111,10 @@ watchEffect(() => {
     box-sizing: border-box;
 
     > input {
+      &.disabled {
+        pointer-events: none;
+      }
+
       cursor: pointer;
       width: 100%;
 

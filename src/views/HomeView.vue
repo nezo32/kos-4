@@ -398,9 +398,9 @@
     <div class="home__component">
       <h1>Блок фильтров</h1>
       <section>
-        <Filter :content="zalupa" :trigger="bool" placeholder="Институт" v-model="input2" style="width: 250px; flex-shrink: 0;"/>
+        <Filter :disabled="true" :content="zalupa" :trigger="bool" placeholder="Институт" v-model="input2" style="width: 250px; flex-shrink: 0;"/>
         <Filter :content="zalupa" :trigger="bool" placeholder="Институт" v-model="input1"/>
-        <SearchFilter v-model="input3"/>
+        <SearchFilter v-model="input3" :disabled="true"/>
         <SearchFilter v-model="input3" radius="20"/>
         {{ input2 }}
         {{ bool }}
@@ -581,8 +581,8 @@ const event = ref<Array<ScheduleEvent>>([
 ]);
 
 const input1 = ref('');
-const input2 = ref('');
-const input3 = ref('');
+const input2 = ref('аыфаыфва');
+const input3 = ref('fasdfsadf');
 
 const bool = ref(false);
 
