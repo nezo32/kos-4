@@ -29,7 +29,7 @@ const props = defineProps<{
 .service__header {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 
   &__content {
