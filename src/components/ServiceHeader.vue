@@ -8,7 +8,7 @@
       <Profile
         :notification-active="false"
         name="Попов Дмитрий"
-        pfpUrl="../src/assets/img/biba.svg"
+        :pfpUrl="pfp"
       />
     </div>
   </div>
@@ -20,6 +20,7 @@ import Profile from "./Profile.vue";
 
 const props = defineProps<{
   title: string;
+  pfp?: string;
 }>();
 </script>
 
