@@ -4,7 +4,16 @@
       style="color: var(--main-text)"
       :active="props.notificationActive"
     />
-    <img :src="props.pfpUrl" alt="pfp" rounded width="50" height="50" />
+    <img
+      :src="
+        props.pfpUrl ||
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Leopard_in_the_Colchester_Zoo.jpg/1200px-Leopard_in_the_Colchester_Zoo.jpg'
+      "
+      alt="pfp"
+      rounded
+      width="50"
+      height="50"
+    />
     <div class="profile__name-status">
       <p>{{ props.name }}</p>
       <StatusChoose :statuses="temp" />
@@ -31,7 +40,7 @@ const temp = [
 
 const props = defineProps<{
   notificationActive: boolean;
-  pfpUrl: string;
+  pfpUrl?: string;
   name: string;
 }>();
 </script>
