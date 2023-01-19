@@ -103,7 +103,6 @@ onMounted(() => {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 15px;
     background: #f4f7fe;
     border-radius: 20px;
     padding: 12px;

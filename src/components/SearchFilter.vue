@@ -53,7 +53,6 @@ watchEffect(() => {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 15px;
     background: #f4f7fe;
     border-radius: v-bind(borderRadius);
     padding: 12px;
