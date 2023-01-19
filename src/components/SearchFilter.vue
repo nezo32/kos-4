@@ -1,7 +1,7 @@
 <template>
   <div class="search__filter">
     <div class="search__filter__header">
-      <input type="text" placeholder="Поиск" v-model="value" />
+      <input type="text" :placeholder="title || 'Поиск'" v-model="value" />
       <SearchIcon />
     </div>
   </div>
@@ -14,6 +14,7 @@ import SearchIcon from "./icons/filters/SearchIcon.vue";
 const props = defineProps<{
   modelValue?: any;
   radius?: "10" | "20";
+  title?: string;
 }>();
 const emits = defineEmits(["update:modelValue"]);
 
