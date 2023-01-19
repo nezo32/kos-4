@@ -28,6 +28,7 @@ import NotificationMenuIcon from "../icons/menu/NotificationMenuIcon.vue";
 import ProfessorsIcon from "../icons/menu/ProfessorsIcon.vue";
 import ScienceIcon from "../icons/menu/ScienceIcon.vue";
 import SecurityIcon from "../icons/menu/SecurityIcon.vue";
+import { ref } from "vue";
 
 const props = defineProps<{
   content: string;
@@ -71,7 +72,7 @@ const props = defineProps<{
       color: #707eae;
     }
   }
-  > a.router-link-exact-active {
+  > a.router-link-active {
     background: #f4f7fe;
     border-radius: 20px 0px 0px 20px;
 
