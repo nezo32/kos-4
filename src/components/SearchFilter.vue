@@ -8,13 +8,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, watchEffect } from "vue";
 import SearchIcon from "./icons/filters/SearchIcon.vue";
 
 const props = defineProps<{
   modelValue?: any;
   radius?: "10" | "20";
   title?: string;
+  trigger?: boolean;
 }>();
 const emits = defineEmits(["update:modelValue"]);
 
@@ -27,6 +28,10 @@ const value = computed({
   set(value) {
     emits("update:modelValue", value);
   },
+});
+
+watchEffect(() => {
+  props.trigger ? (value.value = "") : (value.value = "");
 });
 </script>
 
