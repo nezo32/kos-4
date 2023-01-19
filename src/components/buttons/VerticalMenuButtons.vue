@@ -28,7 +28,6 @@ import NotificationMenuIcon from "../icons/menu/NotificationMenuIcon.vue";
 import ProfessorsIcon from "../icons/menu/ProfessorsIcon.vue";
 import ScienceIcon from "../icons/menu/ScienceIcon.vue";
 import SecurityIcon from "../icons/menu/SecurityIcon.vue";
-import { ref } from "vue";
 
 const props = defineProps<{
   content: string;
