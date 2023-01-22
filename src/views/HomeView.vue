@@ -354,7 +354,7 @@
       </section>
       <section>
         <CheckBox />
-        <CheckboxRounded />
+        <CheckboxRounded :active="activetest" @click="activetest = !activetest"/>
         <CheckboxRounded small />
       </section>
       <section>
@@ -545,6 +545,8 @@ import ServiceHeader from "@/components/ServiceHeader.vue";
 import CustomInput from "@/components/CustomInput.vue";
 
 const date = ref();
+
+const activetest = ref(false);
 
 const ip = ref<string>("1230");
 

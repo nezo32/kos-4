@@ -1,16 +1,11 @@
 <template>
-  <div
-    class="checkbox__rounded"
-    @click="emit('update:active', !active)"
-    :class="{ small: props!.small }"
-  >
-    <div class="checkbox__rounded__inner" v-if="active" />
+  <div class="checkbox__rounded" :class="{ small: props!.small }">
+    <div class="checkbox__rounded__inner" v-if="active == true" />
   </div>
 </template>
 
 <script setup lang="ts">
 const props = defineProps<{ small?: boolean; active?: boolean }>();
-const emit = defineEmits(["update:active"]);
 </script>
 
 <style scoped lang="scss">
