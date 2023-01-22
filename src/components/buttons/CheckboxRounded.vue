@@ -1,16 +1,14 @@
 <template>
   <div
     class="checkbox__rounded"
-    @click="emit("update:active", !active)"
+    @click="emit('update:active', !active)"
     :class="{ small: props!.small }"
   >
-    <div class="checkbox__rounded__inner" v-if="active"></div>
+    <div class="checkbox__rounded__inner" v-if="active" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-
 const props = defineProps<{ small?: boolean; active: boolean }>();
 const emit = defineEmits(["update:active"]);
 </script>
