@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ small?: boolean; active: boolean }>();
+const props = defineProps<{ small?: boolean; active?: boolean }>();
 const emit = defineEmits(["update:active"]);
 </script>
 
