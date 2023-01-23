@@ -56,8 +56,6 @@ const props = defineProps<{
     > h4 {
       color: var(--elements);
 
-      width: 596px;
-
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;

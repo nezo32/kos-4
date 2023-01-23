@@ -436,7 +436,9 @@
       <Forms type="date" :content="zalupa" v-model="forms1"/>
       <Forms type="dropdown" header="Наименование института" :content="zalupa" v-model="forms1"/>
       <Forms type="input" :content="zalupa" v-model="forms1"/>
+      <Forms type="multi" header="Наименование института" :content="zalupa" v-model="forms2" date/>
       {{ forms1 }}
+      {{ forms2 }}
     </div>
   </div>
 </template>
@@ -543,6 +545,7 @@ import YandexLogo from "@/components/logos/browsers/YandexLogo.vue";
 import KosyginIDMenuButton from "@/components/buttons/KosyginIDMenuButton.vue";
 import ServiceHeader from "@/components/ServiceHeader.vue";
 import CustomInput from "@/components/CustomInput.vue";
+import FormsMultipleDropdown from "@/components/forms/FormsMultipleDropdown.vue";
 
 const date = ref();
 
@@ -589,6 +592,7 @@ const input3 = ref('fasdfsadf');
 const bool = ref(false);
 
 const forms1 = ref('');
+const forms2 = ref();
 
 const params = ref(["Скачать", "Редактировать"]);
 const head = ref(["Код", "Направление подготовки", "Профиль", "Уровень", "Форма", "Заполнено"]);

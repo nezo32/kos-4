@@ -96,6 +96,7 @@ export { default as KServiceHeader } from "./components/ServiceHeader.vue";
 export { default as KCustomInput } from "./components/CustomInput.vue";
 export { default as KFooter } from "./components/Footer.vue";
 export { default as KCustomInputDropdown } from "./components/CustomInputDropdown.vue"
+export { default as KFormsMultipleDropdown } from "./components/forms/FormsMultipleDropdown.vue"
 
 import "./assets/main.css";
 import "./assets/sass/global.scss";
