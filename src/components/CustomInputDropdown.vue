@@ -13,9 +13,14 @@
       class="custom__input__dropdown"
       v-if="arrowDirection == 1 && dropdown && cont?.length"
     >
-      <span v-for="(v, i) of cont" :key="i" :title="v" @click="onFocusOut(v)">{{
-        v
-      }}</span>
+      <span
+        v-for="(v, i) of cont"
+        :key="i"
+        :title="v"
+        @click="onFocusOut(v)"
+        class="forms__text"
+        >{{ v }}</span
+      >
     </div>
   </div>
 </template>
