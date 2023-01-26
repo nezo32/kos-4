@@ -1,6 +1,9 @@
 <template>
   <div class="vertical__menu__button">
-    <router-link :to="props.url">
+    <router-link
+      :to="props.url"
+      :class="{ 'router-link-exact-active': active }"
+    >
       <HomeIcon v-if="props.icon == 'home'" />
       <ManagementIcon v-if="props.icon == 'management'" />
       <NotificationMenuIcon v-if="props.icon == 'notification'" />
@@ -43,6 +46,7 @@ const props = defineProps<{
     | "professors"
     | "security"
     | "data";
+  active?: boolean;
 }>();
 </script>
 
@@ -71,7 +75,7 @@ const props = defineProps<{
       color: #707eae;
     }
   }
-  > a.router-link-active {
+  > a.router-link-exact-active {
     background: #f4f7fe;
     border-radius: 20px 0px 0px 20px;
 
