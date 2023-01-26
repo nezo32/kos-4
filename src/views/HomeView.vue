@@ -421,8 +421,9 @@
     <div class="home__component">
       <h1>Инпуты</h1>
       <section>
-        <CustomInput disabled :date="true" v-model="ip" theme="Фамилия" style="width: 280px" />
+        <CustomInput :date="true" v-model="ip" theme="Фамилия" style="width: 280px" />
         {{ ip }}
+        <CustomInputDropdown theme="Фамилия" :content="['bebra', 'bobra', 'barabobra']" dropdown/>
       </section>
     </div>
     <div class="home__component">
@@ -546,6 +547,7 @@ import KosyginIDMenuButton from "@/components/buttons/KosyginIDMenuButton.vue";
 import ServiceHeader from "@/components/ServiceHeader.vue";
 import CustomInput from "@/components/CustomInput.vue";
 import FormsMultipleDropdown from "@/components/forms/FormsMultipleDropdown.vue";
+import CustomInputDropdown from "@/components/CustomInputDropdown.vue";
 
 const date = ref();
 

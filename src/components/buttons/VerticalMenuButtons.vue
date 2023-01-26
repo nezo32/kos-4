@@ -59,7 +59,7 @@ const props = defineProps<{
     align-items: center;
     gap: 14px;
 
-    font-weight: 700;
+    font-weight: 500;
     font-size: 16px;
     line-height: 19px;
 
