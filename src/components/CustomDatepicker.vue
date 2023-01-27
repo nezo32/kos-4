@@ -48,9 +48,15 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
+.dp__theme_light {
+  --dp-border-color: rgba(0, 0, 0, 0) !important;
+  --dp-menu-border-color: rgba(0, 0, 0, 0) !important;
+}
+
 .datepicker {
   width: 300px;
   height: 300px;
+
   .dp__month_year_row {
     padding: 0px 14px;
     font-weight: 400;
