@@ -399,7 +399,7 @@
       <h1>Блок фильтров</h1>
       <section>
         <Filter :disabled="true" :content="zalupa" :trigger="bool" placeholder="Институт" v-model="input2" style="width: 250px; flex-shrink: 0;"/>
-        <Filter :content="zalupa" :trigger="bool" placeholder="Институт" v-model="input1"/>
+        <Filter :content="zalupa" :trigger="bool" placeholder="Институт" v-model="(input1 as string)"/>
         <SearchFilter v-model="input3" :disabled="true"/>
         <SearchFilter v-model="input3" radius="20"/>
         {{ input2 }}
@@ -421,7 +421,7 @@
     <div class="home__component">
       <h1>Инпуты</h1>
       <section>
-        <CustomInput  v-model="input1" theme="Дата" style="width: 280px" />
+        <CustomInput date v-model="checkDate" theme="Дата" style="width: 280px" />
         {{ ip }}
         <CustomInputDropdown theme="Фамилия" :content="['bebra', 'bobra', 'barabobra']" dropdown v-model="input1"/>
         {{ input1 }}
@@ -588,7 +588,9 @@ const event = ref<Array<ScheduleEvent>>([
   }
 ]);
 
-const input1 = ref();
+const checkDate = ref<Date>();
+
+const input1 = ref<string>();
 const input2 = ref('аыфаыфва');
 const input3 = ref('fasdfsadf');
 
