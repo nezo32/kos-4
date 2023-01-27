@@ -421,9 +421,10 @@
     <div class="home__component">
       <h1>Инпуты</h1>
       <section>
-        <CustomInput :date="true" v-model="ip" theme="Фамилия" style="width: 280px" />
+        <CustomInput  v-model="input1" theme="Дата" style="width: 280px" />
         {{ ip }}
-        <CustomInputDropdown theme="Фамилия" :content="['bebra', 'bobra', 'barabobra']" dropdown/>
+        <CustomInputDropdown theme="Фамилия" :content="['bebra', 'bobra', 'barabobra']" dropdown v-model="input1"/>
+        {{ input1 }}
       </section>
     </div>
     <div class="home__component">
@@ -587,7 +588,7 @@ const event = ref<Array<ScheduleEvent>>([
   }
 ]);
 
-const input1 = ref('');
+const input1 = ref();
 const input2 = ref('аыфаыфва');
 const input3 = ref('fasdfsadf');
 
