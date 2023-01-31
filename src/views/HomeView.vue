@@ -421,7 +421,7 @@
     <div class="home__component">
       <h1>Инпуты</h1>
       <section>
-        <CustomInput date v-model="checkDate" theme="Дата" style="width: 280px" />
+        <CustomInput date v-model="checkDate" theme="Дата" style="width: 400px" />
         {{ ip }}
         <CustomInputDropdown theme="Фамилия" :content="['bebra', 'bobra', 'barabobra']" dropdown v-model="input1"/>
         {{ input1 }}

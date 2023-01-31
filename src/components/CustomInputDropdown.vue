@@ -1,6 +1,6 @@
 <template>
-  <div class="custom__input" ref="container">
-    <div class="custom__input__input" :class="objectStyleAll">
+  <div class="custom__input__dropdown" ref="container">
+    <div class="custom__input__dropdown__input" :class="objectStyleAll">
       <input
         type="text"
         v-model="input"
@@ -17,7 +17,7 @@
       <span>{{ props.theme }}</span>
     </div>
     <div
-      class="custom__input__dropdown"
+      class="custom__input__dropdown__dropdown"
       v-if="arrowDirection == 1 && dropdown && cont?.length"
     >
       <span
@@ -112,7 +112,7 @@ watch(input, async (n) => {
 </script>
 
 <style scoped lang="scss">
-.custom__input {
+.custom__input__dropdown {
   &__input {
     > input {
       width: 100%;
