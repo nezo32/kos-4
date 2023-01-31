@@ -1,9 +1,11 @@
 <template>
   <div class="schedule__card">
     <div class="schedule__card__header" @click="changeDirection()">
-      <div style="color: var(--main-text)">
+      <div style="color: var(--main-text); gap: 5px">
         <h5 class="input__header">{{ props.day }}</h5>
-        <span class="table__action__text">{{ props.subtitle }}</span>
+        <span class="table__action__text" style="color: var(--unactive-text)">{{
+          props.subtitle
+        }}</span>
       </div>
       <ArrowFormIcon
         style="color: var(--main-text)"
@@ -85,6 +87,12 @@ function changeDirection() {
 
     &__arrow {
       transition: all 0.25s ease-in-out;
+    }
+
+    & > *:first-child {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
     }
   }
   &__content {
