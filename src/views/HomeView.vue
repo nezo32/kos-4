@@ -421,7 +421,10 @@
     <div class="home__component">
       <h1>Инпуты</h1>
       <section>
-        <CustomInput date v-model="checkDate" theme="Дата" style="width: 400px" />
+        <CustomInput theme="bebra"/>
+        <!-- <Test :activity="true" small>
+          <CustomInput date v-model="checkDate" theme="Дата" style="width: 400px" />
+        </Test> -->
         {{ ip }}
         <CustomInputDropdown theme="Фамилия" :content="['bebra', 'bobra', 'barabobra']" dropdown v-model="input1"/>
         {{ input1 }}
@@ -549,6 +552,7 @@ import ServiceHeader from "@/components/ServiceHeader.vue";
 import CustomInput from "@/components/CustomInput.vue";
 import FormsMultipleDropdown from "@/components/forms/FormsMultipleDropdown.vue";
 import CustomInputDropdown from "@/components/CustomInputDropdown.vue";
+import Test from "@/Test.vue";
 
 const date = ref();
 

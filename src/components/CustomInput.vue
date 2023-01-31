@@ -23,7 +23,6 @@
         @focusout="onFocusOut()"
         :enable-time-picker="false"
         text-input
-        :alt-position="getOverallOffset"
       >
       </DatePicker>
     </template>
