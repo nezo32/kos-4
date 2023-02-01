@@ -1,20 +1,68 @@
 <template>
-  <div class="custom__input" :class="objectStyleAll">
+  <div class="custom__input" :class="objectStyleAll" ref="customInput">
     <input
+      v-if="!date"
       :class="{ footer__feedback__style: props.footer }"
       type="text"
       @focusin="onFocusIn()"
       v-model="input"
       @focusout="onFocusOut()"
     />
-    <CalendarIcon v-if="date" style="color: var(--unactive-text)" />
+    <template v-if="date">
+      <DatePicker
+        ref="dateInput"
+        class="datepicker"
+        style="width: 100%"
+        v-model="input"
+        locale="ru"
+        cancel-text="Закрыть"
+        select-text="Выбрать"
+        format="dd.MM.yyyy"
+        @input="onInput"
+        @focusin="onFocusIn()"
+        @focusout="onFocusOut()"
+        :enable-time-picker="false"
+        text-input
+      >
+      </DatePicker>
+    </template>
+    <CalendarIcon
+      v-if="date"
+      style="color: var(--unactive-text)"
+      @click="onFocusIn()"
+    />
     <span>{{ props.theme }}</span>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive, computed } from "vue";
+import { reactive, computed, ref, watch, onMounted } from "vue";
 import CalendarIcon from "./icons/CalendarIcon.vue";
+import DatePicker from "@vuepic/vue-datepicker";
+
+const customInput = ref<HTMLElement>();
+
+function getOffsetTop(el: HTMLElement | undefined): number | undefined {
+  if (!el) return;
+  return (getOffsetTop(el.offsetParent as HTMLElement) || 0) + el.offsetTop;
+}
+
+function getOverallOffset(el: HTMLElement | undefined): {
+  top: string;
+  left: string;
+  transform: string;
+} {
+  let top = `${
+    (getOffsetTop(el) || 0) + (customInput.value?.offsetHeight || 0) + 10
+  }px`;
+  let left = `${
+    (customInput.value?.offsetWidth || 0) +
+    (customInput.value?.offsetLeft || 0) -
+    300
+  }px`;
+  let transform = "";
+  return { top, left, transform };
+}
 
 const props = defineProps<{
   theme: string;
@@ -24,8 +72,8 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits(["update:modelValue"]);
-
-const input = computed({
+const input = ref<string | Date>();
+const value = computed({
   get() {
     return props.modelValue;
   },
@@ -39,22 +87,42 @@ const objectStyleAll = reactive({
   pos: false,
 });
 
+function onInput(e: InputEvent) {
+  if (e.data) return;
+  input.value = undefined;
+}
+
 function onFocusIn() {
+  if (props.date)
+    (document.getElementsByClassName("dp__input")[0] as HTMLElement).focus();
   objectStyleAll.blue = true;
   objectStyleAll.pos = true;
 }
 function onFocusOut() {
   objectStyleAll.blue = false;
-  input.value == "" || input.value == undefined
+  input.value === "" || input.value === undefined || input.value === null
     ? (objectStyleAll.pos = false)
     : (objectStyleAll.pos = true);
+  value.value = input.value;
 }
+
+watch(input, (n) => {
+  value.value = n;
+});
+
+onMounted(() => {
+  input.value = new Date();
+  onFocusIn();
+});
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
+@import "@/assets/sass/custom_input_datepicker.scss";
 .custom__input {
+  height: fit-content;
+  box-sizing: border-box;
   &[disabled] {
-    > input {
+    input {
       pointer-events: none;
     }
     > span {

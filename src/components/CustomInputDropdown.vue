@@ -1,16 +1,23 @@
 <template>
-  <div class="custom__input" :class="objectStyleAll" ref="container">
-    <input type="text" @focusin="onFocusIn()" v-model="input" />
+  <div class="custom__input__dropdown" ref="container">
+    <div class="custom__input__dropdown__input" :class="objectStyleAll">
+      <input
+        type="text"
+        v-model="input"
+        ref="inputComponent"
+        @click="onFocusIn()"
+      />
 
-    <ArrowFormIcon
-      @click=""
-      :direciton="arrowDirection"
-      style="color: var(--unactive-text); transition: all 0.2s ease-in-out"
-      v-if="dropdown"
-    />
-    <span>{{ props.theme }}</span>
+      <ArrowFormIcon
+        @click="arrowDirection == 1 ? onFocusOut(input) : onFocusIn()"
+        :direciton="arrowDirection"
+        style="color: var(--unactive-text); transition: all 0.2s ease-in-out"
+        v-if="dropdown"
+      />
+      <span>{{ props.theme }}</span>
+    </div>
     <div
-      class="custom__input__dropdown"
+      class="custom__input__dropdown__dropdown"
       v-if="arrowDirection == 1 && dropdown && cont?.length"
     >
       <span
@@ -52,6 +59,7 @@ const cont = ref(props.content);
 const container = ref();
 
 const input = ref<string>();
+const inputComponent = ref<HTMLElement>();
 const arrowDirection = ref<ArrowDirections>(ArrowDirections.right);
 
 const objectStyleAll = reactive({
@@ -63,6 +71,7 @@ const objectStyleAll = reactive({
 function onFocusIn() {
   objectStyleAll.blue = true;
   objectStyleAll.pos = true;
+  inputComponent.value?.focus();
   arrowDirection.value = ArrowDirections.down;
 }
 function onFocusOut(v?: string) {
@@ -80,6 +89,9 @@ function onFocusOut(v?: string) {
       objectStyleAll.red = false;
       value.value = v;
     }
+  } else {
+    value.value = "";
+    objectStyleAll.red = false;
   }
   arrowDirection.value = ArrowDirections.right;
 }
@@ -100,86 +112,87 @@ watch(input, async (n) => {
 </script>
 
 <style scoped lang="scss">
-.custom__input {
-  &.blue {
-    border: 1px solid var(--elements);
-    > span {
-      color: var(--elements) !important;
-    }
-  }
-  &.red {
-    border: 1px solid var(--rejected);
-    > span {
-      color: var(--rejected) !important;
-    }
-  }
-  &.pos {
-    > span {
-      left: 20px;
-      top: -8px;
+.custom__input__dropdown {
+  &__input {
+    > input {
+      width: 100%;
 
-      color: #a3aed0;
+      background: transparent;
+      border: none;
+
       font-weight: 400;
-      font-size: 12px;
+      font-size: 18px;
       line-height: 140%;
+      color: #000000;
 
-      background: white;
+      z-index: 1;
+
+      &::placeholder {
+        color: #a3aed0;
+      }
+
+      &.footer__feedback__style {
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 140%;
+      }
+    }
+
+    > span {
+      transition: all 0.1s ease-in-out;
+
+      z-index: 0;
+
+      left: 7px;
+      top: 13px;
+
+      padding: 0 10px;
+
+      position: absolute;
+
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 140%;
+      color: #a3aed0;
+
+      pointer-events: none;
+    }
+
+    border: 1px solid #a3aed0;
+    border-radius: 10px;
+
+    padding: 12px 15px 13px 15px;
+
+    display: flex;
+    flex-direction: row;
+    &.blue {
+      border: 1px solid var(--elements);
+      > span {
+        color: var(--elements) !important;
+      }
+    }
+    &.red {
+      border: 1px solid var(--rejected);
+      > span {
+        color: var(--rejected) !important;
+      }
+    }
+    &.pos {
+      > span {
+        left: 20px;
+        top: -8px;
+
+        color: #a3aed0;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 140%;
+
+        background: white;
+      }
     }
   }
 
   position: relative;
-
-  border: 1px solid #a3aed0;
-  border-radius: 10px;
-
-  padding: 12px 15px 13px 15px;
-
-  display: flex;
-  flex-direction: row;
-
-  > input {
-    width: 100%;
-
-    background: transparent;
-    border: none;
-
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 140%;
-    color: #000000;
-
-    z-index: 1;
-
-    &::placeholder {
-      color: #a3aed0;
-    }
-
-    &.footer__feedback__style {
-      font-weight: 300;
-      font-size: 18px;
-      line-height: 140%;
-    }
-  }
-
-  > span {
-    transition: all 0.1s ease-in-out;
-
-    z-index: 0;
-
-    left: 7px;
-    top: 13px;
-
-    padding: 0 10px;
-
-    position: absolute;
-
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 140%;
-    color: #a3aed0;
-
-    pointer-events: none;
-  }
 
   &__dropdown {
     z-index: 100;

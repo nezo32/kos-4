@@ -399,7 +399,7 @@
       <h1>Блок фильтров</h1>
       <section>
         <Filter :disabled="true" :content="zalupa" :trigger="bool" placeholder="Институт" v-model="input2" style="width: 250px; flex-shrink: 0;"/>
-        <Filter :content="zalupa" :trigger="bool" placeholder="Институт" v-model="input1"/>
+        <Filter :content="zalupa" :trigger="bool" placeholder="Институт" v-model="(input1 as string)"/>
         <SearchFilter v-model="input3" :disabled="true"/>
         <SearchFilter v-model="input3" radius="20"/>
         {{ input2 }}
@@ -421,9 +421,13 @@
     <div class="home__component">
       <h1>Инпуты</h1>
       <section>
-        <CustomInput :date="true" v-model="ip" theme="Фамилия" style="width: 280px" />
+        <CustomInput theme="bebra"/>
+        <!-- <Test :activity="true" small>
+          <CustomInput date v-model="checkDate" theme="Дата" style="width: 400px" />
+        </Test> -->
         {{ ip }}
-        <CustomInputDropdown theme="Фамилия" :content="['bebra', 'bobra', 'barabobra']" dropdown/>
+        <CustomInputDropdown theme="Фамилия" :content="['bebra', 'bobra', 'barabobra']" dropdown v-model="input1"/>
+        {{ input1 }}
       </section>
     </div>
     <div class="home__component">
@@ -548,6 +552,7 @@ import ServiceHeader from "@/components/ServiceHeader.vue";
 import CustomInput from "@/components/CustomInput.vue";
 import FormsMultipleDropdown from "@/components/forms/FormsMultipleDropdown.vue";
 import CustomInputDropdown from "@/components/CustomInputDropdown.vue";
+import Test from "@/Test.vue";
 
 const date = ref();
 
@@ -587,7 +592,9 @@ const event = ref<Array<ScheduleEvent>>([
   }
 ]);
 
-const input1 = ref('');
+const checkDate = ref<Date>();
+
+const input1 = ref<string>();
 const input2 = ref('аыфаыфва');
 const input3 = ref('fasdfsadf');
 
