@@ -57,6 +57,18 @@ onMounted(() => {
   width: 300px;
   height: 300px;
 
+  .dp__month_year_select {
+    &:hover {
+      background: var(--background);
+    }
+  }
+
+  .dp__overlay_cell {
+    &:hover {
+      background: var(--background);
+    }
+  }
+
   .dp__month_year_row {
     padding: 0px 14px;
     font-weight: 400;
