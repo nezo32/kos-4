@@ -1,5 +1,5 @@
 <template>
-  <div class="datepicker">
+  <div class="schedule__datepicker">
     <Datepicker
       v-model="date"
       ref="datepicker"
@@ -52,8 +52,7 @@ onMounted(() => {
   --dp-border-color: rgba(0, 0, 0, 0) !important;
   --dp-menu-border-color: rgba(0, 0, 0, 0) !important;
 }
-
-.datepicker {
+.schedule__datepicker {
   width: 300px;
   height: 300px;
 
@@ -79,9 +78,15 @@ onMounted(() => {
   }
 
   .dp__menu {
+    margin: 0;
+
     font-family: "Roboto";
     border: none;
     border-radius: 10px;
+  }
+
+  .dp__action_row {
+    display: none !important;
   }
 
   .dp__flex_display {
@@ -181,9 +186,6 @@ onMounted(() => {
     height: 300px;
   }
 
-  .dp__action_row {
-    display: none;
-  }
   .dp__button {
     display: none;
   }
