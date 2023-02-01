@@ -352,10 +352,10 @@
         <DocumentButton content="Сохранить изменения" color="blue" />
         <DocumentButton content="Очистить всё" color="red" />
       </section>
-      <section>
-        <CheckBox />
+      <section> 
+        <CheckBox :active="activetest" @click="activetest = !activetest"/>
         <CheckboxRounded :active="activetest" @click="activetest = !activetest"/>
-        <CheckboxRounded small />
+        <CheckboxRounded :active="activetest" @click="activetest = !activetest" small />
       </section>
       <section>
         <PageSwitcher :count-pages="54" />
@@ -398,8 +398,7 @@
     <div class="home__component">
       <h1>Блок фильтров</h1>
       <section>
-        <Filter :disabled="true" :content="zalupa" :trigger="bool" placeholder="Институт" v-model="input2" style="width: 250px; flex-shrink: 0;"/>
-        <Filter :content="zalupa" :trigger="bool" placeholder="Институт" v-model="(input1 as string)"/>
+        <Filter date :content="zalupa" :trigger="bool" placeholder="Институт" v-model="checkDate"/>
         <SearchFilter v-model="input3" :disabled="true"/>
         <SearchFilter v-model="input3" radius="20"/>
         {{ input2 }}
@@ -421,7 +420,7 @@
     <div class="home__component">
       <h1>Инпуты</h1>
       <section>
-        <CustomInput theme="bebra"/>
+        <CustomInput theme="bebra" date/>
         <!-- <Test :activity="true" small>
           <CustomInput date v-model="checkDate" theme="Дата" style="width: 400px" />
         </Test> -->

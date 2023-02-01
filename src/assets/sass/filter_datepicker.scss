@@ -1,0 +1,52 @@
+.datepicker__filter {
+  height: unset !important;
+  .dp__input_wrap {
+    > svg {
+      display: none !important;
+    }
+  }
+  input {
+    width: 100% !important;
+
+    background: transparent !important;
+    border: none !important;
+
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    line-height: 16px !important;
+    color: #000000 !important;
+
+    padding: 1px 2px !important;
+
+    z-index: 1 !important;
+
+    &::placeholder {
+      color: #a3aed0 !important;
+    }
+  }
+}
+
+.dp__range_start,
+.dp__range_end {
+  &.dp__cell_offset {
+    color: white !important;
+  }
+
+  border-radius: 50% !important;
+  background: var(--rejected) !important;
+}
+.dp__range_between {
+  border-radius: 50% !important;
+  background: var(--background) !important;
+}
+
+.dp__menu {
+  .dp__date_hover_end,
+  .dp__date_hover_start {
+    &:hover {
+      border-radius: 50%;
+      background: var(--rejected) !important;
+      color: var(--white) !important;
+    }
+  }
+}

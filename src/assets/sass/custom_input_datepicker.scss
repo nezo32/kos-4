@@ -46,6 +46,18 @@
   font-family: "Roboto" !important;
   border: none !important;
   border-radius: 10px !important;
+
+  .dp__month_year_select {
+    &:hover {
+      background: var(--background);
+    }
+  }
+
+  .dp__overlay_cell {
+    &:hover {
+      background: var(--background);
+    }
+  }
 }
 
 .dp__flex_display {
@@ -106,6 +118,7 @@
 }
 
 .dp__active_date {
+  border-radius: 50% !important;
   background: #ff2d52 !important;
   color: white !important;
 }
@@ -116,15 +129,11 @@
   color: #ff2d52 !important;
 }
 
-.dp__active_date {
-  border-radius: 50% !important;
-}
-
 .dp__today {
   border: none !important;
   border-radius: 50% !important;
-  background: none !important;
-  color: #2b3674 !important;
+  background: unset;
+  color: #2b3674;
 }
 
 .dp__theme_light {

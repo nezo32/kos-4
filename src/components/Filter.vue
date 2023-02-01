@@ -2,6 +2,7 @@
   <div class="filter" ref="outsideDetectionComponent">
     <div class="filter__header">
       <input
+        v-if="!date"
         :class="{ disabled }"
         @click="!disabled ? (clicked = true) : (clicked = false)"
         v-model="input"
@@ -11,6 +12,26 @@
         :title="input"
       />
       <FilterIcon v-if="!props.date" />
+      <template v-if="date">
+        <DatePicker
+          range
+          min-range="6"
+          max-range="6"
+          :title="input"
+          ref="dateInput"
+          class="datepicker__filter"
+          style="width: 100%"
+          v-model="input"
+          locale="ru"
+          cancel-text="Закрыть"
+          select-text="Выбрать"
+          format="dd.MM"
+          @input="onInput"
+          :enable-time-picker="false"
+          text-input
+        >
+        </DatePicker>
+      </template>
       <DatepickerIcon v-if="props.date" />
     </div>
     <div class="filter__after" v-if="clicked && cont.length">
@@ -33,6 +54,7 @@
 <script setup lang="ts">
 import { ref, watch, computed, watchEffect, onMounted } from "vue";
 import DatepickerIcon from "./icons/filters/DatepickerIcon.vue";
+import DatePicker from "@vuepic/vue-datepicker";
 import FilterIcon from "./icons/filters/FilterIcon.vue";
 import detect from "@/detectOutsideElement";
 
@@ -40,7 +62,7 @@ const props = defineProps<{
   content: Array<string>;
   placeholder: string;
   date?: boolean;
-  modelValue?: string;
+  modelValue?: string | Date;
   trigger?: boolean;
   disabled?: boolean;
 }>();
@@ -50,7 +72,7 @@ const emit = defineEmits(["update:modelValue", "null"]);
 const cont = ref<Array<string>>(props.content);
 const clicked = ref(false);
 const outsideDetectionComponent = ref();
-const input = ref("");
+const input = ref<string | undefined>("");
 
 const value = computed({
   get() {
@@ -67,6 +89,7 @@ detect(outsideDetectionComponent, () => {
 });
 
 watch(input, async (n) => {
+  if (props.date) return;
   cont.value = [];
   props.content.forEach((el) => {
     if (n != undefined)
@@ -74,16 +97,22 @@ watch(input, async (n) => {
   });
 });
 
+function onInput(e: InputEvent) {
+  if (e.data) return;
+  input.value = undefined;
+}
+
 watchEffect(() => {
   props.trigger ? (input.value = "") : (input.value = "");
 });
 
 onMounted(() => {
-  input.value = value.value || "";
+  if (!props.date) input.value = (value.value as string) || "";
 });
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
+@import "../assets/sass/filter_datepicker.scss";
 .filter {
   width: 100%;
   position: relative;
