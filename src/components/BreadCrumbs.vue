@@ -13,7 +13,7 @@ import { useRoute } from "vue-router";
 
 const path = ref<Array<{ name: string; path: string }>>([]);
 
-onMounted(async () => {
+onMounted(() => {
   const router = useRoute();
   router.matched.forEach((el) => {
     path.value.push({ name: el.meta.breadcrumbs as string, path: el.path });
