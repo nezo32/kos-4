@@ -9,15 +9,13 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 
 const path = ref<Array<{ name: string; path: string }>>([]);
 
-const router = useRouter();
-
 onMounted(async () => {
-  await router.isReady();
-  router.currentRoute.value.matched.forEach((el) => {
+  const router = useRoute();
+  router.matched.forEach((el) => {
     path.value.push({ name: el.meta.breadcrumbs as string, path: el.path });
   });
 });
@@ -39,6 +37,10 @@ onMounted(async () => {
       font-size: 14px;
       line-height: 16px;
       color: #a3aed0;
+    }
+
+    > a:last-child {
+      color: #707eae;
     }
   }
 
