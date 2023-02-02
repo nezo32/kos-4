@@ -1,4 +1,5 @@
 <template>
+  <BreadCrumbs />
   <div class="app">
     <div class="viewpoint">
       <RouterView />
@@ -10,6 +11,7 @@
 </template>
 
 <script setup lang="ts">
+import BreadCrumbs from "./components/BreadCrumbs.vue";
 import Footer from "./components/Footer.vue";
 </script>
 

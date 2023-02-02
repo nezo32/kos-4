@@ -15,6 +15,7 @@
       <template v-if="date">
         <DatePicker
           range
+          placeholder="Период"
           min-range="6"
           max-range="6"
           :title="input"

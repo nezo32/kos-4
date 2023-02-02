@@ -1,20 +1,26 @@
 <template>
   <div class="breadcrumbs">
-    <span v-for="(element, index) of splittedPath" :key="index">
-      <a :href="element">{{ element }}</a>
-      <span v-if="index != splittedPath.length - 1">/</span>
+    <span v-for="(element, index) of path" :key="index">
+      <a :href="element.path">{{ element.name }}</a>
+      <span v-if="index != path.length - 1">/</span>
     </span>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
 
-const props = defineProps<{ path?: string }>();
+const path = ref<Array<{ name: string; path: string }>>([]);
 
-const path = ref<string>(props.path || "Главная/Расписание");
+const router = useRouter();
 
-const splittedPath = path.value.split("/");
+onMounted(async () => {
+  await router.isReady();
+  router.currentRoute.value.matched.forEach((el) => {
+    path.value.push({ name: el.meta.breadcrumbs as string, path: el.path });
+  });
+});
 </script>
 
 <style scoped lang="scss">
