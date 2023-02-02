@@ -1,5 +1,4 @@
 <template>
-  <BreadCrumbs />
   <div class="app">
     <div class="viewpoint">
       <RouterView />

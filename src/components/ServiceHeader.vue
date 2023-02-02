@@ -1,7 +1,7 @@
 <template>
   <div class="service__header">
     <div class="service__header__content">
-      <p><Breadcrumbs /></p>
+      <p><Breadcrumbs :path="path" /></p>
       <h2>{{ props.title }}</h2>
     </div>
     <div class="service__header__profile">
@@ -17,12 +17,16 @@
 <script setup lang="ts">
 import Breadcrumbs from "./BreadCrumbs.vue";
 import Profile from "./Profile.vue";
+import { computed } from "vue";
 
 const props = defineProps<{
   title: string;
   name?: string;
   pfp?: string;
+  path?: Array<{ name: string; path: string }>;
 }>();
+
+const path = computed(() => props.path || [{ name: "", path: "/" }]);
 </script>
 
 <style scoped lang="scss">
