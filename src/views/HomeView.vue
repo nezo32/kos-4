@@ -316,7 +316,7 @@
     </div>
     <div class="home__component">
       <h1>Хлебные крошки</h1>
-      <section><Breadcrumbs :path="[{name: "", path: "/"}]"/></section>
+      <section><Breadcrumbs :path="[{name: ' ', path: '/'}]"/></section>
     </div>
     <div class="home__component">
       <h1>Выбор статуса</h1>
