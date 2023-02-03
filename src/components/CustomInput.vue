@@ -10,6 +10,7 @@
     />
     <template v-if="date">
       <DatePicker
+        autocomplete="true"
         ref="dateInput"
         class="datepicker"
         style="width: 100%"
@@ -19,8 +20,9 @@
         select-text="Выбрать"
         format="dd.MM.yyyy"
         @input="onInput"
-        @focusin="onFocusIn()"
-        @focusout="onFocusOut()"
+        @focusout="onFocusOut"
+        @focusin="onFocusIn"
+        :auto-position="false"
         :enable-time-picker="false"
         text-input
       >
@@ -41,28 +43,6 @@ import CalendarIcon from "./icons/CalendarIcon.vue";
 import DatePicker from "@vuepic/vue-datepicker";
 
 const customInput = ref<HTMLElement>();
-
-function getOffsetTop(el: HTMLElement | undefined): number | undefined {
-  if (!el) return;
-  return (getOffsetTop(el.offsetParent as HTMLElement) || 0) + el.offsetTop;
-}
-
-function getOverallOffset(el: HTMLElement | undefined): {
-  top: string;
-  left: string;
-  transform: string;
-} {
-  let top = `${
-    (getOffsetTop(el) || 0) + (customInput.value?.offsetHeight || 0) + 10
-  }px`;
-  let left = `${
-    (customInput.value?.offsetWidth || 0) +
-    (customInput.value?.offsetLeft || 0) -
-    300
-  }px`;
-  let transform = "";
-  return { top, left, transform };
-}
 
 const props = defineProps<{
   theme: string;
@@ -93,8 +73,6 @@ function onInput(e: InputEvent) {
 }
 
 function onFocusIn() {
-  if (props.date)
-    (document.getElementsByClassName("dp__input")[0] as HTMLElement).focus();
   objectStyleAll.blue = true;
   objectStyleAll.pos = true;
 }
@@ -111,8 +89,9 @@ watch(input, (n) => {
 });
 
 onMounted(() => {
-  input.value = new Date();
+  if (props.date) input.value = new Date();
   onFocusIn();
+  onFocusOut();
 });
 </script>
 
