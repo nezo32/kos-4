@@ -1,6 +1,7 @@
 <template>
   <div class="profile">
     <NotificationProfileIcon
+      @click="$router.push(pathValue)"
       style="color: var(--main-text)"
       :active="props.notificationActive"
     />
@@ -25,6 +26,8 @@
 import NotificationProfileIcon from "./icons/NotificationProfileIcon.vue";
 import StatusChoose from "./StatusChoose.vue";
 
+import { computed } from "vue";
+
 const temp = [
   {
     name: "Оператор",
@@ -42,7 +45,10 @@ const props = defineProps<{
   notificationActive: boolean;
   pfpUrl?: string;
   name: string;
+  path?: string;
 }>();
+
+const pathValue = computed(() => props.path || "/");
 </script>
 
 <style scoped lang="scss">

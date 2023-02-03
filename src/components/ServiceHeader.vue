@@ -9,6 +9,7 @@
         :notification-active="false"
         :name="name || 'Попов Дмитрий'"
         :pfpUrl="pfp"
+        :path="notificationPath"
       />
     </div>
   </div>
@@ -24,6 +25,7 @@ const props = defineProps<{
   name?: string;
   pfp?: string;
   path?: Array<{ name: string; path: string }>;
+  notificationPath?: string;
 }>();
 
 const path = computed(() => props.path || [{ name: "", path: "/" }]);
