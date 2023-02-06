@@ -426,8 +426,9 @@
           <CustomInput date v-model="checkDate" theme="Дата" style="width: 400px" />
         </Test> -->
         {{ ip }}
-        <CustomInputDropdown theme="Фамилия" :content="['bebra', 'bobra', 'barabobra']" dropdown v-model="input1"/>
+        <CustomInputDropdown theme="Фамилия" :content="['bebra', 'bobra', 'barabobra']" dropdown v-model="input1" v-model:is-opened="isOpened"/>
         {{ input1 }}
+        {{ isOpened }}
       </section>
     </div>
     <div class="home__component">
@@ -555,6 +556,8 @@ import CustomInputDropdown from "@/components/CustomInputDropdown.vue";
 import Test from "@/Test.vue";
 
 const date = ref();
+
+const isOpened = ref(false);
 
 const activetest = ref(false);
 

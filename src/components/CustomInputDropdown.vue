@@ -108,11 +108,14 @@ watch(input, async (n) => {
   });
 });
 
-const active = computed(
-  () => arrowDirection.value == 1 && props.dropdown && cont.value?.length
+const active = computed(() =>
+  arrowDirection.value == 1 && props.dropdown && cont.value?.length
+    ? true
+    : false
 );
 
 watch(active, (n) => {
+  console.log(n);
   emit("update:isOpened", n);
 });
 </script>
