@@ -399,8 +399,8 @@
       <h1>Блок фильтров</h1>
       <section>
         <Filter date :content="zalupa" :trigger="bool" placeholder="Институт" v-model="checkDate"/>
-        <SearchFilter v-model="input3" :disabled="true"/>
-        <SearchFilter v-model="input3" radius="20"/>
+        <SearchFilter  v-model="input3" :disabled="true"/>
+        <SearchFilter :content="zalupa" v-model="input3" radius="20"/>
         {{ input2 }}
         {{ bool }}
         <FilterResetIcon @click="bool = !bool;" style="flex-shrink: 0"/>
