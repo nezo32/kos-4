@@ -103,7 +103,7 @@ detect(detectOutside, () => {
       flex-direction: column;
       gap: 20px;
 
-      width: 92%;
+      width: 100%;
       > textarea {
         width: 100%;
 
