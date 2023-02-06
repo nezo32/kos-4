@@ -16,10 +16,7 @@
       />
       <span>{{ props.theme }}</span>
     </div>
-    <div
-      class="custom__input__dropdown__dropdown"
-      v-if="arrowDirection == 1 && dropdown && cont?.length"
-    >
+    <div class="custom__input__dropdown__dropdown" v-if="active">
       <span
         v-for="(v, i) of cont"
         :key="i"
@@ -43,8 +40,9 @@ const props = defineProps<{
   dropdown?: boolean;
   content?: Array<string>;
   modelValue?: string;
+  isOpened?: boolean;
 }>();
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["update:modelValue", "update:isOpened"]);
 
 const value = computed({
   get() {
@@ -108,6 +106,14 @@ watch(input, async (n) => {
     if (n != undefined)
       if (el.toUpperCase().includes(n.toUpperCase())) cont.value?.push(el);
   });
+});
+
+const active = computed(
+  () => arrowDirection.value == 1 && props.dropdown && cont.value?.length
+);
+
+watch(active, (n) => {
+  emit("update:isOpened", n);
 });
 </script>
 
