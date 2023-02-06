@@ -157,6 +157,10 @@
 }
 
 .dp__action_row {
+  justify-content: flex-end;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
   .dp__cancel {
     color: var(--main-text);
   }
@@ -171,6 +175,11 @@
     gap: 10px;
   }
 }
+
+.dp__selection_preview {
+  display: none;
+}
+
 .dp__button {
   display: none !important;
 }
