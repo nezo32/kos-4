@@ -1,10 +1,11 @@
 <template>
   <div class="profile">
-    <NotificationProfileIcon
-      @click="navigate"
-      style="color: var(--main-text)"
-      :active="props.notificationActive"
-    />
+    <RouterLink :to="pathValue">
+      <NotificationProfileIcon
+        style="color: var(--main-text)"
+        :active="props.notificationActive"
+      />
+    </RouterLink>
     <img
       :src="
         props.pfpUrl ||
@@ -25,7 +26,6 @@
 <script setup lang="ts">
 import NotificationProfileIcon from "./icons/NotificationProfileIcon.vue";
 import StatusChoose from "./StatusChoose.vue";
-import { useRouter } from "vue-router";
 import { computed } from "vue";
 
 const temp = [
@@ -47,15 +47,7 @@ const props = defineProps<{
   name: string;
   path?: string;
 }>();
-
-const router = useRouter();
-
 const pathValue = computed(() => props.path || "/");
-
-async function navigate() {
-  await router.isReady();
-  router.push(pathValue.value);
-}
 </script>
 
 <style scoped lang="scss">
