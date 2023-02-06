@@ -26,9 +26,6 @@ const props = defineProps<{
 
 <style scoped lang="scss">
 .notification__card {
-  padding: 0px 0px 10px 0;
-  border-bottom: 2px solid #f4f7fe;
-
   position: relative;
 
   display: flex;

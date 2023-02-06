@@ -322,6 +322,7 @@
       <h1>Выбор статуса</h1>
       <section>
         <Profile
+        path="/notifications"
           :notification-active="active"
           pfp-url="https://remote-tools-images.s3.amazonaws.com/best+discord+pfp/blog+12/anime/anime/1+(1).jpg"
           name="Попов Дмитрий"

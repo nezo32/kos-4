@@ -52,7 +52,8 @@ const router = useRouter();
 
 const pathValue = computed(() => props.path || "/");
 
-function navigate() {
+async function navigate() {
+  await router.isReady();
   router.push(pathValue.value);
 }
 </script>
