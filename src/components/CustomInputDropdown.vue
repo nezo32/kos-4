@@ -17,14 +17,15 @@
       <span>{{ props.theme }}</span>
     </div>
     <div class="custom__input__dropdown__dropdown" v-if="active">
-      <span
-        v-for="(v, i) of cont"
-        :key="i"
-        :title="v"
-        @click="onFocusOut(v)"
-        class="forms__text"
-        >{{ v }}</span
-      >
+      <template v-for="(v, i) of cont" :key="i">
+        <span
+          v-if="i < 5"
+          :title="v"
+          @click="onFocusOut(v)"
+          class="forms__text"
+          >{{ v }}</span
+        >
+      </template>
     </div>
   </div>
 </template>

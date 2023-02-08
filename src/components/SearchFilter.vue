@@ -14,16 +14,18 @@
       <SearchIcon />
     </div>
     <div class="search__filter__after" v-if="content && active && cont.length">
-      <span
-        v-for="(v, i) of cont"
-        :key="i"
-        @click="
-          value = v;
-          active = !active;
-        "
-      >
-        {{ v }}</span
-      >
+      <template v-for="(v, i) of cont" :key="i">
+        <span
+          v-if="i < 5"
+          @click="
+            value = v;
+            active = !active;
+          "
+          :title="v"
+        >
+          {{ v }}
+        </span>
+      </template>
     </div>
   </div>
 </template>

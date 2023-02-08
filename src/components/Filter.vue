@@ -38,18 +38,19 @@
       <DatepickerIcon v-if="props.date" />
     </div>
     <div class="filter__after" v-if="clicked && cont.length">
-      <p
-        v-for="i in cont"
-        :key="i"
-        @click="
-          input = i;
-          value = i;
-          clicked = !clicked;
-        "
-        :title="i"
-      >
-        {{ i }}
-      </p>
+      <template v-for="(v, i) of cont" :key="i">
+        <p
+          v-if="i < 5"
+          @click="
+            input = v;
+            value = v;
+            clicked = !clicked;
+          "
+          :title="v"
+        >
+          {{ v }}
+        </p>
+      </template>
     </div>
   </div>
 </template>
