@@ -50,7 +50,7 @@ const props = defineProps<{
 
 const direction = ref(ArrowDirections.right);
 
-const maxHeight = ref(`${props.content?.length || 0 * 153}px`);
+const maxHeight = ref(`${(props.content?.length || 1) * 153}px`);
 
 function changeDirection() {
   direction.value == ArrowDirections.right
