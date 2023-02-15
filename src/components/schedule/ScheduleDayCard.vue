@@ -43,14 +43,14 @@ import ArrowFormIcon from "../icons/arrows/ArrowFormIcon.vue";
 import ScheduleEventCard from "./ScheduleEvent.vue";
 
 const props = defineProps<{
-  day: string;
-  subtitle: string;
-  content: Array<ScheduleEvent>;
+  day?: string;
+  subtitle?: string;
+  content?: Array<ScheduleEvent>;
 }>();
 
 const direction = ref(ArrowDirections.right);
 
-const maxHeight = ref(`${props.content.length * 153}px`);
+const maxHeight = ref(`${props.content?.length || 0 * 153}px`);
 
 function changeDirection() {
   direction.value == ArrowDirections.right
