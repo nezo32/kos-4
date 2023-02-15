@@ -26,12 +26,12 @@ import LocationScheduleIcon from "../icons/schedule/LocationScheduleIcon.vue";
 import StarScheduleIcon from "../icons/schedule/StarScheduleIcon.vue";
 
 const props = defineProps<{
-  header: string;
-  organaizer: string;
-  memberCount: string;
-  eventStatus: string;
-  date: string;
-  eventImg: string;
+  header?: string;
+  organaizer?: string;
+  memberCount?: string;
+  eventStatus?: string;
+  date?: string;
+  eventImg?: string;
   schedule?: boolean;
 }>();
 </script>

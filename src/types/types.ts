@@ -19,11 +19,11 @@ export enum ArrowDirections {
 }
 
 export interface ScheduleEvent {
-  header: string,
-  organaizer: string,
-  memberCount: string,
-  eventStatus: string,
-  date: string,
-  eventImg: string,
+  header?: string,
+  organaizer?: string,
+  memberCount?: string,
+  eventStatus?: string,
+  date?: string,
+  eventImg?: string,
   schedule?: boolean,
 }
