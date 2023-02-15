@@ -388,7 +388,7 @@
             organaizer="Студенческий совет"
             header="Все айтишники Университета Косыгина вместе идут смотреть на краисвых котов и кошечек"
           />
-          <ScheduleDayCard day="Понедельник" subtitle="aboba" :content="event"/>
+          <ScheduleDayCard day="Понедельник" subtitle="aboba" :content="event" v-model:is-opened="bool"/>
         </label>
       </section>
     </div>
