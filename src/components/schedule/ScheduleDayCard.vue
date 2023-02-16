@@ -14,7 +14,10 @@
       />
     </div>
     <Transition name="v">
-      <div class="schedule__card__content" v-if="watcher == true">
+      <div
+        class="schedule__card__content"
+        v-if="watcher == true && props.content && props.content.length"
+      >
         <div>
           <div v-for="(v, i) of props.content" :key="i">
             <ScheduleEventCard
