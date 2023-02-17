@@ -1,6 +1,6 @@
 <template>
   <div class="schedule__card">
-    <div class="schedule__card__header" @click="changeDirection()">
+    <div class="schedule__card__header" @click="watcher = !watcher">
       <div style="color: var(--main-text); gap: 5px">
         <h5 class="input__header">{{ props.day }}</h5>
         <span class="table__action__text" style="color: var(--unactive-text)">{{
@@ -16,7 +16,7 @@
     <Transition name="v">
       <div
         class="schedule__card__content"
-        v-if="direction == ArrowDirections.down"
+        v-if="watcher == true && props.content && props.content.length"
       >
         <div>
           <div v-for="(v, i) of props.content" :key="i">
@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { ArrowDirections, type ScheduleEvent } from "@/types/types";
 import ArrowFormIcon from "../icons/arrows/ArrowFormIcon.vue";
 import ScheduleEventCard from "./ScheduleEvent.vue";
@@ -46,17 +46,23 @@ const props = defineProps<{
   day?: string;
   subtitle?: string;
   content?: Array<ScheduleEvent>;
+  isOpened?: boolean;
 }>();
+const emit = defineEmits(["update:isOpened"]);
 
 const direction = ref(ArrowDirections.right);
+const watcher = computed({
+  get() {
+    return props.isOpened;
+  },
+  set(value) {
+    emit("update:isOpened", value);
+    if (value) direction.value = ArrowDirections.down;
+    else direction.value = ArrowDirections.right;
+  },
+});
 
 const maxHeight = ref(`${(props.content?.length || 1) * 153}px`);
-
-function changeDirection() {
-  direction.value == ArrowDirections.right
-    ? (direction.value = ArrowDirections.down)
-    : (direction.value = ArrowDirections.right);
-}
 </script>
 
 <style scoped lang="scss">
