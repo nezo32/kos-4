@@ -69,7 +69,8 @@ onMounted(() => {
   }
 
   .dp__month_year_row {
-    padding: 0px 14px;
+    padding-top: 30px !important;
+    padding-bottom: 15px !important;
     font-weight: 400;
     font-size: 16px;
     line-height: 140%;
