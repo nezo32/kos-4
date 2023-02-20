@@ -54,7 +54,7 @@ const pair = computed(() => {
   if (!props.date) return 0;
   let answ = 0;
   pairArray.forEach((el, ind) => {
-    if (el == props.date) answ = ind;
+    if (el == props.date) answ = ind + 1;
   });
   return answ;
 });
