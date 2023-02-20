@@ -7,6 +7,7 @@
       @internalModelChange="dateHandler"
       :inline="true"
       :transitions="{ open: `false` }"
+      :day-class="markDays"
     />
   </div>
 </template>
@@ -15,8 +16,15 @@
 import Datepicker from "@vuepic/vue-datepicker";
 import { ref, onMounted } from "vue";
 
+function markDays(date: Date): string {
+  if (!props.dates) return "";
+  if (props.dates.includes(date)) return "pairs-exist";
+  else return "";
+}
+
 const props = defineProps<{
   date: Date;
+  dates?: Date[];
 }>();
 const emit = defineEmits(["update:date"]);
 
