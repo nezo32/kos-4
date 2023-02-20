@@ -331,7 +331,7 @@
     </div>
     <div class="home__component">
       <h1>Календарь</h1>
-      <CustomDatepicker :date="date" />
+      <CustomDatepicker :date="date" :dates="dates"/>
     </div>
     <div class="home__component">
       <h1>Кнопки</h1>
@@ -565,6 +565,13 @@ const activetest = ref(false);
 const ip = ref<string>("1230");
 
 let timer: number;
+
+const tomorrow = new Date();
+tomorrow.setDate(tomorrow.getDate() + 1);
+const the_day_after_tomorrow = new Date();
+the_day_after_tomorrow.setDate(the_day_after_tomorrow.getDate() + 2);
+
+const dates = [new Date(), tomorrow, the_day_after_tomorrow]
 
 const event = ref<Array<ScheduleEvent>>([
   {

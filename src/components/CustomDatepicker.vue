@@ -16,9 +16,16 @@
 import Datepicker from "@vuepic/vue-datepicker";
 import { ref, onMounted } from "vue";
 
+function dateString(d: Date) {
+  return d.toISOString().split("T")[0];
+}
+
 function markDays(date: Date): string {
   if (!props.dates) return "";
-  if (props.dates.includes(date)) return "pairs-exist";
+  const tmp = new Date(date);
+  tmp.setDate(tmp.getDate() + 1);
+  if (props.dates.map((el) => dateString(el)).includes(dateString(tmp)))
+    return "pairs-exist";
   else return "";
 }
 
@@ -56,6 +63,10 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
+.pairs-exist {
+  color: var(--resolved) !important;
+}
+
 .dp__theme_light {
   --dp-border-color: rgba(0, 0, 0, 0) !important;
   --dp-menu-border-color: rgba(0, 0, 0, 0) !important;
