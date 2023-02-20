@@ -53,11 +53,9 @@ const props = defineProps<{
 const pair = computed(() => {
   if (!props.date) return 0;
   let answ = 0;
-  for (const [i, v] of pairArray.entries()) {
-    if (v == props.date) {
-      answ = i + 1;
-    }
-  }
+  pairArray.forEach((el, ind) => {
+    if (el == props.date) answ = ind;
+  });
   return answ;
 });
 </script>
