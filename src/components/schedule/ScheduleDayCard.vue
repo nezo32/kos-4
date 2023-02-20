@@ -28,6 +28,7 @@
               :date="v.date"
               :event-img="v.eventImg"
               :schedule="v.schedule"
+              :count="i + 1"
             />
           </div>
         </div>

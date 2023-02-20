@@ -17,6 +17,7 @@
       </p>
     </span>
     <h4 class="status__choose__text">{{ props.date }}</h4>
+    <h5 class="table__text" v-if="props.count">{{ props.count }}</h5>
   </div>
 </template>
 
@@ -33,6 +34,7 @@ const props = defineProps<{
   date?: string;
   eventImg?: string;
   schedule?: boolean;
+  count?: number;
 }>();
 </script>
 
@@ -81,6 +83,22 @@ const props = defineProps<{
     margin: 0;
 
     bottom: 10px;
+    right: 0;
+  }
+
+  > h5 {
+    color: var(--white);
+
+    padding: 4px 8px;
+
+    border-radius: 100%;
+    background: var(--main-text);
+
+    position: absolute;
+
+    margin: 0;
+
+    top: 30px;
     right: 0;
   }
 }
