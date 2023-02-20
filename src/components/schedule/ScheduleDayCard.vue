@@ -10,7 +10,7 @@
       <ArrowFormIcon
         style="color: var(--main-text)"
         class="schedule__card__header__arrow"
-        :direciton="direction"
+        :direciton="watcher ? ArrowDirections.down : ArrowDirections.right"
       />
     </div>
     <Transition name="v">
