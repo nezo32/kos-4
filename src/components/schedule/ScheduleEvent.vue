@@ -111,7 +111,7 @@ const pair = computed(() => {
   > h5 {
     color: var(--white);
 
-    padding: 5px 9px 4px 8px;
+    padding: 4px 8px;
 
     border-radius: 100%;
     background: var(--main-text);
