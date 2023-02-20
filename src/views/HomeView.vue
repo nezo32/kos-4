@@ -331,7 +331,7 @@
     </div>
     <div class="home__component">
       <h1>Календарь</h1>
-      <CustomDatepicker :date="date" :dates="dates"/>
+      <CustomDatepicker :date="date" :dates="dates" :show-now-button="true"/>
     </div>
     <div class="home__component">
       <h1>Кнопки</h1>

@@ -8,7 +8,16 @@
       :inline="true"
       :transitions="{ open: `false` }"
       :day-class="markDays"
-    />
+      :show-now-button="showNowButton ? true : false"
+    >
+      <template #now-button="{ selectCurrentDate }">
+        <div class="dp__now_wrap_wrap">
+          <div @click="selectCurrentDate()" class="dp__now_button">
+            Текущий день
+          </div>
+        </div>
+      </template>
+    </Datepicker>
   </div>
 </template>
 
@@ -32,6 +41,7 @@ function markDays(date: Date): string {
 const props = defineProps<{
   date: Date;
   dates?: Date[];
+  showNowButton?: boolean;
 }>();
 const emit = defineEmits(["update:date"]);
 
@@ -71,6 +81,34 @@ onMounted(() => {
   --dp-border-color: rgba(0, 0, 0, 0) !important;
   --dp-menu-border-color: rgba(0, 0, 0, 0) !important;
 }
+
+.dp__now_wrap {
+  padding: 0px 14px 15px 14px !important;
+
+  &_wrap {
+    > .dp__now_button {
+      box-sizing: border-box;
+      padding: 12px;
+      text-align: center;
+      width: 100%;
+      border: 2px solid var(--elements);
+      border-radius: 10px;
+
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 16px;
+      color: var(--elements);
+
+      cursor: pointer;
+
+      &:hover {
+        background: var(--elements);
+        color: var(--white);
+      }
+    }
+  }
+}
+
 .schedule__datepicker {
   width: 300px;
   height: 300px;
