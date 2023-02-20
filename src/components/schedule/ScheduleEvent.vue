@@ -17,7 +17,7 @@
       </p>
     </span>
     <h4 class="status__choose__text">{{ props.date }}</h4>
-    <h5 class="table__text" v-if="props.count">{{ props.count }}</h5>
+    <h5 class="table__text" v-if="pair">{{ pair }}</h5>
   </div>
 </template>
 
@@ -25,6 +25,20 @@
 import HumanScheduleIcon from "../icons/schedule/HumanScheduleIcon.vue";
 import LocationScheduleIcon from "../icons/schedule/LocationScheduleIcon.vue";
 import StarScheduleIcon from "../icons/schedule/StarScheduleIcon.vue";
+import { computed } from "vue";
+
+enum Time {
+  "09:00 - 10:20" = 1,
+  "10:30 - 11:50",
+  "12:00 - 13:20",
+  "14:00 - 15:20",
+  "15:30 - 16:50",
+  "17:00 - 18:20",
+  "18:30 - 19:50",
+  "20:00 - 21:20",
+}
+
+const pairArray = Object.keys(Time).filter((v) => isNaN(Number(v)));
 
 const props = defineProps<{
   header?: string;
@@ -34,8 +48,18 @@ const props = defineProps<{
   date?: string;
   eventImg?: string;
   schedule?: boolean;
-  count?: number;
 }>();
+
+const pair = computed(() => {
+  if (!props.date) return 0;
+  let answ = 0;
+  for (const [i, v] of pairArray.entries()) {
+    if (v == props.date) {
+      answ = i + 1;
+    }
+  }
+  return answ;
+});
 </script>
 
 <style scoped lang="scss">
@@ -89,7 +113,7 @@ const props = defineProps<{
   > h5 {
     color: var(--white);
 
-    padding: 4px 8px;
+    padding: 5px 9px 4px 8px;
 
     border-radius: 100%;
     background: var(--main-text);
@@ -100,6 +124,8 @@ const props = defineProps<{
 
     top: 30px;
     right: 0;
+
+    text-align: center;
   }
 }
 </style>

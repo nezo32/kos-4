@@ -568,7 +568,7 @@ let timer: number;
 
 const event = ref<Array<ScheduleEvent>>([
   {
-    date: 'a',
+    date: "10:30 - 11:50",
     eventImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Leopard_in_the_Colchester_Zoo.jpg/1200px-Leopard_in_the_Colchester_Zoo.jpg',
     eventStatus: 'a',
     header: "a",
@@ -577,7 +577,7 @@ const event = ref<Array<ScheduleEvent>>([
     schedule: true,
   },
   {
-    date: 'a',
+    date: "10:30 - 11:50",
     eventImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Leopard_in_the_Colchester_Zoo.jpg/1200px-Leopard_in_the_Colchester_Zoo.jpg',
     eventStatus: 'a',
     header: "a",
@@ -586,7 +586,7 @@ const event = ref<Array<ScheduleEvent>>([
     schedule: true,
   },
   {
-    date: 'a',
+    date: "10:30 - 11:50",
     eventImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Leopard_in_the_Colchester_Zoo.jpg/1200px-Leopard_in_the_Colchester_Zoo.jpg',
     eventStatus: 'a',
     header: "a",
