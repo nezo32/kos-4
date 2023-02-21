@@ -105,8 +105,6 @@ detect(detectOutside, () => {
 
       width: 100%;
       > textarea {
-        width: 100%;
-
         padding: 15px;
         font-weight: 300;
         font-size: 18px;
