@@ -2,6 +2,9 @@
   <div class="filter" ref="outsideDetectionComponent">
     <div class="filter__header">
       <input
+        @keydown.down.prevent="keyDown"
+        @keydown.up.prevent="keyUp"
+        @keydown.enter.prevent="keyEnter"
         v-if="!date"
         :class="{ disabled }"
         @click="!disabled ? (clicked = true) : (clicked = false)"
@@ -38,9 +41,10 @@
       <DatepickerIcon v-if="props.date" />
     </div>
     <div class="filter__after" v-if="clicked && cont.length && content">
-      <div class="filter__after__wrapper">
+      <div class="filter__after__wrapper" ref="wrap">
         <template v-for="(v, i) of cont" :key="i">
           <p
+            ref="elem"
             class="filter__after__wrapper__elem"
             @click="
               input = v;
@@ -65,50 +69,38 @@ import FilterIcon from "./icons/filters/FilterIcon.vue";
 import detect from "@/detectOutsideElement";
 
 const selected = ref(-1);
+const wrap = ref<HTMLElement | null>();
+const elem = ref<Array<HTMLElement>>([]);
 
-function keys() {
-  document.addEventListener("keydown", (e) => {
-    if (clicked.value && cont.value.length) {
-      if (e.key === "Enter") {
-        const elems = document.querySelectorAll(
-          ".filter__after__wrapper__elem"
-        );
-        input.value = elems[selected.value].textContent || "";
-        value.value = elems[selected.value].textContent || "";
-        clicked.value = false;
-      }
-      if (e.key === "ArrowDown") {
-        const elems = document.querySelectorAll(
-          ".filter__after__wrapper__elem"
-        );
-        if (selected.value < cont.value.length - 1) selected.value++;
-        if (selected.value > 4) {
-          const wrapper = document.querySelector(".filter__after__wrapper");
-          wrapper?.scrollBy(0, 31);
-        }
-        elems.forEach((v) => v.classList.remove("hover"));
-        elems[selected.value].classList.add("hover");
-        const elem = elems[selected.value] as HTMLElement;
-        elem.focus();
-      }
-      if (e.key === "ArrowUp") {
-        const elems = document.querySelectorAll(
-          ".filter__after__wrapper__elem"
-        );
-        if (selected.value > 0) selected.value--;
-        if (selected.value < cont.value.length - 4) {
-          const wrapper = document.querySelector(".filter__after__wrapper");
-          wrapper?.scrollBy(0, -31);
-        }
-        elems.forEach((v) => v.classList.remove("hover"));
-        elems[selected.value].classList.add("hover");
-        const elem = elems[selected.value] as HTMLElement;
-        elem.focus();
-      }
-    }
-  });
+function keyDown() {
+  if (!(clicked.value && props.content && cont.value.length && wrap.value))
+    return;
+  if (selected.value < cont.value.length - 1) selected.value++;
+  elem.value.forEach((el) => el.classList.remove("hover"));
+  elem.value[selected.value].classList.add("hover");
+  if (selected.value > 4) {
+    wrap.value.scrollBy(0, 31);
+  }
 }
 
+function keyUp() {
+  if (!(clicked.value && props.content && cont.value.length && wrap.value))
+    return;
+  if (selected.value > 0) selected.value--;
+  elem.value.forEach((el) => el.classList.remove("hover"));
+  elem.value[selected.value].classList.add("hover");
+  if (selected.value < cont.value.length - 4) {
+    wrap.value.scrollBy(0, -31);
+  }
+}
+
+function keyEnter() {
+  if (!(clicked.value && props.content && cont.value.length && wrap.value))
+    return;
+  value.value = elem.value[selected.value].textContent || "";
+  input.value = elem.value[selected.value].textContent || "";
+  clicked.value = false;
+}
 const props = defineProps<{
   content: Array<string>;
   placeholder: string;
@@ -164,7 +156,6 @@ watchEffect(() => {
 });
 
 onMounted(() => {
-  keys();
   if (!props.date) input.value = (value.value as string) || "";
 });
 </script>

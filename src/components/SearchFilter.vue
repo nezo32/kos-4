@@ -6,6 +6,9 @@
       @click="active = true"
     >
       <input
+        @keydown.down.prevent="keyDown"
+        @keydown.up.prevent="keyUp"
+        @keydown.enter.prevent="keyEnter"
         type="text"
         :placeholder="title || 'Поиск'"
         v-model="value"
@@ -14,9 +17,10 @@
       <SearchIcon />
     </div>
     <div class="search__filter__after" v-if="content && active && cont.length">
-      <div class="search__filter__after__wrapper">
+      <div class="search__filter__after__wrapper" ref="wrap">
         <template v-for="(v, i) of cont" :key="i">
           <span
+            ref="elem"
             class="search__filter__after__wrapper__elem"
             @click="
               value = v;
@@ -33,56 +37,41 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watchEffect, ref, watch, onMounted } from "vue";
+import { computed, watchEffect, ref, watch } from "vue";
 import SearchIcon from "./icons/filters/SearchIcon.vue";
 import useDetectOutsideElementClick from "@/detectOutsideElement";
 
 const selected = ref(-1);
+const wrap = ref<HTMLElement | null>();
+const elem = ref<Array<HTMLElement>>([]);
 
-function keys() {
-  document.addEventListener("keydown", (e) => {
-    if (active.value && cont.value.length) {
-      if (e.key === "Enter") {
-        const elems = document.querySelectorAll(
-          ".search__filter__after__wrapper__elem"
-        );
-        value.value = elems[selected.value].textContent || "";
-        active.value = false;
-      }
-      if (e.key === "ArrowDown") {
-        const elems = document.querySelectorAll(
-          ".search__filter__after__wrapper__elem"
-        );
-        if (selected.value < cont.value.length - 1) selected.value++;
-        if (selected.value > 4) {
-          const wrapper = document.querySelector(
-            ".search__filter__after__wrapper"
-          );
-          wrapper?.scrollBy(0, 31);
-        }
-        elems.forEach((v) => v.classList.remove("hover"));
-        elems[selected.value].classList.add("hover");
-        const elem = elems[selected.value] as HTMLElement;
-        elem.focus();
-      }
-      if (e.key === "ArrowUp") {
-        const elems = document.querySelectorAll(
-          ".search__filter__after__wrapper__elem"
-        );
-        if (selected.value > 0) selected.value--;
-        if (selected.value < cont.value.length - 4) {
-          const wrapper = document.querySelector(
-            ".search__filter__after__wrapper"
-          );
-          wrapper?.scrollBy(0, -31);
-        }
-        elems.forEach((v) => v.classList.remove("hover"));
-        elems[selected.value].classList.add("hover");
-        const elem = elems[selected.value] as HTMLElement;
-        elem.focus();
-      }
-    }
-  });
+function keyDown() {
+  if (!(active.value && props.content && cont.value.length && wrap.value))
+    return;
+  if (selected.value < cont.value.length - 1) selected.value++;
+  elem.value.forEach((el) => el.classList.remove("hover"));
+  elem.value[selected.value].classList.add("hover");
+  if (selected.value > 4) {
+    wrap.value.scrollBy(0, 31);
+  }
+}
+
+function keyUp() {
+  if (!(active.value && props.content && cont.value.length && wrap.value))
+    return;
+  if (selected.value > 0) selected.value--;
+  elem.value.forEach((el) => el.classList.remove("hover"));
+  elem.value[selected.value].classList.add("hover");
+  if (selected.value < cont.value.length - 4) {
+    wrap.value.scrollBy(0, -31);
+  }
+}
+
+function keyEnter() {
+  if (!(active.value && props.content && cont.value.length && wrap.value))
+    return;
+  value.value = elem.value[selected.value].textContent || "";
+  active.value = false;
 }
 
 const props = defineProps<{
@@ -130,10 +119,6 @@ watchEffect(() => {
 
 useDetectOutsideElementClick(container, () => {
   active.value = false;
-});
-
-onMounted(() => {
-  keys();
 });
 </script>
 
