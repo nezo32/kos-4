@@ -11,6 +11,10 @@
         {{ props.memberCount }}
       </p>
       <p class="status__choose__text">
+        <PeopleScheduleIcon />
+        {{ props.groups }}
+      </p>
+      <p class="status__choose__text">
         <LocationScheduleIcon v-if="props.schedule" />
         <StarScheduleIcon v-if="!props.schedule" />
         {{ props.eventStatus }}
@@ -26,6 +30,7 @@ import HumanScheduleIcon from "../icons/schedule/HumanScheduleIcon.vue";
 import LocationScheduleIcon from "../icons/schedule/LocationScheduleIcon.vue";
 import StarScheduleIcon from "../icons/schedule/StarScheduleIcon.vue";
 import { computed } from "vue";
+import PeopleScheduleIcon from "../icons/schedule/PeopleScheduleIcon.vue";
 
 enum Time {
   "09:00 - 10:20" = 1,
@@ -48,6 +53,8 @@ const props = defineProps<{
   date?: string;
   eventImg?: string;
   schedule?: boolean;
+  teacherView?: boolean;
+  groups?: string;
 }>();
 
 const pair = computed(() => {
