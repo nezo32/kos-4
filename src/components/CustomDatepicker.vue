@@ -9,6 +9,7 @@
       :transitions="{ open: `false` }"
       :day-class="markDays"
       :show-now-button="showNowButton ? true : false"
+      :month-change-on-scroll="false"
     >
       <template #now-button="{ selectCurrentDate }">
         <div class="dp__now_wrap_wrap">
