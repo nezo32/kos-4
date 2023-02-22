@@ -10,7 +10,7 @@
         <HumanScheduleIcon />
         {{ props.memberCount }}
       </p>
-      <p class="status__choose__text">
+      <p class="status__choose__text" v-if="props.teacherView">
         <PeopleScheduleIcon />
         {{ props.groups }}
       </p>
