@@ -74,6 +74,8 @@ const pair = computed(() => {
   gap: 10px;
 
   > span {
+    max-width: 82%;
+
     display: flex;
     flex-direction: column;
     gap: 4px;
