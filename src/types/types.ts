@@ -26,6 +26,6 @@ export interface ScheduleEvent {
   date?: string,
   eventImg?: string,
   schedule?: boolean,
-  teacher?: boolean,
+  teacherView?: boolean,
   groups?: string;
 }

@@ -28,6 +28,8 @@
               :date="v.date"
               :event-img="v.eventImg"
               :schedule="v.schedule"
+              :groups="v.groups"
+              :teacher-view="v.teacherView"
             />
           </div>
         </div>
@@ -62,7 +64,7 @@ const watcher = computed({
   },
 });
 
-const maxHeight = ref(`${(props.content?.length || 1) * 153}px`);
+const maxHeight = ref(`${(props.content?.length || 1) * 165}px`);
 </script>
 
 <style scoped lang="scss">
