@@ -62,14 +62,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, computed, watchEffect, onMounted } from "vue";
+import { ref, watch, computed, onMounted } from "vue";
 import DatepickerIcon from "./icons/filters/DatepickerIcon.vue";
 import DatePicker from "@vuepic/vue-datepicker";
 import FilterIcon from "./icons/filters/FilterIcon.vue";
 import detect from "@/detectOutsideElement";
 
 const selected = ref(-1);
-const input = ref<string>();
+const input = ref<string | undefined>("");
 const wrap = ref<HTMLElement | null>();
 const inputElement = ref<HTMLInputElement | null>();
 const elem = ref<Array<HTMLElement>>([]);

@@ -13,7 +13,7 @@
       />
       <SearchIcon />
     </div>
-    <div class="search__filter__after" v-if="content && active && cont.length">
+    <div class="search__filter__after" v-if="content && active && cont?.length">
       <div class="search__filter__after__wrapper" ref="wrap">
         <template v-for="(v, i) of cont" :key="i">
           <span
@@ -43,19 +43,15 @@ const selected = ref(-1);
 const inputElement = ref<HTMLInputElement | null>();
 const wrap = ref<HTMLElement | null>();
 const elem = ref<Array<HTMLElement>>([]);
-const input = ref<string>();
+const input = ref<string | undefined>("");
 
 function click() {
-  if (!props.disabled) {
-    inputElement.value?.focus();
-    active.value = true;
-  } else {
-    inputElement.value?.blur();
-    active.value = false;
-  }
+  inputElement.value?.focus();
+  active.value = true;
 }
 
 function keyDown() {
+  if (!cont.value) return;
   if (!(active.value && props.content && cont.value.length && wrap.value))
     return;
   if (selected.value < cont.value.length - 1) selected.value++;
@@ -67,6 +63,7 @@ function keyDown() {
 }
 
 function keyUp() {
+  if (!cont.value) return;
   if (!(active.value && props.content && cont.value.length && wrap.value))
     return;
   if (selected.value > 0) selected.value--;
@@ -78,6 +75,7 @@ function keyUp() {
 }
 
 function keyEnter() {
+  if (!cont.value) return;
   if (!(active.value && props.content && cont.value.length && wrap.value))
     return;
   value.value = elem.value[selected.value].textContent || "";
@@ -101,6 +99,7 @@ const active = ref(false);
 const borderRadius = computed(() => (props.radius || "10") + "px");
 
 const height = computed(() => {
+  if (!cont.value) return;
   if (cont.value.length < 5) {
     return `${(cont.value.length - 1) * (26 + 5) + 26}px`;
   } else return `${4 * (26 + 5) + 26}px`;
@@ -114,13 +113,13 @@ const value = computed({
     emits("update:modelValue", value);
   },
 });
-const cont = ref(props.content || []);
+const cont = ref<Array<string> | undefined>(props.content);
 
 watch(input, async (n) => {
   cont.value = [];
   props.content?.forEach((el) => {
     if (n != undefined)
-      if (el.toUpperCase().includes(n.toUpperCase())) cont.value.push(el);
+      if (el.toUpperCase().includes(n.toUpperCase())) cont.value?.push(el);
   });
 });
 

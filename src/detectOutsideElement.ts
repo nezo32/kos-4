@@ -1,6 +1,6 @@
 import { onBeforeUnmount, onMounted, type Ref } from 'vue'
 
-export default function useDetectOutsideElementClick(component: Ref, callback: any) {
+export default function useDetectOutsideElementClick(component: Ref, callback: () => void) {
     if (!component) return;
 
     const listener = (event: MouseEvent) => {
