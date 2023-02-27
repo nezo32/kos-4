@@ -124,11 +124,10 @@ watch(input, async (n) => {
   });
 });
 
-watchEffect(() => {
-  if (props.trigger) {
-    input.value = "";
-    value.value = "";
-  } else {
+const triggerWatcher = computed(() => props.trigger);
+
+watch(triggerWatcher, () => {
+  if (input.value || value.value) {
     input.value = "";
     value.value = "";
   }

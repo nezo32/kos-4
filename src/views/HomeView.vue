@@ -400,7 +400,7 @@
       <h1>Блок фильтров</h1>
       <section>
         <Filter date :content="zalupa" :trigger="bool" placeholder="Институт" v-model="checkDate"/>
-        <Filter :content="zalupa" :trigger="bool" placeholder="Институт" v-model="input3"/>
+        <Filter :content="zalupa" :trigger="bool" placeholder="Институт" v-model="input2"/>
         <SearchFilter  v-model="input3" :disabled="true"/>
         <SearchFilter :content="zalupa" v-model="input3" radius="20"/>
         {{ input2 }}

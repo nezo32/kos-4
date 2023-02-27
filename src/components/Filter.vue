@@ -161,18 +161,19 @@ function onInput(e: InputEvent) {
   input.value = undefined;
 }
 
-watchEffect(() => {
-  if (props.trigger) {
-    input.value = "";
-    value.value = "";
-  } else {
+const triggerWatcher = computed(() => props.trigger);
+
+watch(triggerWatcher, () => {
+  if (input.value || value.value) {
     input.value = "";
     value.value = "";
   }
 });
 
 onMounted(() => {
-  if (!props.date) input.value = (value.value as string) || "";
+  if (!props.date) {
+    input.value = (value.value as string) || "";
+  }
 });
 </script>
 
