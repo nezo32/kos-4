@@ -42,20 +42,20 @@
     </div>
     <div class="filter__after" v-if="clicked && cont.length && content">
       <div class="filter__after__wrapper" ref="wrap">
-        <template v-for="(v, i) of cont" :key="i">
-          <p
-            ref="elem"
-            class="filter__after__wrapper__elem"
-            @click="
-              value = v;
-              input = v;
-              clicked = !clicked;
-            "
-            :title="v"
-          >
-            {{ v }}
-          </p>
-        </template>
+        <p
+          v-for="(v, i) of cont"
+          :key="i"
+          ref="elem"
+          class="filter__after__wrapper__elem"
+          @click="
+            value = v;
+            input = v;
+            clicked = !clicked;
+          "
+          :title="v"
+        >
+          {{ v }}
+        </p>
       </div>
     </div>
   </div>

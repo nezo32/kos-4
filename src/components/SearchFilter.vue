@@ -15,20 +15,20 @@
     </div>
     <div class="search__filter__after" v-if="content && active && cont?.length">
       <div class="search__filter__after__wrapper" ref="wrap">
-        <template v-for="(v, i) of cont" :key="i">
-          <span
-            ref="elem"
-            class="search__filter__after__wrapper__elem"
-            @click="
-              value = v;
-              input = v;
-              active = !active;
-            "
-            :title="v"
-          >
-            {{ v }}
-          </span>
-        </template>
+        <span
+          v-for="(v, i) of cont"
+          :key="i"
+          ref="elem"
+          class="search__filter__after__wrapper__elem"
+          @click="
+            value = v;
+            input = v;
+            active = !active;
+          "
+          :title="v"
+        >
+          {{ v }}
+        </span>
       </div>
     </div>
   </div>
