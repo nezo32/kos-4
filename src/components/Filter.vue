@@ -12,7 +12,7 @@
         type="text"
         class="search__text"
         :placeholder="placeholder"
-        :title="value as string"
+        :title="(value as string)"
       />
       <FilterIcon v-if="!props.date" />
       <template v-if="date">
@@ -23,11 +23,11 @@
           placeholder="Период"
           min-range="6"
           max-range="6"
-          :title="input"
+          :title="(value as string)"
           ref="dateInput"
           class="datepicker__filter"
           style="width: 100%"
-          v-model="input"
+          v-model="value"
           locale="ru"
           cancel-text="Закрыть"
           select-text="Выбрать"
