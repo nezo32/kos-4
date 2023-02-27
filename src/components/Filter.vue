@@ -8,11 +8,11 @@
         @keydown.enter.prevent="keyEnter"
         v-if="!date"
         :class="{ disabled }"
-        v-model="value"
+        v-model="input"
         type="text"
         class="search__text"
         :placeholder="placeholder"
-        :title="(value as string)"
+        :title="input"
       />
       <FilterIcon v-if="!props.date" />
       <template v-if="date">
@@ -23,11 +23,11 @@
           placeholder="Период"
           min-range="6"
           max-range="6"
-          :title="(value as string)"
+          :title="input"
           ref="dateInput"
           class="datepicker__filter"
           style="width: 100%"
-          v-model="value"
+          v-model="input"
           locale="ru"
           cancel-text="Закрыть"
           select-text="Выбрать"
@@ -48,6 +48,7 @@
             class="filter__after__wrapper__elem"
             @click="
               value = v;
+              input = v;
               clicked = !clicked;
             "
             :title="v"
@@ -68,6 +69,7 @@ import FilterIcon from "./icons/filters/FilterIcon.vue";
 import detect from "@/detectOutsideElement";
 
 const selected = ref(-1);
+const input = ref<string>();
 const wrap = ref<HTMLElement | null>();
 const inputElement = ref<HTMLInputElement | null>();
 const elem = ref<Array<HTMLElement>>([]);
@@ -141,30 +143,36 @@ const value = computed({
 });
 
 detect(outsideDetectionComponent, () => {
-  if (clicked.value) clicked.value = !clicked.value;
+  if (clicked.value) clicked.value = false;
+  if (input.value == "") value.value = "";
 });
 
-watch(value, async (n) => {
+watch(input, (n) => {
   if (props.date) return;
   cont.value = [];
   props.content.forEach((el) => {
     if (n != undefined)
-      if (el.toUpperCase().includes((n as string).toUpperCase()))
-        cont.value.push(el);
+      if (el.toUpperCase().includes(n.toUpperCase())) cont.value.push(el);
   });
 });
 
 function onInput(e: InputEvent) {
   if (e.data) return;
-  value.value = undefined;
+  input.value = undefined;
 }
 
 watchEffect(() => {
-  props.trigger ? (value.value = "") : (value.value = "");
+  if (props.trigger) {
+    input.value = "";
+    value.value = "";
+  } else {
+    input.value = "";
+    value.value = "";
+  }
 });
 
 onMounted(() => {
-  if (!props.date) value.value = (value.value as string) || "";
+  if (!props.date) input.value = (value.value as string) || "";
 });
 </script>
 

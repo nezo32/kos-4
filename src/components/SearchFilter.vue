@@ -8,7 +8,7 @@
         @keydown.enter.prevent="keyEnter"
         type="text"
         :placeholder="title || 'Поиск'"
-        v-model="value"
+        v-model="input"
         :title="value"
       />
       <SearchIcon />
@@ -21,6 +21,7 @@
             class="search__filter__after__wrapper__elem"
             @click="
               value = v;
+              input = v;
               active = !active;
             "
             :title="v"
@@ -42,6 +43,7 @@ const selected = ref(-1);
 const inputElement = ref<HTMLInputElement | null>();
 const wrap = ref<HTMLElement | null>();
 const elem = ref<Array<HTMLElement>>([]);
+const input = ref<string>();
 
 function click() {
   if (!props.disabled) {
@@ -79,6 +81,7 @@ function keyEnter() {
   if (!(active.value && props.content && cont.value.length && wrap.value))
     return;
   value.value = elem.value[selected.value].textContent || "";
+  input.value = elem.value[selected.value].textContent || "";
   active.value = false;
 }
 
@@ -113,7 +116,7 @@ const value = computed({
 });
 const cont = ref(props.content || []);
 
-watch(value, async (n) => {
+watch(input, async (n) => {
   cont.value = [];
   props.content?.forEach((el) => {
     if (n != undefined)
@@ -122,7 +125,13 @@ watch(value, async (n) => {
 });
 
 watchEffect(() => {
-  props.trigger ? (value.value = "") : (value.value = "");
+  if (props.trigger) {
+    input.value = "";
+    value.value = "";
+  } else {
+    input.value = "";
+    value.value = "";
+  }
 });
 
 useDetectOutsideElementClick(container, () => {
