@@ -117,11 +117,15 @@ const value = computed({
 const cont = ref(props.content || []);
 
 watch(input, async (n) => {
-  cont.value = [];
+  cont.value.splice(0, cont.value.length);
   props.content?.forEach((el) => {
     if (n != undefined)
       if (el.toUpperCase().includes(n.toUpperCase())) cont.value.push(el);
   });
+  if (!props.content) return;
+  if (!cont.value.length) {
+    cont.value.push(...props.content);
+  }
 });
 
 const triggerWatcher = computed(() => props.trigger);
@@ -130,6 +134,9 @@ watch(triggerWatcher, () => {
   if (input.value || value.value) {
     input.value = "";
     value.value = "";
+    if (!props.content) return;
+    cont.value.splice(0, cont.value.length);
+    cont.value.push(...props.content);
   }
 });
 
