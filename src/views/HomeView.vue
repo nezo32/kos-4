@@ -402,7 +402,7 @@
         <Filter date :content="zalupa" :trigger="bool" placeholder="Институт" v-model="checkDate"/>
         <Filter :content="zalupa" :trigger="bool" placeholder="Институт" v-model="input2"/>
         <SearchFilter  v-model="input3" :disabled="true"/>
-        <SearchFilter :content="zalupa" v-model="input3" radius="20"/>
+        <SearchFilter :content="zalupa" :trigger="bool" v-model="input3" radius="20"/>
         {{ input2 }}
         {{ bool }}
         <FilterResetIcon @click="bool = !bool;" style="flex-shrink: 0"/>

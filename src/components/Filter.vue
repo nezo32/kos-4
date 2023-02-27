@@ -110,6 +110,7 @@ function keyEnter() {
   if (!(clicked.value && props.content && cont.value.length && wrap.value))
     return;
   value.value = elem.value[selected.value].textContent || "";
+  input.value = elem.value[selected.value].textContent || "";
   clicked.value = false;
 }
 const props = defineProps<{
@@ -149,14 +150,11 @@ detect(outsideDetectionComponent, () => {
 
 watch(input, (n) => {
   if (props.date) return;
-  cont.value.splice(0, cont.value.length);
+  cont.value = [];
   props.content.forEach((el) => {
     if (n != undefined)
       if (el.toUpperCase().includes(n.toUpperCase())) cont.value.push(el);
   });
-  if (!cont.value.length) {
-    cont.value.push(...props.content);
-  }
 });
 
 function onInput(e: InputEvent) {
@@ -170,9 +168,6 @@ watch(triggerWatcher, () => {
   if (input.value || value.value) {
     input.value = "";
     value.value = "";
-    if (!props.content) return;
-    cont.value.splice(0, cont.value.length);
-    cont.value.push(...props.content);
   }
 });
 
@@ -180,8 +175,6 @@ onMounted(() => {
   if (!props.date) {
     input.value = (value.value as string) || "";
   }
-  cont.value.splice(0, cont.value.length);
-  cont.value.push(...props.content);
 });
 </script>
 
