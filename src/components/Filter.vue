@@ -8,11 +8,11 @@
         v-if="!date"
         :class="{ disabled }"
         @click="!disabled ? (clicked = true) : (clicked = false)"
-        v-model="input"
+        v-model="value"
         type="text"
         class="search__text"
         :placeholder="placeholder"
-        :title="input"
+        :title="value as string"
       />
       <FilterIcon v-if="!props.date" />
       <template v-if="date">
@@ -47,7 +47,6 @@
             ref="elem"
             class="filter__after__wrapper__elem"
             @click="
-              input = v;
               value = v;
               clicked = !clicked;
             "
@@ -98,7 +97,6 @@ function keyEnter() {
   if (!(clicked.value && props.content && cont.value.length && wrap.value))
     return;
   value.value = elem.value[selected.value].textContent || "";
-  input.value = elem.value[selected.value].textContent || "";
   clicked.value = false;
 }
 const props = defineProps<{
@@ -115,7 +113,6 @@ const emit = defineEmits(["update:modelValue", "null"]);
 const cont = ref<Array<string>>(props.content);
 const clicked = ref(false);
 const outsideDetectionComponent = ref();
-const input = ref<string | undefined>("");
 
 const height = computed(() => {
   if (cont.value.length < 5) {
@@ -134,29 +131,30 @@ const value = computed({
 
 detect(outsideDetectionComponent, () => {
   if (clicked.value) clicked.value = !clicked.value;
-  if (input.value == "") value.value = "";
+  value.value = "";
 });
 
-watch(input, async (n) => {
+watch(value, async (n) => {
   if (props.date) return;
   cont.value = [];
   props.content.forEach((el) => {
     if (n != undefined)
-      if (el.toUpperCase().includes(n.toUpperCase())) cont.value.push(el);
+      if (el.toUpperCase().includes((n as string).toUpperCase()))
+        cont.value.push(el);
   });
 });
 
 function onInput(e: InputEvent) {
   if (e.data) return;
-  input.value = undefined;
+  value.value = undefined;
 }
 
 watchEffect(() => {
-  props.trigger ? (input.value = "") : (input.value = "");
+  props.trigger ? (value.value = "") : (value.value = "");
 });
 
 onMounted(() => {
-  if (!props.date) input.value = (value.value as string) || "";
+  if (!props.date) value.value = (value.value as string) || "";
 });
 </script>
 
