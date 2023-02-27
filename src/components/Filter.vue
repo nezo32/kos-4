@@ -40,10 +40,10 @@
       </template>
       <DatepickerIcon v-if="props.date" />
     </div>
-    <div class="filter__after" v-if="clicked && cont.length && content">
+    <div class="filter__after" v-if="clicked && temp.length && cont">
       <div class="filter__after__wrapper" ref="wrap">
         <p
-          v-for="(v, i) of cont"
+          v-for="(v, i) of temp"
           :key="i"
           ref="elem"
           class="filter__after__wrapper__elem"
@@ -85,9 +85,8 @@ function click() {
 }
 
 function keyDown() {
-  if (!(clicked.value && props.content && cont.value.length && wrap.value))
-    return;
-  if (selected.value < cont.value.length - 1) selected.value++;
+  if (!(clicked.value && cont.value && temp.value.length && wrap.value)) return;
+  if (selected.value < temp.value.length - 1) selected.value++;
   elem.value.forEach((el) => el.classList.remove("hover"));
   elem.value[selected.value].classList.add("hover");
   if (selected.value > 4) {
@@ -96,19 +95,17 @@ function keyDown() {
 }
 
 function keyUp() {
-  if (!(clicked.value && props.content && cont.value.length && wrap.value))
-    return;
+  if (!(clicked.value && cont.value && temp.value.length && wrap.value)) return;
   if (selected.value > 0) selected.value--;
   elem.value.forEach((el) => el.classList.remove("hover"));
   elem.value[selected.value].classList.add("hover");
-  if (selected.value < cont.value.length - 4) {
+  if (selected.value < temp.value.length - 4) {
     wrap.value.scrollBy(0, -31);
   }
 }
 
 function keyEnter() {
-  if (!(clicked.value && props.content && cont.value.length && wrap.value))
-    return;
+  if (!(clicked.value && cont.value && temp.value.length && wrap.value)) return;
   value.value = elem.value[selected.value].textContent || "";
   input.value = elem.value[selected.value].textContent || "";
   clicked.value = false;
@@ -125,12 +122,13 @@ const props = defineProps<{
 const emit = defineEmits(["update:modelValue", "null"]);
 
 const cont = computed(() => props.content);
+const temp = ref<string[]>([]);
 const clicked = ref(false);
 const outsideDetectionComponent = ref();
 
 const height = computed(() => {
-  if (cont.value.length < 5) {
-    return `${(cont.value.length - 1) * (26 + 5) + 26}px`;
+  if (temp.value.length < 5) {
+    return `${(temp.value.length - 1) * (26 + 5) + 26}px`;
   } else return `${4 * (26 + 5) + 26}px`;
 });
 
@@ -150,10 +148,10 @@ detect(outsideDetectionComponent, () => {
 
 watch(input, (n) => {
   if (props.date) return;
-  cont.value?.splice(0, cont.value.length);
-  props.content.forEach((el) => {
+  temp.value?.splice(0, temp.value.length);
+  cont.value.forEach((el) => {
     if (n != undefined)
-      if (el.toUpperCase().includes(n.toUpperCase())) cont.value.push(el);
+      if (el.toUpperCase().includes(n.toUpperCase())) temp.value.push(el);
   });
 });
 

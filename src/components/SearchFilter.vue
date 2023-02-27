@@ -13,10 +13,10 @@
       />
       <SearchIcon />
     </div>
-    <div class="search__filter__after" v-if="content && active && cont?.length">
+    <div class="search__filter__after" v-if="cont && active && temp?.length">
       <div class="search__filter__after__wrapper" ref="wrap">
         <span
-          v-for="(v, i) of cont"
+          v-for="(v, i) of temp"
           :key="i"
           ref="elem"
           class="search__filter__after__wrapper__elem"
@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watchEffect, ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import SearchIcon from "./icons/filters/SearchIcon.vue";
 import useDetectOutsideElementClick from "@/detectOutsideElement";
 
@@ -51,10 +51,9 @@ function click() {
 }
 
 function keyDown() {
-  if (!cont.value) return;
-  if (!(active.value && props.content && cont.value.length && wrap.value))
-    return;
-  if (selected.value < cont.value.length - 1) selected.value++;
+  if (!temp.value) return;
+  if (!(active.value && cont.value && temp.value.length && wrap.value)) return;
+  if (selected.value < temp.value.length - 1) selected.value++;
   elem.value.forEach((el) => el.classList.remove("hover"));
   elem.value[selected.value].classList.add("hover");
   if (selected.value > 4) {
@@ -63,21 +62,19 @@ function keyDown() {
 }
 
 function keyUp() {
-  if (!cont.value) return;
-  if (!(active.value && props.content && cont.value.length && wrap.value))
-    return;
+  if (!temp.value) return;
+  if (!(active.value && cont.value && temp.value.length && wrap.value)) return;
   if (selected.value > 0) selected.value--;
   elem.value.forEach((el) => el.classList.remove("hover"));
   elem.value[selected.value].classList.add("hover");
-  if (selected.value < cont.value.length - 4) {
+  if (selected.value < temp.value.length - 4) {
     wrap.value.scrollBy(0, -31);
   }
 }
 
 function keyEnter() {
-  if (!cont.value) return;
-  if (!(active.value && props.content && cont.value.length && wrap.value))
-    return;
+  if (!temp.value) return;
+  if (!(active.value && cont.value && temp.value.length && wrap.value)) return;
   value.value = elem.value[selected.value].textContent || "";
   input.value = elem.value[selected.value].textContent || "";
   active.value = false;
@@ -99,9 +96,9 @@ const active = ref(false);
 const borderRadius = computed(() => (props.radius || "10") + "px");
 
 const height = computed(() => {
-  if (!cont.value) return;
-  if (cont.value.length < 5) {
-    return `${(cont.value.length - 1) * (26 + 5) + 26}px`;
+  if (!temp.value) return;
+  if (temp.value.length < 5) {
+    return `${(temp.value.length - 1) * (26 + 5) + 26}px`;
   } else return `${4 * (26 + 5) + 26}px`;
 });
 
@@ -114,12 +111,13 @@ const value = computed({
   },
 });
 const cont = computed(() => props.content);
+const temp = ref<string[]>([]);
 
 watch(input, async (n) => {
-  cont.value?.splice(0, cont.value.length);
-  props.content?.forEach((el) => {
+  temp.value?.splice(0, temp.value.length);
+  cont.value?.forEach((el) => {
     if (n != undefined)
-      if (el.toUpperCase().includes(n.toUpperCase())) cont.value?.push(el);
+      if (el.toUpperCase().includes(n.toUpperCase())) temp.value?.push(el);
   });
 });
 
