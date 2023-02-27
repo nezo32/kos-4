@@ -1,11 +1,8 @@
 <template>
   <div class="search__filter" ref="container">
-    <div
-      class="search__filter__header"
-      :class="{ disabled }"
-      @click="active = true"
-    >
+    <div class="search__filter__header" :class="{ disabled }" @click="click">
       <input
+        ref="inputElement"
         @keydown.down.prevent="keyDown"
         @keydown.up.prevent="keyUp"
         @keydown.enter.prevent="keyEnter"
@@ -42,8 +39,19 @@ import SearchIcon from "./icons/filters/SearchIcon.vue";
 import useDetectOutsideElementClick from "@/detectOutsideElement";
 
 const selected = ref(-1);
+const inputElement = ref<HTMLInputElement | null>();
 const wrap = ref<HTMLElement | null>();
 const elem = ref<Array<HTMLElement>>([]);
+
+function click() {
+  if (!props.disabled) {
+    inputElement.value?.focus();
+    active.value = true;
+  } else {
+    inputElement.value?.blur();
+    active.value = false;
+  }
+}
 
 function keyDown() {
   if (!(active.value && props.content && cont.value.length && wrap.value))
@@ -143,9 +151,9 @@ useDetectOutsideElementClick(container, () => {
     border-radius: v-bind(borderRadius);
     padding: 12px;
 
-    > input {
-      cursor: pointer;
+    cursor: pointer;
 
+    > input {
       width: 205px;
 
       white-space: nowrap;

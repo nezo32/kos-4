@@ -1,13 +1,13 @@
 <template>
   <div class="filter" ref="outsideDetectionComponent">
-    <div class="filter__header">
+    <div class="filter__header" @click="click">
       <input
+        ref="inputElement"
         @keydown.down.prevent="keyDown"
         @keydown.up.prevent="keyUp"
         @keydown.enter.prevent="keyEnter"
         v-if="!date"
         :class="{ disabled }"
-        @click="!disabled ? (clicked = true) : (clicked = false)"
         v-model="value"
         type="text"
         class="search__text"
@@ -69,7 +69,18 @@ import detect from "@/detectOutsideElement";
 
 const selected = ref(-1);
 const wrap = ref<HTMLElement | null>();
+const inputElement = ref<HTMLInputElement | null>();
 const elem = ref<Array<HTMLElement>>([]);
+
+function click() {
+  if (!props.disabled) {
+    inputElement.value?.focus();
+    clicked.value = true;
+  } else {
+    inputElement.value?.blur();
+    clicked.value = false;
+  }
+}
 
 function keyDown() {
   if (!(clicked.value && props.content && cont.value.length && wrap.value))
@@ -131,7 +142,6 @@ const value = computed({
 
 detect(outsideDetectionComponent, () => {
   if (clicked.value) clicked.value = !clicked.value;
-  value.value = "";
 });
 
 watch(value, async (n) => {
@@ -185,12 +195,13 @@ onMounted(() => {
 
     box-sizing: border-box;
 
+    cursor: pointer;
+
     > input {
       &.disabled {
         pointer-events: none;
       }
 
-      cursor: pointer;
       width: 100%;
 
       outline: none;
