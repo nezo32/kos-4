@@ -124,7 +124,7 @@ const props = defineProps<{
 
 const emit = defineEmits(["update:modelValue", "null"]);
 
-const cont = ref<Array<string>>(props.content);
+const cont = computed(() => props.content);
 const clicked = ref(false);
 const outsideDetectionComponent = ref();
 
@@ -150,7 +150,7 @@ detect(outsideDetectionComponent, () => {
 
 watch(input, (n) => {
   if (props.date) return;
-  cont.value = [];
+  cont.value?.splice(0, cont.value.length);
   props.content.forEach((el) => {
     if (n != undefined)
       if (el.toUpperCase().includes(n.toUpperCase())) cont.value.push(el);

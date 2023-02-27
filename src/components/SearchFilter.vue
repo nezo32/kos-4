@@ -113,10 +113,10 @@ const value = computed({
     emits("update:modelValue", value);
   },
 });
-const cont = ref<Array<string> | undefined>(props.content);
+const cont = computed(() => props.content);
 
 watch(input, async (n) => {
-  cont.value = [];
+  cont.value?.splice(0, cont.value.length);
   props.content?.forEach((el) => {
     if (n != undefined)
       if (el.toUpperCase().includes(n.toUpperCase())) cont.value?.push(el);
