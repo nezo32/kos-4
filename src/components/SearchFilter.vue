@@ -1,59 +1,54 @@
 <template>
   <div class="search__filter" ref="container">
-    <div class="search__filter__header" :class="{ disabled }" @click="click">
+    <div
+      class="search__filter__header"
+      :class="{ disabled }"
+      @click="active = true"
+    >
       <input
-        ref="inputElement"
         @keydown.down.prevent="keyDown"
         @keydown.up.prevent="keyUp"
         @keydown.enter.prevent="keyEnter"
         type="text"
         :placeholder="title || 'Поиск'"
-        v-model="input"
+        v-model="value"
         :title="value"
       />
       <SearchIcon />
     </div>
-    <div class="search__filter__after" v-if="cont && active && temp?.length">
+    <div class="search__filter__after" v-if="content && active && cont.length">
       <div class="search__filter__after__wrapper" ref="wrap">
-        <span
-          v-for="(v, i) of temp"
-          :key="i"
-          ref="elem"
-          class="search__filter__after__wrapper__elem"
-          @click="
-            value = v;
-            input = v;
-            active = !active;
-          "
-          :title="v"
-        >
-          {{ v }}
-        </span>
+        <template v-for="(v, i) of cont" :key="i">
+          <span
+            ref="elem"
+            class="search__filter__after__wrapper__elem"
+            @click="
+              value = v;
+              active = !active;
+            "
+            :title="v"
+          >
+            {{ v }}
+          </span>
+        </template>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import { computed, watchEffect, ref, watch } from "vue";
 import SearchIcon from "./icons/filters/SearchIcon.vue";
 import useDetectOutsideElementClick from "@/detectOutsideElement";
 
 const selected = ref(-1);
-const inputElement = ref<HTMLInputElement | null>();
 const wrap = ref<HTMLElement | null>();
 const elem = ref<Array<HTMLElement>>([]);
-const input = ref<string | undefined>("");
-
-function click() {
-  inputElement.value?.focus();
-  active.value = true;
-}
 
 function keyDown() {
-  if (!temp.value) return;
-  if (!(active.value && cont.value && temp.value.length && wrap.value)) return;
-  if (selected.value < temp.value.length - 1) selected.value++;
+  if (!(active.value && props.content && cont.value.length && wrap.value))
+    return;
+  if (selected.value < cont.value.length - 1) selected.value++;
   elem.value.forEach((el) => el.classList.remove("hover"));
   elem.value[selected.value].classList.add("hover");
   if (selected.value > 4) {
@@ -62,21 +57,20 @@ function keyDown() {
 }
 
 function keyUp() {
-  if (!temp.value) return;
-  if (!(active.value && cont.value && temp.value.length && wrap.value)) return;
+  if (!(active.value && props.content && cont.value.length && wrap.value))
+    return;
   if (selected.value > 0) selected.value--;
   elem.value.forEach((el) => el.classList.remove("hover"));
   elem.value[selected.value].classList.add("hover");
-  if (selected.value < temp.value.length - 4) {
+  if (selected.value < cont.value.length - 4) {
     wrap.value.scrollBy(0, -31);
   }
 }
 
 function keyEnter() {
-  if (!temp.value) return;
-  if (!(active.value && cont.value && temp.value.length && wrap.value)) return;
+  if (!(active.value && props.content && cont.value.length && wrap.value))
+    return;
   value.value = elem.value[selected.value].textContent || "";
-  input.value = elem.value[selected.value].textContent || "";
   active.value = false;
 }
 
@@ -96,9 +90,8 @@ const active = ref(false);
 const borderRadius = computed(() => (props.radius || "10") + "px");
 
 const height = computed(() => {
-  if (!temp.value) return;
-  if (temp.value.length < 5) {
-    return `${(temp.value.length - 1) * (26 + 5) + 26}px`;
+  if (cont.value.length < 5) {
+    return `${(cont.value.length - 1) * (26 + 5) + 26}px`;
   } else return `${4 * (26 + 5) + 26}px`;
 });
 
@@ -110,24 +103,18 @@ const value = computed({
     emits("update:modelValue", value);
   },
 });
-const cont = computed(() => props.content);
-const temp = ref<string[]>([]);
+const cont = ref(props.content || []);
 
-watch(input, async (n) => {
-  temp.value?.splice(0, temp.value.length);
-  cont.value?.forEach((el) => {
+watch(value, async (n) => {
+  cont.value = [];
+  props.content?.forEach((el) => {
     if (n != undefined)
-      if (el.toUpperCase().includes(n.toUpperCase())) temp.value?.push(el);
+      if (el.toUpperCase().includes(n.toUpperCase())) cont.value.push(el);
   });
 });
 
-const triggerWatcher = computed(() => props.trigger);
-
-watch(triggerWatcher, () => {
-  if (input.value || value.value) {
-    input.value = "";
-    value.value = "";
-  }
+watchEffect(() => {
+  props.trigger ? (value.value = "") : (value.value = "");
 });
 
 useDetectOutsideElementClick(container, () => {
@@ -156,9 +143,9 @@ useDetectOutsideElementClick(container, () => {
     border-radius: v-bind(borderRadius);
     padding: 12px;
 
-    cursor: pointer;
-
     > input {
+      cursor: pointer;
+
       width: 205px;
 
       white-space: nowrap;
