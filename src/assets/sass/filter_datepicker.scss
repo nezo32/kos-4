@@ -5,6 +5,7 @@
       display: none !important;
     }
   }
+
   input {
     width: 100% !important;
 
@@ -24,6 +25,11 @@
       color: #a3aed0 !important;
     }
   }
+}
+
+.dp__month_year_row {
+  padding-top: 30px !important;
+  padding-bottom: 15px !important;
 }
 
 .dp__range_start,

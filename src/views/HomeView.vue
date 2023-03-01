@@ -399,7 +399,7 @@
     <div class="home__component">
       <h1>Блок фильтров</h1>
       <section>
-        <Filter date :content="zalupa" :trigger="bool" placeholder="Институт" v-model="checkDate"/>
+        <Filter date :trigger="bool" placeholder="Институт" v-model="checkDate"/>
         <Filter :content="zalupa" :trigger="bool" placeholder="Институт" v-model="input2"/>
         <SearchFilter  v-model="input3" :disabled="true"/>
         <SearchFilter :content="zalupa" :trigger="bool" v-model="input3" radius="20"/>
@@ -556,7 +556,7 @@ import FormsMultipleDropdown from "@/components/forms/FormsMultipleDropdown.vue"
 import CustomInputDropdown from "@/components/CustomInputDropdown.vue";
 import Test from "@/Test.vue";
 
-const date = ref();
+const date = ref(new Date());
 
 const isOpened = ref(false);
 
@@ -603,7 +603,15 @@ const event = ref<Array<ScheduleEvent>>([
   }
 ]);
 
-const checkDate = ref<Date>();
+const tommorrow = new Date();
+tommorrow.setDate(tommorrow.getDate() + 6);
+console.log(tommorrow);
+
+const checkDate = ref<string | Date[]>([new Date(), tommorrow]);
+console.log(checkDate.value);
+watch(checkDate, () => {
+  console.log(checkDate.value);
+})
 
 const input1 = ref<string>();
 const input2 = ref('аыфаыфва');

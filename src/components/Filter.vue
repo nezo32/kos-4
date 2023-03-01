@@ -11,7 +11,7 @@
         type="text"
         class="search__text"
         :placeholder="placeholder"
-        :title="input"
+        :title="(input as string | undefined)"
         ref="textInput"
       />
       <FilterIcon v-if="!props.date" />
@@ -23,7 +23,6 @@
           placeholder="Период"
           min-range="6"
           max-range="6"
-          :title="input"
           ref="dateInput"
           class="datepicker__filter"
           style="width: 100%"
@@ -70,9 +69,10 @@ import detect from "@/detectOutsideElement";
 
 function filterClick() {
   if (props.disabled) return;
-  clicked.value = true;
-  if (props.date) dateInput.value.focus();
-  else textInput.value.focus();
+  if (!props.date) {
+    textInput.value.focus();
+    clicked.value = true;
+  }
 }
 
 const dateInput = ref();
@@ -112,20 +112,20 @@ function keyEnter() {
   clicked.value = false;
 }
 const props = defineProps<{
-  content: Array<string>;
+  content?: Array<string>;
   placeholder: string;
   date?: boolean;
-  modelValue?: string | Date;
+  modelValue?: string | Date[];
   trigger?: boolean;
   disabled?: boolean;
 }>();
 
 const emit = defineEmits(["update:modelValue", "null"]);
 
-const cont = ref<Array<string>>(props.content);
+const cont = ref<Array<string>>(props.content || []);
 const clicked = ref(false);
 const outsideDetectionComponent = ref();
-const input = ref<string | undefined>("");
+const input = ref<string | undefined | Date[]>("");
 
 const height = computed(() => {
   if (cont.value.length < 5) {
@@ -148,11 +148,15 @@ detect(outsideDetectionComponent, () => {
 });
 
 watch(input, async (n) => {
-  if (props.date) return;
+  if (props.date) {
+    value.value = n;
+    return;
+  }
   cont.value = [];
-  props.content.forEach((el) => {
+  props.content?.forEach((el) => {
     if (n != undefined)
-      if (el.toUpperCase().includes(n.toUpperCase())) cont.value.push(el);
+      if (el.toUpperCase().includes((n as string).toUpperCase()))
+        cont.value.push(el);
   });
 });
 
@@ -167,6 +171,7 @@ watchEffect(() => {
 
 onMounted(() => {
   if (!props.date) input.value = (value.value as string) || "";
+  if (props.date) input.value = value.value as Date[];
 });
 </script>
 
