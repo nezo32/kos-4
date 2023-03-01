@@ -1,8 +1,7 @@
 <template>
   <div class="filter" ref="outsideDetectionComponent">
-    <div class="filter__header" @click="click">
+    <div class="filter__header" @click="filterClick()">
       <input
-        ref="inputElement"
         @keydown.down.prevent="keyDown"
         @keydown.up.prevent="keyUp"
         @keydown.enter.prevent="keyEnter"
@@ -13,6 +12,7 @@
         class="search__text"
         :placeholder="placeholder"
         :title="input"
+        ref="textInput"
       />
       <FilterIcon v-if="!props.date" />
       <template v-if="date">
@@ -40,53 +40,52 @@
       </template>
       <DatepickerIcon v-if="props.date" />
     </div>
-    <div class="filter__after" v-if="clicked && temp.length && cont">
+    <div class="filter__after" v-if="clicked && cont.length && content">
       <div class="filter__after__wrapper" ref="wrap">
-        <p
-          v-for="(v, i) of temp"
-          :key="i"
-          ref="elem"
-          class="filter__after__wrapper__elem"
-          @click="
-            value = v;
-            input = v;
-            clicked = !clicked;
-          "
-          :title="v"
-        >
-          {{ v }}
-        </p>
+        <template v-for="(v, i) of cont" :key="i">
+          <p
+            ref="elem"
+            class="filter__after__wrapper__elem"
+            @click="
+              input = v;
+              value = v;
+              clicked = !clicked;
+            "
+            :title="v"
+          >
+            {{ v }}
+          </p>
+        </template>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, watch, computed, onMounted } from "vue";
+import { ref, watch, computed, watchEffect, onMounted } from "vue";
 import DatepickerIcon from "./icons/filters/DatepickerIcon.vue";
 import DatePicker from "@vuepic/vue-datepicker";
 import FilterIcon from "./icons/filters/FilterIcon.vue";
 import detect from "@/detectOutsideElement";
 
-const selected = ref(-1);
-const input = ref<string | undefined>("");
-const wrap = ref<HTMLElement | null>();
-const inputElement = ref<HTMLInputElement | null>();
-const elem = ref<Array<HTMLElement>>([]);
-
-function click() {
-  if (!props.disabled) {
-    inputElement.value?.focus();
-    clicked.value = true;
-  } else {
-    inputElement.value?.blur();
-    clicked.value = false;
-  }
+function filterClick() {
+  if (props.disabled) return;
+  clicked.value = true;
+  if (props.date) dateInput.value.focus();
+  else textInput.value.focus();
 }
 
+const dateInput = ref();
+const textInput = ref();
+
+const selected = ref(-1);
+const wrap = ref<HTMLElement | null>();
+const elem = ref<Array<HTMLElement>>([]);
+
 function keyDown() {
-  if (!(clicked.value && cont.value && temp.value.length && wrap.value)) return;
-  if (selected.value < temp.value.length - 1) selected.value++;
+  if (!(clicked.value && props.content && cont.value.length && wrap.value))
+    return;
+  if (selected.value < cont.value.length - 1) selected.value++;
   elem.value.forEach((el) => el.classList.remove("hover"));
   elem.value[selected.value].classList.add("hover");
   if (selected.value > 4) {
@@ -95,17 +94,19 @@ function keyDown() {
 }
 
 function keyUp() {
-  if (!(clicked.value && cont.value && temp.value.length && wrap.value)) return;
+  if (!(clicked.value && props.content && cont.value.length && wrap.value))
+    return;
   if (selected.value > 0) selected.value--;
   elem.value.forEach((el) => el.classList.remove("hover"));
   elem.value[selected.value].classList.add("hover");
-  if (selected.value < temp.value.length - 4) {
+  if (selected.value < cont.value.length - 4) {
     wrap.value.scrollBy(0, -31);
   }
 }
 
 function keyEnter() {
-  if (!(clicked.value && cont.value && temp.value.length && wrap.value)) return;
+  if (!(clicked.value && props.content && cont.value.length && wrap.value))
+    return;
   value.value = elem.value[selected.value].textContent || "";
   input.value = elem.value[selected.value].textContent || "";
   clicked.value = false;
@@ -121,14 +122,14 @@ const props = defineProps<{
 
 const emit = defineEmits(["update:modelValue", "null"]);
 
-const cont = computed(() => props.content);
-const temp = ref<string[]>([]);
+const cont = ref<Array<string>>(props.content);
 const clicked = ref(false);
 const outsideDetectionComponent = ref();
+const input = ref<string | undefined>("");
 
 const height = computed(() => {
-  if (temp.value.length < 5) {
-    return `${(temp.value.length - 1) * (26 + 5) + 26}px`;
+  if (cont.value.length < 5) {
+    return `${(cont.value.length - 1) * (26 + 5) + 26}px`;
   } else return `${4 * (26 + 5) + 26}px`;
 });
 
@@ -142,16 +143,16 @@ const value = computed({
 });
 
 detect(outsideDetectionComponent, () => {
-  if (clicked.value) clicked.value = false;
+  if (clicked.value) clicked.value = !clicked.value;
   if (input.value == "") value.value = "";
 });
 
-watch(input, (n) => {
+watch(input, async (n) => {
   if (props.date) return;
-  temp.value?.splice(0, temp.value.length);
-  cont.value.forEach((el) => {
+  cont.value = [];
+  props.content.forEach((el) => {
     if (n != undefined)
-      if (el.toUpperCase().includes(n.toUpperCase())) temp.value.push(el);
+      if (el.toUpperCase().includes(n.toUpperCase())) cont.value.push(el);
   });
 });
 
@@ -160,19 +161,12 @@ function onInput(e: InputEvent) {
   input.value = undefined;
 }
 
-const triggerWatcher = computed(() => props.trigger);
-
-watch(triggerWatcher, () => {
-  if (input.value || value.value) {
-    input.value = "";
-    value.value = "";
-  }
+watchEffect(() => {
+  props.trigger ? (input.value = "") : (input.value = "");
 });
 
 onMounted(() => {
-  if (!props.date) {
-    input.value = (value.value as string) || "";
-  }
+  if (!props.date) input.value = (value.value as string) || "";
 });
 </script>
 

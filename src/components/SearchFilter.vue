@@ -3,9 +3,10 @@
     <div
       class="search__filter__header"
       :class="{ disabled }"
-      @click="active = true"
+      @click="filterClick()"
     >
       <input
+        ref="textInput"
         @keydown.down.prevent="keyDown"
         @keydown.up.prevent="keyUp"
         @keydown.enter.prevent="keyEnter"
@@ -41,6 +42,13 @@ import { computed, watchEffect, ref, watch } from "vue";
 import SearchIcon from "./icons/filters/SearchIcon.vue";
 import useDetectOutsideElementClick from "@/detectOutsideElement";
 
+function filterClick() {
+  if (props.disabled) return;
+  active.value = true;
+  textInput.value.focus();
+}
+
+const textInput = ref();
 const selected = ref(-1);
 const wrap = ref<HTMLElement | null>();
 const elem = ref<Array<HTMLElement>>([]);
@@ -143,9 +151,9 @@ useDetectOutsideElementClick(container, () => {
     border-radius: v-bind(borderRadius);
     padding: 12px;
 
-    > input {
-      cursor: pointer;
+    cursor: pointer;
 
+    > input {
       width: 205px;
 
       white-space: nowrap;
