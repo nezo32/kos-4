@@ -116,7 +116,7 @@ const active = computed(() =>
 );
 
 watch(active, (n) => {
-  console.log(n);
+  input.value = value.value;
   emit("update:isOpened", n);
 });
 </script>
