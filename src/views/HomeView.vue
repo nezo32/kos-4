@@ -427,7 +427,7 @@
           <CustomInput date v-model="checkDate" theme="Дата" style="width: 400px" />
         </Test> -->
         {{ ip }}
-        <CustomInputDropdown theme="Фамилия" :content="['bebra', 'bobra', 'barabobra', 'barabobra', 'barabobra', 'barabobra', 'barabobra']" dropdown v-model="input1" v-model:is-opened="isOpened"/>
+        <CustomInputDropdown theme="Фамилия" :content="bebra" dropdown v-model="input1" v-model:is-opened="isOpened"/>
         {{ input1 }}
         {{ isOpened }}
       </section>
@@ -571,7 +571,9 @@ tomorrow.setDate(tomorrow.getDate() + 1);
 const the_day_after_tomorrow = new Date();
 the_day_after_tomorrow.setDate(the_day_after_tomorrow.getDate() + 2);
 
-const dates = [new Date(), tomorrow, the_day_after_tomorrow]
+const dates = [new Date(), tomorrow, the_day_after_tomorrow];
+
+const bebra = ref(['bebra', 'bobra', 'barabobra', 'barabobra', 'barabobra', 'barabobra', 'barabobra']);
 
 const event = ref<Array<ScheduleEvent>>([
   {
@@ -613,7 +615,7 @@ watch(checkDate, () => {
   console.log(checkDate.value);
 })
 
-const input1 = ref<string>();
+const input1 = ref<string>("bebra");
 const input2 = ref('аыфаыфва');
 const input3 = ref('fasdfsadf');
 

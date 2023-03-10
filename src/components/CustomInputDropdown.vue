@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, computed, watch, onMounted } from "vue";
+import { reactive, ref, computed, watch, onMounted, defineProps } from "vue";
 import { ArrowDirections } from "@/types/types";
 import ArrowFormIcon from "./icons/arrows/ArrowFormIcon.vue";
 import useDetectOutsideElementClick from "@/detectOutsideElement";
@@ -44,18 +44,18 @@ import useDetectOutsideElementClick from "@/detectOutsideElement";
 const props = defineProps<{
   theme: string;
   dropdown?: boolean;
-  content?: Array<string>;
+  content?: string[];
   modelValue?: string;
   isOpened?: boolean;
 }>();
-const emit = defineEmits(["update:modelValue", "update:isOpened"]);
+const emit = defineEmits(["update:model-value", "update:isOpened"]);
 
 const value = computed({
   get() {
     return props.modelValue;
   },
   set(value) {
-    emit("update:modelValue", value);
+    emit("update:model-value", value);
   },
 });
 
@@ -99,7 +99,16 @@ const height = computed(() => {
     return `${((cont.value?.length || 0) - 1) * 35.1 + 35.1}px`;
   } else return `${4 * 35.1 + 35.1}px`;
 });
-const cont = ref(props.content || []);
+
+const cont = computed(() => {
+  const temp: string[] = [];
+  for (const v of props.content || []) {
+    if (v.includes(input.value)) {
+      temp.push(v);
+    }
+  }
+  return temp;
+});
 const container = ref();
 
 const input = ref<string>("");
@@ -117,10 +126,10 @@ function onFocusIn() {
   objectStyleAll.pos = true;
   inputComponent.value?.focus();
   arrowDirection.value = ArrowDirections.down;
-  if (!cont.value?.length) cont.value?.push(...(props.content || []));
 }
 function onFocusOut(v?: string) {
   input.value = v || "";
+  console.log(input.value);
   objectStyleAll.blue = false;
   v === undefined || v === ""
     ? (objectStyleAll.pos = false)
@@ -142,19 +151,16 @@ function onFocusOut(v?: string) {
 }
 
 useDetectOutsideElementClick(container, () => {
-  if (props.dropdown) {
-    onFocusOut(input.value);
-  }
+  onFocusOut(input.value);
 });
 
-watch(input, async (n) => {
+/* watch(input, (n) => {
   cont.value?.splice(0, cont.value.length);
   props.content?.forEach((el) => {
     if (n != undefined)
       if (el.toUpperCase().includes(n.toUpperCase())) cont.value?.push(el);
   });
-  if (!cont.value?.length) cont.value?.push(...(props.content || []));
-});
+}); */
 
 const active = computed(() =>
   arrowDirection.value == 1 && props.dropdown && cont.value?.length
@@ -168,9 +174,6 @@ watch(active, (n) => {
 
 onMounted(() => {
   input.value = value.value || "";
-  if (input.value) {
-    onFocusIn();
-  }
   onFocusOut(input.value);
 });
 </script>
