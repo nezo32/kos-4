@@ -171,6 +171,7 @@ onMounted(() => {
   if (input.value) {
     onFocusIn();
   }
+  onFocusOut(input.value);
 });
 </script>
 
