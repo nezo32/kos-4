@@ -72,6 +72,7 @@ function onFocusIn() {
   objectStyleAll.pos = true;
   inputComponent.value?.focus();
   arrowDirection.value = ArrowDirections.down;
+  if (!cont.value?.length) cont.value = props.content;
 }
 function onFocusOut(v?: string) {
   input.value = v;
@@ -107,6 +108,7 @@ watch(input, async (n) => {
     if (n != undefined)
       if (el.toUpperCase().includes(n.toUpperCase())) cont.value?.push(el);
   });
+  if (!cont.value.length) cont.value = props.content;
 });
 
 const active = computed(() =>
