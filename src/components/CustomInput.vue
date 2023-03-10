@@ -89,8 +89,7 @@ watch(input, (n) => {
 });
 
 onMounted(() => {
-  if (props.date) input.value = new Date();
-  else input.value = value.value;
+  input.value = value.value;
   onFocusIn();
   onFocusOut();
 });
