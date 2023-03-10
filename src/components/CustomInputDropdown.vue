@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, computed, watch } from "vue";
+import { reactive, ref, computed, watch, onMounted } from "vue";
 import { ArrowDirections } from "@/types/types";
 import ArrowFormIcon from "./icons/arrows/ArrowFormIcon.vue";
 import useDetectOutsideElementClick from "@/detectOutsideElement";
@@ -118,8 +118,11 @@ const active = computed(() =>
 );
 
 watch(active, (n) => {
-  input.value = value.value || "";
   emit("update:isOpened", n);
+});
+
+onMounted(() => {
+  input.value = value.value || "";
 });
 </script>
 
