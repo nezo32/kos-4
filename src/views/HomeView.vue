@@ -427,7 +427,7 @@
           <CustomInput date v-model="checkDate" theme="Дата" style="width: 400px" />
         </Test> -->
         {{ ip }}
-        <CustomInputDropdown theme="Фамилия" :content="['bebra', 'bobra', 'barabobra']" dropdown v-model="input1" v-model:is-opened="isOpened"/>
+        <CustomInputDropdown theme="Фамилия" :content="['bebra', 'bobra', 'barabobra', 'barabobra', 'barabobra', 'barabobra', 'barabobra']" dropdown v-model="input1" v-model:is-opened="isOpened"/>
         {{ input1 }}
         {{ isOpened }}
       </section>

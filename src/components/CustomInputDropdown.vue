@@ -19,17 +19,18 @@
       />
       <span>{{ props.theme }}</span>
     </div>
-    <div class="custom__input__dropdown__dropdown" v-if="active" ref="wrap">
-      <template v-for="(v, i) of cont" :key="i">
-        <span
-          v-if="i < 5"
-          :title="v"
-          ref="elem"
-          @click="onFocusOut(v)"
-          class="forms__text"
-          >{{ v }}</span
-        >
-      </template>
+    <div class="custom__input__dropdown__dropdown" v-if="active">
+      <div class="custom__input__dropdown__dropdown__wrapper" ref="wrap">
+        <template v-for="(v, i) of cont" :key="i">
+          <span
+            :title="v"
+            ref="elem"
+            @click="onFocusOut(v)"
+            class="forms__text"
+            >{{ v }}</span
+          >
+        </template>
+      </div>
     </div>
   </div>
 </template>
@@ -69,7 +70,7 @@ function keyDown() {
   elem.value.forEach((el) => el.classList.remove("hover"));
   elem.value[selected.value].classList.add("hover");
   if (selected.value > 4) {
-    wrap.value.scrollBy(0, 31);
+    wrap.value.scrollBy(0, 35.1);
   }
 }
 
@@ -80,7 +81,7 @@ function keyUp() {
   elem.value.forEach((el) => el.classList.remove("hover"));
   elem.value[selected.value].classList.add("hover");
   if (selected.value < cont.value.length - 4) {
-    wrap.value.scrollBy(0, -31);
+    wrap.value.scrollBy(0, -35.1);
   }
 }
 
@@ -90,12 +91,13 @@ function keyEnter() {
   value.value = elem.value[selected.value].textContent || "";
   input.value = elem.value[selected.value].textContent || "";
   arrowDirection.value = ArrowDirections.right;
+  selected.value = -1;
 }
 
 const height = computed(() => {
   if ((cont.value?.length || 0) < 5) {
-    return `${((cont.value?.length || 0) - 1) * (26 + 5) + 26}px`;
-  } else return `${4 * (26 + 5) + 26}px`;
+    return `${((cont.value?.length || 0) - 1) * 35.1 + 35.1}px`;
+  } else return `${4 * 35.1 + 35.1}px`;
 });
 const cont = ref(props.content || []);
 const container = ref();
@@ -253,25 +255,6 @@ onMounted(() => {
   position: relative;
 
   &__dropdown {
-    overflow: auto;
-    max-height: v-bind(height);
-    &::-webkit-scrollbar {
-      width: 5px;
-      /* width of the entire scrollbar */
-    }
-
-    &::-webkit-scrollbar-track {
-      background: #f4f7fe;
-      border-radius: 31px;
-      /* color of the tracking area */
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: #a3aed0;
-      border-radius: 22px;
-      /* color of the scroll thumb */
-    }
-
     z-index: 100;
 
     width: 95%;
@@ -280,25 +263,51 @@ onMounted(() => {
     top: 65px;
     left: 0;
 
-    padding: 10px;
+    padding: 10px 5px 10px 10px;
+
     background: #ffffff;
     box-shadow: 2px 2px 6px rgba(11, 20, 64, 0.2);
     border-radius: 10px;
 
-    > span {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+    &__wrapper {
+      padding-right: 5px;
 
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
+      overflow: auto;
+      max-height: v-bind(height);
 
-      &:hover {
-        background: #f4f7fe;
+      &::-webkit-scrollbar {
+        width: 5px;
+        /* width of the entire scrollbar */
       }
-      padding: 5px;
-      border-radius: 5px;
+
+      &::-webkit-scrollbar-track {
+        background: #f4f7fe;
+        border-radius: 31px;
+        /* color of the tracking area */
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #a3aed0;
+        border-radius: 22px;
+        /* color of the scroll thumb */
+      }
+
+      > span {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        &:hover,
+        &.hover {
+          background: #f4f7fe;
+        }
+        padding: 5px;
+        border-radius: 5px;
+      }
     }
   }
 }
