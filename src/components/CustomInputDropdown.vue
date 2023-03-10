@@ -168,6 +168,9 @@ watch(active, (n) => {
 
 onMounted(() => {
   input.value = value.value || "";
+  if (input.value) {
+    onFocusIn();
+  }
 });
 </script>
 
