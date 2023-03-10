@@ -2,6 +2,9 @@
   <div class="custom__input__dropdown" ref="container">
     <div class="custom__input__dropdown__input" :class="objectStyleAll">
       <input
+        @keydown.down.prevent="keyDown"
+        @keydown.up.prevent="keyUp"
+        @keydown.enter.prevent="keyEnter"
         type="text"
         v-model="input"
         ref="inputComponent"
@@ -16,11 +19,12 @@
       />
       <span>{{ props.theme }}</span>
     </div>
-    <div class="custom__input__dropdown__dropdown" v-if="active">
+    <div class="custom__input__dropdown__dropdown" v-if="active" ref="wrap">
       <template v-for="(v, i) of cont" :key="i">
         <span
           v-if="i < 5"
           :title="v"
+          ref="elem"
           @click="onFocusOut(v)"
           class="forms__text"
           >{{ v }}</span
@@ -54,7 +58,46 @@ const value = computed({
   },
 });
 
-const cont = ref(props.content);
+const selected = ref(-1);
+const wrap = ref();
+const elem = ref<Array<HTMLElement>>([]);
+
+function keyDown() {
+  if (!(active.value && props.content && cont.value.length && wrap.value))
+    return;
+  if (selected.value < cont.value.length - 1) selected.value++;
+  elem.value.forEach((el) => el.classList.remove("hover"));
+  elem.value[selected.value].classList.add("hover");
+  if (selected.value > 4) {
+    wrap.value.scrollBy(0, 31);
+  }
+}
+
+function keyUp() {
+  if (!(active.value && props.content && cont.value.length && wrap.value))
+    return;
+  if (selected.value > 0) selected.value--;
+  elem.value.forEach((el) => el.classList.remove("hover"));
+  elem.value[selected.value].classList.add("hover");
+  if (selected.value < cont.value.length - 4) {
+    wrap.value.scrollBy(0, -31);
+  }
+}
+
+function keyEnter() {
+  if (!(active.value && props.content && cont.value.length && wrap.value))
+    return;
+  value.value = elem.value[selected.value].textContent || "";
+  input.value = elem.value[selected.value].textContent || "";
+  arrowDirection.value = ArrowDirections.right;
+}
+
+const height = computed(() => {
+  if ((cont.value?.length || 0) < 5) {
+    return `${((cont.value?.length || 0) - 1) * (26 + 5) + 26}px`;
+  } else return `${4 * (26 + 5) + 26}px`;
+});
+const cont = ref(props.content || []);
 const container = ref();
 
 const input = ref<string>("");
@@ -210,6 +253,25 @@ onMounted(() => {
   position: relative;
 
   &__dropdown {
+    overflow: auto;
+    max-height: v-bind(height);
+    &::-webkit-scrollbar {
+      width: 5px;
+      /* width of the entire scrollbar */
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f4f7fe;
+      border-radius: 31px;
+      /* color of the tracking area */
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #a3aed0;
+      border-radius: 22px;
+      /* color of the scroll thumb */
+    }
+
     z-index: 100;
 
     width: 95%;
