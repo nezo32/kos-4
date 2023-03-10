@@ -57,7 +57,7 @@ const value = computed({
 const cont = ref(props.content);
 const container = ref();
 
-const input = ref<string>();
+const input = ref<string>("");
 const inputComponent = ref<HTMLElement>();
 const arrowDirection = ref<ArrowDirections>(ArrowDirections.right);
 
@@ -72,10 +72,10 @@ function onFocusIn() {
   objectStyleAll.pos = true;
   inputComponent.value?.focus();
   arrowDirection.value = ArrowDirections.down;
-  if (!cont.value?.length) cont.value = props.content;
+  if (!cont.value?.length) cont.value?.push(...(props.content || []));
 }
 function onFocusOut(v?: string) {
-  input.value = v;
+  input.value = v || "";
   objectStyleAll.blue = false;
   v === undefined || v === ""
     ? (objectStyleAll.pos = false)
@@ -103,12 +103,12 @@ useDetectOutsideElementClick(container, () => {
 });
 
 watch(input, async (n) => {
-  cont.value = [];
+  cont.value?.splice(0, cont.value.length);
   props.content?.forEach((el) => {
     if (n != undefined)
       if (el.toUpperCase().includes(n.toUpperCase())) cont.value?.push(el);
   });
-  if (!cont.value.length) cont.value = props.content;
+  if (!cont.value?.length) cont.value?.push(...(props.content || []));
 });
 
 const active = computed(() =>
@@ -118,7 +118,7 @@ const active = computed(() =>
 );
 
 watch(active, (n) => {
-  input.value = value.value;
+  input.value = value.value || "";
   emit("update:isOpened", n);
 });
 </script>
