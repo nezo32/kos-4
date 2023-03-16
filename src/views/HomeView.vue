@@ -422,7 +422,7 @@
     <div class="home__component">
       <h1>Инпуты</h1>
       <section>
-        <CustomInput theme="bebra" date/>
+        <CustomInput theme="bebra" :v-model="input1" disabled/>
         <!-- <Test :activity="true" small>
           <CustomInput date v-model="checkDate" theme="Дата" style="width: 400px" />
         </Test> -->

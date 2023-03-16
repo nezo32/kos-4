@@ -129,7 +129,6 @@ function onFocusIn() {
 }
 function onFocusOut(v?: string) {
   input.value = v || "";
-  console.log(input.value);
   objectStyleAll.blue = false;
   v === undefined || v === ""
     ? (objectStyleAll.pos = false)
