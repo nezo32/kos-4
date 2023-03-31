@@ -45,6 +45,8 @@ import useDetectOutsideElementClick from "@/detectOutsideElement";
 function filterClick() {
   if (props.disabled) return;
   active.value = true;
+  cont.value.splice(0, cont.value.length);
+  if (props.content) cont.value.push(...props.content);
   textInput.value.focus();
 }
 

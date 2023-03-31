@@ -71,6 +71,8 @@ function filterClick() {
   if (props.disabled) return;
   if (!props.date) {
     textInput.value.focus();
+    cont.value.splice(0, cont.value.length);
+    if (props.content) cont.value.push(...props.content);
     clicked.value = true;
   }
 }
