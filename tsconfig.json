@@ -14,8 +14,6 @@
         "./src/*"
       ]
     },
-    "target": "ESNext",
-    "module": "ESNext",
   },
   "references": [
     {

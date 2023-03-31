@@ -124,7 +124,7 @@ const props = defineProps<{
 
 const emit = defineEmits(["update:modelValue", "null"]);
 
-const cont = ref(new Array(...(props.content || [])));
+const cont = ref([...(props.content || [])]);
 const clicked = ref(false);
 const outsideDetectionComponent = ref();
 const input = ref<string | undefined | Date[]>("");
