@@ -113,7 +113,7 @@ const value = computed({
     emits("update:modelValue", value);
   },
 });
-const cont = ref(props.content || []);
+const cont = ref(new Array(...(props.content || [])));
 
 watch(value, async (n) => {
   cont.value = [];
