@@ -30,6 +30,12 @@ const props = defineProps<{
 .down {
   transform: rotateZ(90deg);
 }
+.up {
+  transform: rotateZ(-90deg);
+}
+.left {
+  transform: rotateZ(180deg);
+}
 
 .arrow__form__page__icon {
   font-size: 0;

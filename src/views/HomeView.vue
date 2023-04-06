@@ -210,8 +210,8 @@
       </section>
       <section>
         <label>
-          <ArrowFormIcon :direciton="ArrowDirections.left" />
           <ArrowFormIcon :direciton="ArrowDirections.down" />
+          <ArrowFormIcon :direciton="ArrowDirections.left" />
           <CalendarIcon style="color: var(--black)" />
           <section><HintIcon active /> <HintIcon /></section>
         </label>
