@@ -67,7 +67,7 @@
 </template>
 
 <script setup lang="ts">
-import { DocumentStatus } from "@/types/types";
+import { DocumentStatus } from "@/@types";
 
 const props = defineProps<{
   status: DocumentStatus;

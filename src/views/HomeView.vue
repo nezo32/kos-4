@@ -451,8 +451,8 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowDirections, DocumentStatus, type ScheduleEvent } from "@/types/types";
-import type { ProfileStatus } from "@/types/types";
+import { ArrowDirections, DocumentStatus, type ScheduleEvent } from "@/@types"
+import type { ProfileStatus } from "@/@types"
 
 import { onMounted, onUnmounted, ref, watch } from "vue";
 

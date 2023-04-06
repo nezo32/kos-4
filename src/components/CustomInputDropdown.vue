@@ -37,7 +37,7 @@
 
 <script setup lang="ts">
 import { reactive, ref, computed, watch, onMounted, defineProps } from "vue";
-import { ArrowDirections } from "@/types/types";
+import { ArrowDirections } from "@/@types";
 import ArrowFormIcon from "./icons/arrows/ArrowFormIcon.vue";
 import useDetectOutsideElementClick from "@/detectOutsideElement";
 

@@ -40,7 +40,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { ArrowDirections, type ScheduleEvent } from "@/types/types";
+import { ArrowDirections, type ScheduleEvent } from "@/@types";
 import ArrowFormIcon from "../icons/arrows/ArrowFormIcon.vue";
 import ScheduleEventCard from "./ScheduleEvent.vue";
 

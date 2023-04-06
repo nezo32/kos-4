@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import ArrowFormIcon from "../icons/arrows/ArrowFormIcon.vue";
-import { ArrowDirections } from "@/types/types";
+import { ArrowDirections } from "@/@types";
 import CalendarIcon from "../icons/CalendarIcon.vue";
 import useDetectOutsideElementClick from "@/detectOutsideElement";
 

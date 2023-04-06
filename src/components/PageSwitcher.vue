@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowDirections } from "@/types/types";
+import { ArrowDirections } from "@/@types"
 import { ref } from "vue";
 import ArrowSwipePagesIcon from "./icons/arrows/ArrowSwipePagesIcon.vue";
 

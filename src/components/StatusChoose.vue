@@ -18,8 +18,8 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowDirections } from "@/types/types";
-import type { ProfileStatus } from "@/types/types";
+import { ArrowDirections } from "@/@types";
+import type { ProfileStatus } from "@/@types";
 import { onMounted, ref } from "vue";
 
 import ArrowListIcon from "@/components/icons/arrows/ArrowListIcon.vue";

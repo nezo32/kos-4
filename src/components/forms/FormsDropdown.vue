@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import ArrowFormIcon from "../icons/arrows/ArrowFormIcon.vue";
-import { ArrowDirections } from "@/types/types";
+import { ArrowDirections } from "@/@types";
 
 const props = defineProps<{ content: Array<string>; modelValue?: any }>();
 const emits = defineEmits(["update:modelValue"]);

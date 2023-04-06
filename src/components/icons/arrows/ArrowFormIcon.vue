@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowDirections } from "@/types/types";
+import { ArrowDirections } from "@/@types";
 
 const props = defineProps<{
   direciton: ArrowDirections;

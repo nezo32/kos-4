@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { DocumentStatus } from "@/types/types";
+import { DocumentStatus } from "@/@types";
 import DocumentStatusIcon from "./icons/DocumentStatusIcon.vue";
 
 const props = defineProps<{
