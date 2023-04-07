@@ -98,6 +98,7 @@ export { default as KFooter } from "./components/Footer.vue";
 export { default as KCustomInputDropdown } from "./components/CustomInputDropdown.vue"
 export { default as KFormsMultipleDropdown } from "./components/forms/FormsMultipleDropdown.vue"
 export { default as KPencilIcon } from "./components/icons/PencilIcon.vue";
+export { default as KCompleteSecurityIcon } from "./components/icons/security_KID/CompleteSecurityIcon.vue";
 
 import "./assets/main.css";
 import "./assets/sass/global.scss";
