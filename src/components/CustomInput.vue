@@ -3,7 +3,7 @@
     <input
       v-if="!date"
       :class="{ footer__feedback__style: props.footer }"
-      type="text"
+      :type="password ? 'password' : 'text'"
       @focusin="onFocusIn()"
       v-model="input"
       @focusout="onFocusOut()"
@@ -49,6 +49,7 @@ const props = defineProps<{
   footer?: boolean;
   date?: boolean;
   modelValue?: any;
+  password?: boolean;
 }>();
 
 const emit = defineEmits(["update:modelValue"]);
