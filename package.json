@@ -8,7 +8,7 @@
   ],
   "module": "dist/KLibaray.js",
   "description": "UI Kit for Kosygin",
-  "version": "1.5.23",
+  "version": "1.5.24",
   "scripts": {
     "dev": "vite",
     "clean": "rimraf dist",
