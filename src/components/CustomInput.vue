@@ -149,6 +149,8 @@ onMounted(() => {
   > input {
     width: 100%;
 
+    padding: 0;
+
     background: transparent;
     border: none;
 

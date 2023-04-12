@@ -181,6 +181,7 @@ onMounted(() => {
 .custom__input__dropdown {
   &__input {
     > input {
+      padding: 0;
       width: 100%;
 
       background: transparent;
