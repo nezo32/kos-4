@@ -322,7 +322,7 @@
       <h1>Выбор статуса</h1>
       <section>
         <Profile
-        path="/notifications"
+        :path="url"
           :notification-active="active"
           pfp-url="https://remote-tools-images.s3.amazonaws.com/best+discord+pfp/blog+12/anime/anime/1+(1).jpg"
           name="Попов Дмитрий"
@@ -604,6 +604,8 @@ const event = ref<Array<ScheduleEvent>>([
     schedule: true,
   }
 ]);
+
+const url = ref("https://example.com")
 
 const tommorrow = new Date();
 tommorrow.setDate(tommorrow.getDate() + 6);

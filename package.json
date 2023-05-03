@@ -21,11 +21,12 @@
     "clean-build": "yarn clean && yarn build"
   },
   "peerDependencies": {
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "@vuepic/vue-datepicker": "^3.6.0"
   },
   "dependencies": {
     "@vue/cli-service": "^5.0.8",
-    "@vuepic/vue-datepicker": "^3.6.0",
+    
     "pinia": "^2.0.23",
     "rimraf": "^3.0.2",
     "sass": "^1.56.1",
