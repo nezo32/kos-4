@@ -47,7 +47,7 @@ const props = defineProps<{
   name: string;
   path?: string;
 }>();
-const pathValue = computed(() => props.path || "/");
+const pathValue = computed(() => props.path || "");
 </script>
 
 <style scoped lang="scss">
