@@ -1,11 +1,11 @@
 <template>
   <div class="profile">
-    <RouterLink :to="pathValue">
+    <a :href="pathValue">
       <NotificationProfileIcon
         style="color: var(--main-text)"
         :active="props.notificationActive"
       />
-    </RouterLink>
+    </a>
     <img
       :src="
         props.pfpUrl ||
