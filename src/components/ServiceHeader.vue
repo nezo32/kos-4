@@ -6,6 +6,7 @@
     </div>
     <div class="service__header__profile">
       <Profile
+        :statuses="statuses"
         :notification-active="false"
         :name="name || 'Попов Дмитрий'"
         :pfpUrl="pfp"
@@ -19,6 +20,7 @@
 import Breadcrumbs from "./BreadCrumbs.vue";
 import Profile from "./Profile.vue";
 import { computed } from "vue";
+import type { ProfileStatusesProp } from "@/@types";
 
 const props = defineProps<{
   title: string;
@@ -26,6 +28,7 @@ const props = defineProps<{
   pfp?: string;
   path?: Array<{ name: string; path: string }>;
   notificationPath?: string;
+  statuses: ProfileStatusesProp;
 }>();
 
 const path = computed(() => props.path || [{ name: "", path: "/" }]);

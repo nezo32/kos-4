@@ -18,7 +18,7 @@
     />
     <div class="profile__name-status">
       <p>{{ props.name }}</p>
-      <StatusChoose :statuses="temp" />
+      <StatusChoose :statuses="props.statuses" />
     </div>
   </div>
 </template>
@@ -27,25 +27,14 @@
 import NotificationProfileIcon from "./icons/NotificationProfileIcon.vue";
 import StatusChoose from "./StatusChoose.vue";
 import { computed } from "vue";
-
-const temp = [
-  {
-    name: "Оператор",
-    default: true,
-  },
-  {
-    name: "Студент",
-  },
-  {
-    name: "Администратор",
-  },
-];
+import type { ProfileStatusesProp } from "@/@types";
 
 const props = defineProps<{
   notificationActive: boolean;
   pfpUrl?: string;
   name: string;
   path?: string;
+  statuses: ProfileStatusesProp;
 }>();
 const pathValue = computed(() => props.path || "");
 </script>

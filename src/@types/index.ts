@@ -11,6 +11,8 @@ export interface ProfileStatus {
   default?: boolean;
 }
 
+export type ProfileStatusesProp = ProfileStatus[]
+
 export enum ArrowDirections {
   up,
   down,
