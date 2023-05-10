@@ -322,6 +322,7 @@
       <h1>Выбор статуса</h1>
       <section>
         <Profile
+          :statuses="[{name: 'test', default: true}, {name: 'testaboba'}]"
         :path="url"
           :notification-active="active"
           pfp-url="https://remote-tools-images.s3.amazonaws.com/best+discord+pfp/blog+12/anime/anime/1+(1).jpg"
@@ -394,7 +395,7 @@
     </div>
     <div class="home__component">
       <h1>Шапка сервиса</h1>
-      <ServiceHeader title="Основные образовательные программы" />
+      <ServiceHeader title="Основные образовательные программы" :statuses="[{name: 'test', default: true}, {name: 'testaboba'}]"/>
     </div>
     <div class="home__component">
       <h1>Блок фильтров</h1>
