@@ -238,7 +238,7 @@ onMounted(() => {
     z-index: 100;
 
     background: #ffffff;
-    box-shadow: 3px 3px 16px #eaedf3;
+    box-shadow: 2px 2px 6px rgba(11, 20, 64, 0.2);
     border-radius: 10px;
 
     padding: 15px 5px 15px 15px;
