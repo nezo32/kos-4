@@ -127,6 +127,9 @@ onMounted(() => {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    > h3 {
+      color: var(--main-text);
+    }
     > section {
       display: flex;
       flex-direction: row;
