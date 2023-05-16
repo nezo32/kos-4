@@ -224,7 +224,7 @@ onMounted(() => {
       color: var(--main-text);
 
       &::placeholder {
-        color: var(--unactive-text);
+        color: #a3aed0;
       }
     }
   }
