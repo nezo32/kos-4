@@ -26,7 +26,7 @@
           v-for="(v, i) of sortingContent"
           :key="i"
           :class="{ excellent: v[index] == '100%' }"
-          @click="clickHandler(v)"
+          @click="() => clickHandler(v)"
         >
           {{ v[index] }}
         </p>
@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowDirections, type RoutingHandler } from "@/@types";
+import { ArrowDirections } from "@/@types";
 import { ref, onMounted } from "vue";
 import FileDropDown from "../FileDropDown.vue";
 import ArrowSwipePagesIcon from "../icons/arrows/ArrowSwipePagesIcon.vue";
@@ -53,13 +53,12 @@ const props = defineProps<{
   dropdownParams: string[];
   pages: number;
 
-  ids?: Map<string[], string>;
-  routingHandler?: RoutingHandler;
+  routingHandler?: (field: string[]) => void;
 }>();
 
 function clickHandler(field: string[]) {
-  if (!props.routingHandler || !props.ids) return;
-  props.routingHandler(props.ids.get(field));
+  if (!props.routingHandler) return;
+  props.routingHandler(field);
 }
 
 const sortingContent = ref<Array<Array<string>>>(props.content);

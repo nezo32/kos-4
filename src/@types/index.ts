@@ -31,5 +31,3 @@ export interface ScheduleEvent {
   teacherView?: boolean,
   groups?: string;
 }
-
-export type RoutingHandler = (to: string | undefined) => void
