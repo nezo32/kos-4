@@ -26,13 +26,14 @@
           v-for="(v, i) of sortingContent"
           :key="i"
           :class="{ excellent: v[index] == '100%' }"
+          @click="router.push(props.ids?.get(v) || '')"
         >
           {{ v[index] }}
         </p>
       </div>
     </div>
     <div class="table__foot">
-      <PageSwitcher :count-pages="54" />
+      <PageSwitcher :count-pages="props.pages" />
     </div>
   </div>
 </template>
@@ -40,16 +41,21 @@
 <script setup lang="ts">
 import { ArrowDirections } from "@/@types";
 import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
 import FileDropDown from "../FileDropDown.vue";
 import ArrowSwipePagesIcon from "../icons/arrows/ArrowSwipePagesIcon.vue";
 import PageSwitcher from "../PageSwitcher.vue";
 import SearchFilter from "../SearchFilter.vue";
 
+const router = useRouter();
+
 const props = defineProps<{
   headers: string[];
   content: string[][];
+  ids?: Map<string[], string>;
   title: string;
   dropdownParams: string[];
+  pages: number;
 }>();
 
 const sortingContent = ref<Array<Array<string>>>(props.content);
@@ -164,6 +170,7 @@ onMounted(() => {
         border-collapse: collapse;
       }
       > p {
+        cursor: pointer;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
