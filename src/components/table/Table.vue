@@ -26,7 +26,7 @@
           v-for="(v, i) of sortingContent"
           :key="i"
           :class="{ excellent: v[index] == '100%' }"
-          @click="router.push(props.ids?.get(v) || '')"
+          @click="router.push(props.ids?.get(v) || '/')"
         >
           {{ v[index] }}
         </p>
