@@ -41,13 +41,10 @@
 <script setup lang="ts">
 import { ArrowDirections, type RoutingHandler } from "@/@types";
 import { ref, onMounted } from "vue";
-import { useRouter } from "vue-router";
 import FileDropDown from "../FileDropDown.vue";
 import ArrowSwipePagesIcon from "../icons/arrows/ArrowSwipePagesIcon.vue";
 import PageSwitcher from "../PageSwitcher.vue";
 import SearchFilter from "../SearchFilter.vue";
-
-const router = useRouter();
 
 const props = defineProps<{
   headers: string[];
