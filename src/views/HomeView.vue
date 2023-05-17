@@ -316,14 +316,14 @@
     </div>
     <div class="home__component">
       <h1>Хлебные крошки</h1>
-      <section><Breadcrumbs :path="[{name: ' ', path: '/'}]"/></section>
+      <section><Breadcrumbs :path="[{ name: ' ', path: '/' }]" /></section>
     </div>
     <div class="home__component">
       <h1>Выбор статуса</h1>
       <section>
         <Profile
-          :statuses="[{name: 'test', default: true}, {name: 'testaboba'}]"
-        :path="url"
+          :statuses="[{ name: 'test', default: true }, { name: 'testaboba' }]"
+          :path="url"
           :notification-active="active"
           pfp-url="https://remote-tools-images.s3.amazonaws.com/best+discord+pfp/blog+12/anime/anime/1+(1).jpg"
           name="Попов Дмитрий"
@@ -332,7 +332,7 @@
     </div>
     <div class="home__component">
       <h1>Календарь</h1>
-      <CustomDatepicker :date="date" :dates="dates" :show-now-button="true"/>
+      <CustomDatepicker :date="date" :dates="dates" :show-now-button="true" />
     </div>
     <div class="home__component">
       <h1>Кнопки</h1>
@@ -354,25 +354,40 @@
         <DocumentButton content="Сохранить изменения" color="blue" />
         <DocumentButton content="Очистить всё" color="red" />
       </section>
-      <section> 
-        <CheckBox :active="activetest" @click="activetest = !activetest"/>
-        <CheckboxRounded :active="activetest" @click="activetest = !activetest"/>
-        <CheckboxRounded :active="activetest" @click="activetest = !activetest" small />
+      <section>
+        <CheckBox :active="activetest" @click="activetest = !activetest" />
+        <CheckboxRounded
+          :active="activetest"
+          @click="activetest = !activetest"
+        />
+        <CheckboxRounded
+          :active="activetest"
+          @click="activetest = !activetest"
+          small
+        />
       </section>
       <section>
         <PageSwitcher :count-pages="54" />
       </section>
       <section>
-        <FileDropDown :content="params"/>
+        <FileDropDown :content="params" />
       </section>
     </div>
     <div class="home__component">
       <h1>Вертикальное меню</h1>
-      <section style="height: 1000px; background: black;">
+      <section style="height: 1000px; background: black">
         <VerticalMenu>
           <VerticalMenuButtons content="Программы" icon="home" url="/" />
-          <VerticalMenuButtons content="Общее расписание" icon="management" url="/management" />
-          <VerticalMenuButtons content="Уведомления" icon="notification" url="/notifications"/>
+          <VerticalMenuButtons
+            content="Общее расписание"
+            icon="management"
+            url="/management"
+          />
+          <VerticalMenuButtons
+            content="Уведомления"
+            icon="notification"
+            url="/notifications"
+          />
           <VerticalMenuButtons content="Выход" icon="exit" url="/logout" />
         </VerticalMenu>
       </section>
@@ -389,24 +404,47 @@
             organaizer="Студенческий совет"
             header="Все айтишники Университета Косыгина вместе идут смотреть на краисвых котов и кошечек"
           />
-          <ScheduleDayCard day="Понедельник" subtitle="aboba" :content="event" v-model:is-opened="bool"/>
+          <ScheduleDayCard
+            day="Понедельник"
+            subtitle="aboba"
+            :content="event"
+            v-model:is-opened="bool"
+          />
         </label>
       </section>
     </div>
     <div class="home__component">
       <h1>Шапка сервиса</h1>
-      <ServiceHeader title="Основные образовательные программы" :statuses="[{name: 'test', default: true}, {name: 'testaboba'}]"/>
+      <ServiceHeader
+        title="Основные образовательные программы"
+        :statuses="[{ name: 'test', default: true }, { name: 'testaboba' }]"
+      />
     </div>
     <div class="home__component">
       <h1>Блок фильтров</h1>
       <section>
-        <Filter date :trigger="bool" placeholder="Институт" v-model="checkDate"/>
-        <Filter :content="zalupa" :trigger="bool" placeholder="Институт" v-model="input2"/>
-        <SearchFilter  v-model="input3" :disabled="true"/>
-        <SearchFilter :content="zalupa" :trigger="bool" v-model="input3" radius="20"/>
+        <Filter
+          date
+          :trigger="bool"
+          placeholder="Институт"
+          v-model="checkDate"
+        />
+        <Filter
+          :content="zalupa"
+          :trigger="bool"
+          placeholder="Институт"
+          v-model="input2"
+        />
+        <SearchFilter v-model="input3" :disabled="true" />
+        <SearchFilter
+          :content="zalupa"
+          :trigger="bool"
+          v-model="input3"
+          radius="20"
+        />
         {{ input2 }}
         {{ bool }}
-        <FilterResetIcon @click="bool = !bool;" style="flex-shrink: 0"/>
+        <FilterResetIcon @click="bool = !bool" style="flex-shrink: 0" />
       </section>
     </div>
     <div class="home__component">
@@ -423,12 +461,18 @@
     <div class="home__component">
       <h1>Инпуты</h1>
       <section>
-        <CustomInput theme="bebra" :v-model="input1" disabled/>
+        <CustomInput theme="bebra" :v-model="input1" disabled />
         <!-- <Test :activity="true" small>
           <CustomInput date v-model="checkDate" theme="Дата" style="width: 400px" />
         </Test> -->
         {{ ip }}
-        <CustomInputDropdown theme="Фамилия" :content="bebra" dropdown v-model="input1" v-model:is-opened="isOpened"/>
+        <CustomInputDropdown
+          theme="Фамилия"
+          :content="bebra"
+          dropdown
+          v-model="input1"
+          v-model:is-opened="isOpened"
+        />
         {{ input1 }}
         {{ isOpened }}
       </section>
@@ -436,15 +480,28 @@
     <div class="home__component">
       <h1>Таблицы</h1>
       <p style="background-color: var(--background); border-radius: 50px">
-        <Table title="ОПОП" :headers="head" :content="cont" :dropdown-params="params" :pages="1" />
+        <Table title="ОПОП" :headers="head" :content="cont"
+        :dropdown-params="params" :pages="1" :routing-handler="(to) => {
+        router.push(to || '/') }" />
       </p>
     </div>
     <div class="home__component">
       <h1>Компоненты форм</h1>
-      <Forms type="date" :content="zalupa" v-model="forms1"/>
-      <Forms type="dropdown" header="Наименование института" :content="zalupa" v-model="forms1"/>
-      <Forms type="input" :content="zalupa" v-model="forms1"/>
-      <Forms type="multi" header="Наименование института" :content="zalupa" v-model="forms2" date/>
+      <Forms type="date" :content="zalupa" v-model="forms1" />
+      <Forms
+        type="dropdown"
+        header="Наименование института"
+        :content="zalupa"
+        v-model="forms1"
+      />
+      <Forms type="input" :content="zalupa" v-model="forms1" />
+      <Forms
+        type="multi"
+        header="Наименование института"
+        :content="zalupa"
+        v-model="forms2"
+        date
+      />
       {{ forms1 }}
       {{ forms2 }}
     </div>
@@ -452,10 +509,16 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowDirections, DocumentStatus, type ScheduleEvent } from "@/@types"
-import type { ProfileStatus } from "@/@types"
+import {
+  ArrowDirections,
+  DocumentStatus,
+  type RoutingHandler,
+  type ScheduleEvent,
+} from "@/@types";
+import type { ProfileStatus } from "@/@types";
 
 import { onMounted, onUnmounted, ref, watch } from "vue";
+import { useRouter } from "vue-router";
 
 import EventScheduleIcon from "@/components/icons/schedule/EventScheduleIcon.vue";
 import DocumentStatusIcon from "@/components/icons/DocumentStatusIcon.vue";
@@ -557,6 +620,8 @@ import FormsMultipleDropdown from "@/components/forms/FormsMultipleDropdown.vue"
 import CustomInputDropdown from "@/components/CustomInputDropdown.vue";
 import Test from "@/Test.vue";
 
+const router = useRouter();
+
 const date = ref(new Date());
 
 const isOpened = ref(false);
@@ -574,13 +639,22 @@ the_day_after_tomorrow.setDate(the_day_after_tomorrow.getDate() + 2);
 
 const dates = [new Date(), tomorrow, the_day_after_tomorrow];
 
-const bebra = ref(['bebra', 'bobra', 'barabobra', 'barabobra', 'barabobra', 'barabobra', 'barabobra']);
+const bebra = ref([
+  "bebra",
+  "bobra",
+  "barabobra",
+  "barabobra",
+  "barabobra",
+  "barabobra",
+  "barabobra",
+]);
 
 const event = ref<Array<ScheduleEvent>>([
   {
     date: "10:30 - 11:50",
-    eventImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Leopard_in_the_Colchester_Zoo.jpg/1200px-Leopard_in_the_Colchester_Zoo.jpg',
-    eventStatus: 'a',
+    eventImg:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Leopard_in_the_Colchester_Zoo.jpg/1200px-Leopard_in_the_Colchester_Zoo.jpg",
+    eventStatus: "a",
     header: "a",
     memberCount: "a",
     organaizer: "a",
@@ -588,8 +662,9 @@ const event = ref<Array<ScheduleEvent>>([
   },
   {
     date: "10:30 - 11:50",
-    eventImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Leopard_in_the_Colchester_Zoo.jpg/1200px-Leopard_in_the_Colchester_Zoo.jpg',
-    eventStatus: 'a',
+    eventImg:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Leopard_in_the_Colchester_Zoo.jpg/1200px-Leopard_in_the_Colchester_Zoo.jpg",
+    eventStatus: "a",
     header: "a",
     memberCount: "a",
     organaizer: "a",
@@ -597,16 +672,17 @@ const event = ref<Array<ScheduleEvent>>([
   },
   {
     date: "10:30 - 11:50",
-    eventImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Leopard_in_the_Colchester_Zoo.jpg/1200px-Leopard_in_the_Colchester_Zoo.jpg',
-    eventStatus: 'a',
+    eventImg:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Leopard_in_the_Colchester_Zoo.jpg/1200px-Leopard_in_the_Colchester_Zoo.jpg",
+    eventStatus: "a",
     header: "a",
     memberCount: "a",
     organaizer: "a",
     schedule: true,
-  }
+  },
 ]);
 
-const url = ref("https://example.com")
+const url = ref("https://example.com");
 
 const tommorrow = new Date();
 tommorrow.setDate(tommorrow.getDate() + 6);
@@ -616,49 +692,65 @@ const checkDate = ref<string | Date[]>([new Date(), tommorrow]);
 console.log(checkDate.value);
 watch(checkDate, () => {
   console.log(checkDate.value);
-})
+});
 
 const input1 = ref<string>("bebra");
-const input2 = ref('аыфаыфва');
-const input3 = ref('fasdfsadf');
+const input2 = ref("аыфаыфва");
+const input3 = ref("fasdfsadf");
 
 const bool = ref(false);
 
-const forms1 = ref('');
+const forms1 = ref("");
 const forms2 = ref();
 
 const params = ref(["Скачать", "Редактировать"]);
-const head = ref(["Код", "Направление подготовки", "Профиль", "Уровень", "Форма", "Заполнено"]);
-const content = ref(["Рабочая программа дисциплины", "Рабочая программа дисциплины", "Рабочая программа дисциплины"])
-const cont = ref([[
-  "38.03.04",
-  "1",
-  "Проектирование и художественное оформление трикотажных изделий",
-  "Ассистент-стажер",
-  "Очно-заочная",
-  "100%"
-],[
-  "38.03.04",
-  "1",
-  "Проектирование и художественное оформление трикотажных изделий",
-  "Ассистент-стажер",
-  "Очно-заочная",
-  "100%"
-],[
-  "38.03.04",
-  "Технология полиграфического и упаковочного производства",
-  "Проектирование и художественное оформление трикотажных изделий",
-  "Ассистент-стажер",
-  "Очно-заочная",
-  "99%"
-],[
-  "38.03.04",
-  "1",
-  "Проектирование и художественное оформление трикотажных изделий",
-  "Ассистент-стажер",
-  "Очно-заочная",
-  "100%"
-]])
+const head = ref([
+  "Код",
+  "Направление подготовки",
+  "Профиль",
+  "Уровень",
+  "Форма",
+  "Заполнено",
+]);
+const content = ref([
+  "Рабочая программа дисциплины",
+  "Рабочая программа дисциплины",
+  "Рабочая программа дисциплины",
+]);
+const cont = ref([
+  [
+    "38.03.04",
+    "1",
+    "Проектирование и художественное оформление трикотажных изделий",
+    "Ассистент-стажер",
+    "Очно-заочная",
+    "100%",
+  ],
+  [
+    "38.03.04",
+    "1",
+    "Проектирование и художественное оформление трикотажных изделий",
+    "Ассистент-стажер",
+    "Очно-заочная",
+    "100%",
+  ],
+  [
+    "38.03.04",
+    "Технология полиграфического и упаковочного производства",
+    "Проектирование и художественное оформление трикотажных изделий",
+    "Ассистент-стажер",
+    "Очно-заочная",
+    "99%",
+  ],
+  [
+    "38.03.04",
+    "1",
+    "Проектирование и художественное оформление трикотажных изделий",
+    "Ассистент-стажер",
+    "Очно-заочная",
+    "100%",
+  ],
+]);
 
 const zalupa: Array<string> = [
   "Институт мехатроники и робототехники",
@@ -790,8 +882,6 @@ onUnmounted(() => {
     }
 
     section {
-      
-
       display: flex;
       flex-direction: row;
       align-items: center;

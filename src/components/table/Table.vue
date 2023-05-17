@@ -26,7 +26,7 @@
           v-for="(v, i) of sortingContent"
           :key="i"
           :class="{ excellent: v[index] == '100%' }"
-          @click="router.push(props.ids?.get(v) || '/')"
+          @click="clickHandler(v)"
         >
           {{ v[index] }}
         </p>
@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowDirections } from "@/@types";
+import { ArrowDirections, type RoutingHandler } from "@/@types";
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import FileDropDown from "../FileDropDown.vue";
@@ -52,11 +52,18 @@ const router = useRouter();
 const props = defineProps<{
   headers: string[];
   content: string[][];
-  ids?: Map<string[], string>;
   title: string;
   dropdownParams: string[];
   pages: number;
+
+  ids?: Map<string[], string>;
+  routingHandler?: RoutingHandler;
 }>();
+
+function clickHandler(field: string[]) {
+  if (!props.routingHandler || !props.ids) return;
+  props.routingHandler(props.ids.get(field));
+}
 
 const sortingContent = ref<Array<Array<string>>>(props.content);
 
