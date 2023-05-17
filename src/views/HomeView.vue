@@ -481,8 +481,8 @@
       <h1>Таблицы</h1>
       <p style="background-color: var(--background); border-radius: 50px">
         <Table title="ОПОП" :headers="head" :content="cont"
-        :dropdown-params="params" :pages="1" :routing-handler="(to) => {
-        router.push(to || '/') }" />
+        :dropdown-params="params" :pages="1"
+        />
       </p>
     </div>
     <div class="home__component">
@@ -509,12 +509,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-  ArrowDirections,
-  DocumentStatus,
-  type RoutingHandler,
-  type ScheduleEvent,
-} from "@/@types";
+import { ArrowDirections, DocumentStatus, type ScheduleEvent } from "@/@types";
 import type { ProfileStatus } from "@/@types";
 
 import { onMounted, onUnmounted, ref, watch } from "vue";
