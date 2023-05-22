@@ -20,7 +20,7 @@
           range
           :auto-position="false"
           :partial-range="false"
-          placeholder="Период"
+          :placeholder="placeholder"
           min-range="6"
           max-range="6"
           ref="dateInput"
