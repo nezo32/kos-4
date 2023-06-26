@@ -30,7 +30,14 @@
           :title="v[index]"
           v-for="(v, i) of sortingContent"
           :key="i"
-          :class="{ excellent: v[index] == '100%' }"
+          :class="{
+            excellent: v[index] == '100%' || v[index] == 'Проверен',
+            red: v[index] == 'Отклонен',
+            grey:
+              v[index] == 'В разработке' ||
+              v[index] == 'Отсутствует' ||
+              v[index] == 'Не назначен',
+          }"
           @click="() => clickHandler(v)"
         >
           {{ v[index] }}
@@ -139,6 +146,12 @@ onMounted(() => {
 <style scoped lang="scss">
 .excellent {
   color: var(--resolved) !important;
+}
+.red {
+  color: var(--rejected) !important;
+}
+.grey {
+  color: var(--unactive-text) !important;
 }
 
 .table {
