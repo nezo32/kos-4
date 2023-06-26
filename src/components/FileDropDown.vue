@@ -32,28 +32,27 @@
       </svg>
     </div>
     <div class="file__drop-down__content" v-if="active">
-      <FileButton
-        v-for="(v, i) of content"
-        :key="i"
-        :content="v"
-        @click="active = !active"
-      />
+      <slot />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import FileButton from "./buttons/FileButton.vue";
+import { ref, watch } from "vue";
 import detect from "@/detectOutsideElement";
 
-defineProps<{
+const props = defineProps<{
   small?: boolean;
-  content: Array<string>;
+  modelValue?: boolean;
 }>();
+const emit = defineEmits(["update:modelValue"]);
 
 const active = ref(false);
 const outsideDetectionComponent = ref();
+
+watch(active, (n) => {
+  emit("update:modelValue", n);
+});
 
 detect(outsideDetectionComponent, () => {
   if (active.value) active.value = !active.value;

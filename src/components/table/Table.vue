@@ -1,10 +1,15 @@
 <template>
   <div class="table">
     <div class="table__head">
-      <h3 class="table-card__header">{{ title }}</h3>
+      <h3>
+        <p class="table__text" v-if="subtitle">{{ subtitle }}</p>
+        <h3 class="table-card__header">{{ title }}</h3>
+      </h3>
       <section>
         <SearchFilter />
-        <FileDropDown :content="dropdownParams" />
+        <FileDropDown v-model="passer">
+          <slot />
+        </FileDropDown>
       </section>
     </div>
     <div class="table__body">
@@ -40,7 +45,7 @@
 
 <script setup lang="ts">
 import { ArrowDirections } from "@/@types";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import FileDropDown from "../FileDropDown.vue";
 import ArrowSwipePagesIcon from "../icons/arrows/ArrowSwipePagesIcon.vue";
 import PageSwitcher from "../PageSwitcher.vue";
@@ -49,12 +54,24 @@ import SearchFilter from "../SearchFilter.vue";
 const props = defineProps<{
   headers: string[];
   content: string[][];
+  subtitle?: string;
   title: string;
-  dropdownParams: string[];
   pages: number;
+
+  modelValue?: boolean;
 
   routingHandler?: (field: string[]) => void;
 }>();
+const emit = defineEmits(["update:modelValue"]);
+
+const passer = computed({
+  get() {
+    return props.modelValue;
+  },
+  set(value) {
+    emit("update:modelValue", value);
+  },
+});
 
 function clickHandler(field: string[]) {
   if (!props.routingHandler) return;
@@ -137,7 +154,15 @@ onMounted(() => {
     justify-content: space-between;
     align-items: center;
     > h3 {
-      color: var(--main-text);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      > p {
+        color: var(--unactive-text, #a3aed0);
+      }
+      > h3 {
+        color: var(--main-text);
+      }
     }
     > section {
       display: flex;

@@ -483,8 +483,10 @@
       <h1>Таблицы</h1>
       <p style="background-color: var(--background); border-radius: 50px">
         <Table title="ОПОП" :headers="head" :content="cont"
-        :dropdown-params="params" :pages="1"
-        />
+        subtitle="aboba" :pages="1"
+        >
+        <FileButton content="aboba"/>
+      </Table>
       </p>
     </div>
     <div class="home__component">
