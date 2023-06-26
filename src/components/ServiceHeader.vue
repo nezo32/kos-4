@@ -6,6 +6,7 @@
     </div>
     <div class="service__header__profile">
       <Profile
+        v-model:choosed="passing"
         :statuses="statuses"
         :notification-active="false"
         :name="name || 'Попов Дмитрий'"
@@ -29,9 +30,20 @@ const props = defineProps<{
   path?: Array<{ name: string; path: string }>;
   notificationPath?: string;
   statuses: ProfileStatusesProp;
+  choosed: string;
 }>();
 
 const path = computed(() => props.path || [{ name: "", path: "/" }]);
+
+const emits = defineEmits(['update:choosed'])
+const passing = computed({
+  get: () => {
+    return props.choosed
+  },
+  set: (value) => {
+    emits('update:choosed', value);
+  }
+})
 </script>
 
 <style scoped lang="scss">

@@ -26,14 +26,16 @@ import ArrowListIcon from "@/components/icons/arrows/ArrowListIcon.vue";
 
 import detect from "@/detectOutsideElement";
 
-const props = defineProps({
-  statuses: Array<ProfileStatus>,
-});
+const props = defineProps<{
+  statuses: Array<ProfileStatus>;
+  choosed: string;
+}>();
+const emits = defineEmits(["update:choosed"]);
 
 const arrowDirection = ref<ArrowDirections>(ArrowDirections.right);
 
-const opened = ref<Boolean>(false);
-const selected = ref<String>("");
+const opened = ref<boolean>(false);
+const selected = ref<string>("");
 const outsideDetect = ref();
 
 detect(outsideDetect, () => {
@@ -50,6 +52,7 @@ function changeArrowDir() {
 
 function selectStatus(name: string) {
   selected.value = name;
+  emits("update:choosed", selected.value);
   opened.value = !opened.value;
 }
 
