@@ -414,8 +414,10 @@
       </section>
     </div>
     <div class="home__component">
+      {{ permission }}
       <h1>Шапка сервиса</h1>
       <ServiceHeader
+        v-model="permission"
         title="Основные образовательные программы"
         :statuses="[{ name: 'test', default: true }, { name: 'testaboba' }]"
       />
@@ -697,6 +699,8 @@ const bool = ref(false);
 
 const forms1 = ref("");
 const forms2 = ref();
+
+const permission = ref("aaaa");
 
 const params = ref(["Скачать", "Редактировать"]);
 const head = ref([

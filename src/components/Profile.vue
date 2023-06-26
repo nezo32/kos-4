@@ -18,7 +18,7 @@
     />
     <div class="profile__name-status">
       <p>{{ props.name }}</p>
-      <StatusChoose v-model:choosed="passing" :statuses="props.statuses" />
+      <StatusChoose v-model="passing" :statuses="props.statuses" />
     </div>
   </div>
 </template>
@@ -35,19 +35,19 @@ const props = defineProps<{
   name: string;
   path?: string;
   statuses: ProfileStatusesProp;
-  choosed: string;
+  modelValue?: string;
 }>();
-const emits = defineEmits(['update:choosed'])
+const emits = defineEmits(["update:modelValue"]);
 
 const pathValue = computed(() => props.path || "");
 const passing = computed({
   get: () => {
-    return props.choosed
+    return props.modelValue;
   },
   set: (value) => {
-    emits('update:choosed', value);
-  }
-})
+    emits("update:modelValue", value);
+  },
+});
 </script>
 
 <style scoped lang="scss">

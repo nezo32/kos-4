@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import { ArrowDirections } from "@/@types";
 import type { ProfileStatus } from "@/@types";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 
 import ArrowListIcon from "@/components/icons/arrows/ArrowListIcon.vue";
 
@@ -28,9 +28,9 @@ import detect from "@/detectOutsideElement";
 
 const props = defineProps<{
   statuses: Array<ProfileStatus>;
-  choosed: string;
+  modelValue?: string;
 }>();
-const emits = defineEmits(["update:choosed"]);
+const emits = defineEmits(["update:modelValue"]);
 
 const arrowDirection = ref<ArrowDirections>(ArrowDirections.right);
 
@@ -52,13 +52,17 @@ function changeArrowDir() {
 
 function selectStatus(name: string) {
   selected.value = name;
-  emits("update:choosed", selected.value);
   opened.value = !opened.value;
 }
+
+watch(selected, (n) => {
+  emits("update:modelValue", n);
+});
 
 onMounted(() => {
   if (props.statuses) {
     selected.value = props.statuses[0].name;
+
     props.statuses.forEach((el) => {
       if (el.default) {
         selected.value = el.name;
@@ -67,6 +71,8 @@ onMounted(() => {
   } else {
     selected.value = "undefined";
   }
+
+  emits("update:modelValue", selected.value);
 });
 </script>
 
