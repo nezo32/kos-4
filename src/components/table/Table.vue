@@ -37,7 +37,7 @@
               v[index] == 'В разработке' ||
               v[index] == 'Отсутствует' ||
               v[index] == 'Не назначен',
-            select: v[index] == 'Назначить',
+              select: v[index] == 'Назначить',
           }"
           @click="() => clickHandler(v)"
         >

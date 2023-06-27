@@ -515,9 +515,6 @@
 </template>
 
 <script setup lang="ts">
-function test() {
-  console.log("bebra");
-}
 
 import { ArrowDirections, DocumentStatus, type ScheduleEvent } from "@/@types";
 import type { ProfileStatus } from "@/@types";
@@ -790,6 +787,11 @@ const arrayOfStatuses = ref<Array<ProfileStatus>>([
     name: "Администратор",
   },
 ]);
+
+function test() {
+  console.log("bebra");
+}
+
 
 onMounted(() => {
   const statuses = Object.keys(DocumentStatus).filter((v) => !isNaN(Number(v)));
