@@ -483,7 +483,9 @@
       <h1>Таблицы</h1>
       <p style="background-color: var(--background); border-radius: 50px">
         <Table title="ОПОП" :headers="head" :content="cont"
+        @select="test()"
         subtitle="aboba" :pages="1"
+        
         >
         <FileButton content="aboba"/>
       </Table>
@@ -513,6 +515,10 @@
 </template>
 
 <script setup lang="ts">
+function test() {
+  console.log("bebra");
+}
+
 import { ArrowDirections, DocumentStatus, type ScheduleEvent } from "@/@types";
 import type { ProfileStatus } from "@/@types";
 
@@ -725,7 +731,7 @@ const cont = ref([
     "Проектирование и художественное оформление трикотажных изделий",
     "Ассистент-стажер",
     "Очно-заочная",
-    "100%",
+    "Назначить",
   ],
   [
     "38.03.04",

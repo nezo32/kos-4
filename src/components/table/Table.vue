@@ -37,10 +37,12 @@
               v[index] == 'В разработке' ||
               v[index] == 'Отсутствует' ||
               v[index] == 'Не назначен',
+            select: v[index] == 'Назначить',
           }"
           @click="() => clickHandler(v)"
         >
-          {{ v[index] }}
+          <span v-if="v[index] != 'Назначить'">{{ v[index] }}</span>
+          <div v-else @click="emit('select', v)">{{ v[index] }}</div>
         </p>
       </div>
     </div>
@@ -69,14 +71,18 @@ const props = defineProps<{
 
   routingHandler?: (field: string[]) => void;
 }>();
-const emit = defineEmits(["update:modelValue"]);
+
+const emit = defineEmits<{
+  (event: 'select', data: string[]): void
+  (event: 'update:modelValue', modelValue: boolean): void
+}>();
 
 const passer = computed({
   get() {
     return props.modelValue;
   },
   set(value) {
-    emit("update:modelValue", value);
+    emit('update:modelValue', value)
   },
 });
 
@@ -152,6 +158,9 @@ onMounted(() => {
 }
 .grey {
   color: var(--unactive-text) !important;
+}
+.select {
+  color: var(--elements) !important;
 }
 
 .table {
