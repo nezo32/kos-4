@@ -348,7 +348,7 @@
         <KIDButton content="Назад" />
       </section>
       <section>
-        <SwitchButton :content="content" />
+        <SwitchButton content="content" />
       </section>
       <section>
         <DocumentButton content="Сохранить изменения" color="blue" />

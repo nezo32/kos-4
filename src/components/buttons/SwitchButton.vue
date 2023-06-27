@@ -1,31 +1,27 @@
 <template>
-  <div class="switch__button" v-for="(v, i) of activity" :key="i">
-    <button :class="{ active: v.active }" @click="exactActive(i)">
-      {{ v.value }}
+  <div class="switch__button">
+    <button :class="{ active: active }" @click="active = true">
+      {{ content }}
     </button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, onMounted } from "vue";
+import { computed } from "vue";
 
 const props = defineProps<{
-  content: Array<string>;
+  content: string;
+  modelValue?: boolean;
 }>();
+const emits = defineEmits(["update:modelValue"]);
 
-const activity = ref<Array<{ value: string; active: boolean }>>([]);
-
-function exactActive(i: number) {
-  activity.value = activity.value.map((v) => {
-    return { value: v.value, active: false };
-  });
-  activity.value[i].active = true;
-}
-
-onMounted(() => {
-  props.content.forEach((v, i) => {
-    activity.value.push({ value: v, active: false });
-  });
+const active = computed({
+  get() {
+    return props.modelValue;
+  },
+  set(value) {
+    emits("update:modelValue", value);
+  },
 });
 </script>
 
