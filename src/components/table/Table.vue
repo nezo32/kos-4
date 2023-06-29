@@ -88,7 +88,7 @@ const passer = computed({
 
 function clickHandler(field: string[], event?: MouseEvent) {
   if (!props.routingHandler) return;
-  props.routingHandler(field);
+  props.routingHandler(field,event);
 }
 
 const sortingContent = ref<Array<Array<string>>>(props.content);
