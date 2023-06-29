@@ -39,7 +39,7 @@
               v[index] == 'Не назначен',
               select: v[index] == 'Назначить',
           }"
-          @click="() => clickHandler(v)"
+          @click="(ev) => clickHandler(v, ev)"
         >
           <span v-if="v[index] != 'Назначить'">{{ v[index] }}</span>
           <div v-else @click="emit('select', v)">{{ v[index] }}</div>
@@ -69,7 +69,7 @@ const props = defineProps<{
 
   modelValue?: boolean;
 
-  routingHandler?: (field: string[]) => void;
+  routingHandler?: (field: string[], event?: MouseEvent) => void;
 }>();
 
 const emit = defineEmits<{
@@ -86,7 +86,7 @@ const passer = computed({
   },
 });
 
-function clickHandler(field: string[]) {
+function clickHandler(field: string[], event?: MouseEvent) {
   if (!props.routingHandler) return;
   props.routingHandler(field);
 }
