@@ -58,18 +58,26 @@
 /*  */
 
 import { ArrowDirections } from "@/@types";
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import ArrowSwipePagesIcon from "./icons/arrows/ArrowSwipePagesIcon.vue";
 
 const props = defineProps<{
   countPages: number;
+  currentPage: number;
 }>();
 const emit = defineEmits<{
-  (event: "switch", to: number): void;
+  (event: "update:currentPage", value: number): void;
 }>();
 
 const pages = ref<HTMLDivElement | null>(null);
-const selectedPage = ref(1);
+const selectedPage = computed({
+  get() {
+    return props.currentPage;
+  },
+  set(value) {
+    emit("update:currentPage", value);
+  },
+});
 
 function changePage(i: number) {
   if (selectedPage.value + i > props.countPages || selectedPage.value + i < 1)
@@ -77,10 +85,6 @@ function changePage(i: number) {
 
   selectedPage.value += i;
 }
-
-watch(selectedPage, (n) => {
-  emit("switch", n);
-});
 </script>
 
 <style scoped lang="scss">

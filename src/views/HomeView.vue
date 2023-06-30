@@ -367,7 +367,8 @@
         />
       </section>
       <section>
-        <PageSwitcher :count-pages="10" />
+        {{ curPage }}
+        <PageSwitcher v-model:current-page="curPage" :count-pages="10" />
       </section>
       <section>
         <FileDropDown :content="params" />
@@ -683,6 +684,7 @@ const event = ref<Array<ScheduleEvent>>([
     schedule: true,
   },
 ]);
+const curPage = ref(1);
 
 const url = ref("https://example.com");
 
