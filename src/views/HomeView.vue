@@ -367,7 +367,7 @@
         />
       </section>
       <section>
-        <PageSwitcher :count-pages="54" />
+        <PageSwitcher :count-pages="10" />
       </section>
       <section>
         <FileDropDown :content="params" />
