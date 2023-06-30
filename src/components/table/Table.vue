@@ -47,7 +47,7 @@
       </div>
     </div>
     <div class="table__foot">
-      <PageSwitcher :count-pages="props.pages" />
+      <PageSwitcher v-model:current-page="page" :count-pages="props.pages" />
     </div>
   </div>
 </template>
@@ -67,14 +67,26 @@ const props = defineProps<{
   title: string;
   pages: number;
 
+  currentPage: number;
+
   modelValue?: boolean;
 
   routingHandler?: (field: string[], event?: MouseEvent) => void;
 }>();
 
+const page = computed({
+  get() {
+    return props.currentPage
+  },
+  set(value) {
+    emit('update:currentPage', value);
+  }
+})
+
 const emit = defineEmits<{
   (event: 'select', data: string[]): void
   (event: 'update:modelValue', modelValue: boolean): void
+  (event: 'update:currentPage', page: number): void
 }>();
 
 const passer = computed({

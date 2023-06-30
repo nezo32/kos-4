@@ -483,7 +483,7 @@
     <div class="home__component">
       <h1>Таблицы</h1>
       <p style="background-color: var(--background); border-radius: 50px">
-        <Table title="ОПОП" :headers="head" :content="cont"
+        <Table v-model:current-page="curPage" title="ОПОП" :headers="head" :content="cont"
         @select="test()"
         subtitle="aboba" :pages="1"
         
