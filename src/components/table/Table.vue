@@ -71,8 +71,19 @@ const props = defineProps<{
 
   modelValue?: boolean;
 
+  colSort?: {index: number, direction: "ascending" | "descending"};
+
   routingHandler?: (field: string[], event?: MouseEvent) => void;
 }>();
+
+const sortColumn = computed({
+  get() {
+    return props.colSort
+  },
+  set(v) {
+    emit('update:colSort', v ? {index: v.index, direciton: v.direction} : undefined)
+  }
+})
 
 const page = computed({
   get() {
@@ -87,6 +98,7 @@ const emit = defineEmits<{
   (event: 'select', data: string[]): void
   (event: 'update:modelValue', modelValue: boolean): void
   (event: 'update:currentPage', page: number): void
+  (event: 'update:colSort', value?: {index: number, direciton: "ascending" | "descending"}): void
 }>();
 
 const passer = computed({
@@ -111,44 +123,12 @@ function sort(i: number) {
     return i != index ? ArrowDirections.down : el;
   });
 
-  function cmp(a: string | number, b: string | number, down: 1 | -1) {
-    if (a > b) {
-      return 1 * down;
-    }
-    if (a < b) {
-      return -1 * down;
-    }
-    return 0;
-  }
-
-  let x: number | string;
-  let y: number | string;
-
   if (arrowdirection.value[i] == ArrowDirections.down) {
     arrowdirection.value[i] = ArrowDirections.up;
-    sortingContent.value.sort((a, b) => {
-      x = a[i].toUpperCase();
-      y = b[i].toUpperCase();
-
-      if (a[i].endsWith("%") && b[i].endsWith("%")) {
-        x = Number(a[i].slice(0, a[i].length - 1));
-        y = Number(b[i].slice(0, b[i].length - 1));
-      }
-
-      return cmp(x, y, -1);
-    });
+    sortColumn.value = {index: i, direction: 'ascending'}
   } else {
     arrowdirection.value[i] = ArrowDirections.down;
-    sortingContent.value.sort((a, b) => {
-      x = a[i].toUpperCase();
-      y = b[i].toUpperCase();
-
-      if (a[i].endsWith("%") && b[i].endsWith("%")) {
-        x = Number(a[i].slice(0, a[i].length - 1));
-        y = Number(b[i].slice(0, b[i].length - 1));
-      }
-      return cmp(x, y, 1);
-    });
+    sortColumn.value = {index: i, direction: 'descending'}
   }
 }
 
