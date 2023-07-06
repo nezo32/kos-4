@@ -81,7 +81,7 @@ const sortColumn = computed({
     return props.colSort
   },
   set(v) {
-    emit('update:colSort', v ? {index: v.index, direciton: v.direction} : undefined)
+    emit('update:colSort', v ? {index: v.index, direction: v.direction} : undefined)
   }
 })
 
@@ -98,7 +98,7 @@ const emit = defineEmits<{
   (event: 'select', data: string[]): void
   (event: 'update:modelValue', modelValue: boolean): void
   (event: 'update:currentPage', page: number): void
-  (event: 'update:colSort', value?: {index: number, direciton: "ascending" | "descending"}): void
+  (event: 'update:colSort', value?: {index: number, direction: "ascending" | "descending"}): void
 }>();
 
 const passer = computed({
