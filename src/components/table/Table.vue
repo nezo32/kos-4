@@ -136,8 +136,6 @@ onMounted(() => {
   props.headers.forEach((el, i) => {
     arrowdirection.value.push(ArrowDirections.down);
   });
-
-  sort(0);
 });
 </script>
 
