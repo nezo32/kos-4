@@ -66,7 +66,7 @@
         <h3>Данные не найдены</h3>
       </div>
     </div>
-    <div class="table__foot" :class="{hide: !content.length}">
+    <div class="table__foot" :class="{hide: hideData}">
       <PageSwitcher v-model:current-page="page" :count-pages="props.pages" />
     </div>
   </div>
