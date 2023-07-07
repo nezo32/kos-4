@@ -6,13 +6,13 @@
         <h3 class="table-card__header">{{ title }}</h3>
       </h3>
       <section>
-        <SearchFilter />
+        <SearchFilter v-model="filter"/>
         <FileDropDown v-model="passer">
           <slot />
         </FileDropDown>
       </section>
     </div>
-    <div class="table__body">
+    <div class="table__body" v-if="content.length">
       <div
         class="table__body__column"
         v-for="(header, index) of headers"
@@ -46,7 +46,27 @@
         </p>
       </div>
     </div>
-    <div class="table__foot">
+    <div class="table__body" v-else>
+      <div
+        class="table__body__column"
+        style="height: 340px;"
+        v-for="(header, index) of headers"
+        :key="index"
+      >
+        <section class="breadcrumbs__text">
+          {{ header }}
+          <ArrowSwipePagesIcon
+            :direciton="arrowdirection[index]"
+            @click="sort(index)"
+          />
+        </section>
+        
+      </div>
+      <div class="table__body__none">
+        <h3>Данные не найдены</h3>
+      </div>
+    </div>
+    <div class="table__foot" :class="{hide: !content.length}">
       <PageSwitcher v-model:current-page="page" :count-pages="props.pages" />
     </div>
   </div>
@@ -70,11 +90,21 @@ const props = defineProps<{
   currentPage: number;
 
   modelValue?: boolean;
+  filterValue?: string;
 
   colSort?: {index: number, direction: "ascending" | "descending"};
 
   routingHandler?: (field: string[], event?: MouseEvent) => void;
 }>();
+
+const filter = computed({
+  get() {
+    return props.filterValue
+  },
+  set(value) {
+    emit("update:filterValue", value);
+  }
+});
 
 const sortColumn = computed({
   get() {
@@ -99,6 +129,7 @@ const emit = defineEmits<{
   (event: 'update:modelValue', modelValue: boolean): void
   (event: 'update:currentPage', page: number): void
   (event: 'update:colSort', value?: {index: number, direction: "ascending" | "descending"}): void
+  (event: 'update:filterValue', value?: string): void
 }>();
 
 const passer = computed({
@@ -152,6 +183,10 @@ onMounted(() => {
 .select {
   color: var(--elements) !important;
 }
+.hide {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
 
 .table {
   background-color: white;
@@ -184,9 +219,26 @@ onMounted(() => {
     }
   }
   &__body {
+    position: relative;
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    
+    &__none {
+      position: absolute;
+
+      left: 50%;
+      top: 60%;
+      transform: translate(-50%,-50%);
+
+      > h3 {
+        color: var(--main-text, #2B3674);
+        font-size: 20px;
+        font-weight: 400;
+        line-height: normal;
+      }
+    }
 
     &__column {
       display: flex;
