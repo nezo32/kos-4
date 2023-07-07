@@ -12,7 +12,7 @@
         </FileDropDown>
       </section>
     </div>
-    <div class="table__body" v-if="content.length">
+    <div class="table__body" v-if="!hideData">
       <div
         class="table__body__column"
         v-for="(header, index) of headers"
@@ -46,7 +46,7 @@
         </p>
       </div>
     </div>
-    <div class="table__body" v-else>
+    <div class="table__body" v-if="hideData">
       <div
         class="table__body__column"
         style="height: 340px;"
@@ -86,6 +86,8 @@ const props = defineProps<{
   subtitle?: string;
   title: string;
   pages: number;
+
+  hideData?: boolean;
 
   currentPage: number;
 
