@@ -4,47 +4,53 @@
       :direciton="ArrowDirections.left"
       @click="changePage(-1)"
     />
-    <ins ref="pages" v-if="countPages < 10">
-      <template v-for="i in props.countPages" :key="i">
-        <p :selected="selectedPage == i" @click="selectedPage = i">
-          <span>{{ i }}</span>
-        </p>
-        <p v-if="false" style="color: var(--unactive-text)">...</p>
-      </template>
-    </ins>
-    <ins ref="pages" v-else>
-      <template v-for="i in props.countPages" :key="i">
-        <p
-          :selected="selectedPage == i"
-          @click="selectedPage = i"
-          v-if="
-            (selectedPage < 5 && (i < 5 || i > props.countPages - 2)) ||
-            (selectedPage > props.countPages - 4 &&
-              (i < 3 || i > props.countPages - 4)) ||
-            ((selectedPage >= 4 || selectedPage <= props.countPages - 4) &&
-              (i == selectedPage + 1 ||
-                i == selectedPage ||
-                i == selectedPage - 1 ||
-                i < 3 ||
-                i > props.countPages - 2))
-          "
-        >
-          <span>{{ i }}</span>
-        </p>
-        <p
-          v-if="
-            (selectedPage > props.countPages - 4 && i == 5) ||
-            (selectedPage < 5 && i == props.countPages - 3) ||
-            (selectedPage >= 5 &&
-              selectedPage <= props.countPages - 4 &&
-              (i == selectedPage + 1 || i == selectedPage - 2))
-          "
-          style="color: var(--unactive-text)"
-        >
-          ...
-        </p>
-      </template>
-    </ins>
+    <template v-if="countPages">
+      <ins ref="pages" v-if="countPages < 10">
+        <template v-for="i in countPages" :key="i">
+          <p :selected="selectedPage == i" @click="selectedPage = i">
+            <span>{{ i }}</span>
+          </p>
+          <p v-if="false" style="color: var(--unactive-text)">...</p>
+        </template>
+      </ins>
+
+      <ins ref="pages" v-else>
+        <template v-for="i in countPages" :key="i">
+          <p
+            :selected="selectedPage == i"
+            @click="selectedPage = i"
+            v-if="
+              (selectedPage < 5 && (i < 5 || i > countPages - 2)) ||
+              (selectedPage > countPages - 4 &&
+                (i < 3 || i > countPages - 4)) ||
+              ((selectedPage >= 4 || selectedPage <= countPages - 4) &&
+                (i == selectedPage + 1 ||
+                  i == selectedPage ||
+                  i == selectedPage - 1 ||
+                  i < 3 ||
+                  i > countPages - 2))
+            "
+          >
+            <span>{{ i }}</span>
+          </p>
+          <p
+            v-if="
+              (selectedPage > countPages - 4 && i == 5) ||
+              (selectedPage < 5 && i == countPages - 3) ||
+              (selectedPage >= 5 &&
+                selectedPage <= countPages - 4 &&
+                (i == selectedPage + 1 || i == selectedPage - 2))
+            "
+            style="color: var(--unactive-text)"
+          >
+            ...
+          </p>
+        </template>
+      </ins>
+    </template>
+    <template v-else>
+      <div class="skeleton" style="width: 150px; height: 19px"></div>
+    </template>
     <ArrowSwipePagesIcon
       :direciton="ArrowDirections.right"
       @click="changePage(1)"
@@ -53,16 +59,12 @@
 </template>
 
 <script setup lang="ts">
-/*  */
-
-/*  */
-
 import { ArrowDirections } from "@/@types";
 import { computed, ref, watch } from "vue";
 import ArrowSwipePagesIcon from "./icons/arrows/ArrowSwipePagesIcon.vue";
 
 const props = defineProps<{
-  countPages: number;
+  countPages?: number;
   currentPage: number;
 }>();
 const emit = defineEmits<{
@@ -80,6 +82,7 @@ const selectedPage = computed({
 });
 
 function changePage(i: number) {
+  if (!props.countPages) return;
   if (selectedPage.value + i > props.countPages || selectedPage.value + i < 1)
     return;
 

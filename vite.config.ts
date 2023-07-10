@@ -1,32 +1,33 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from "node:url";
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
 
-import { resolve } from "path"
+import { resolve } from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  // @ts-ignore
+  plugins: [vue({ script: { defineModel: true } })],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+    },
   },
   build: {
-    target: 'esnext',
+    target: "esnext",
     lib: {
-      entry: resolve(__dirname, 'src/lib.ts'),
+      entry: resolve(__dirname, "src/lib.ts"),
       name: "KLibrary",
       fileName: "KLibaray",
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ["vue"],
       output: {
         globals: {
-          vue: 'Vue',
-        }
-      }
-    }
-  }
-})
+          vue: "Vue",
+        },
+      },
+    },
+  },
+});

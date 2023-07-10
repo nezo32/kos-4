@@ -482,14 +482,34 @@
     </div>
     <div class="home__component">
       <h1>Таблицы</h1>
-      <p style="background-color: var(--background); border-radius: 50px">
-        <Table v-model:current-page="curPage" title="ОПОП" :headers="head" :content="cont"
-        @select="test()"
-        subtitle="aboba" :pages="1"
-        
+      <div style="background-color: var(--background); border-radius: 50px">
+        <Table
+          v-model:current-page="curPage"
+          title="ОПОП"
+          :headers="head"
+          :content="cont"
+          subtitle="aboba"
+          :pages="1"
         >
-        <FileButton content="aboba"/>
-      </Table>
+          <FileButton content="aboba" />
+        </Table>
+      </div>
+    </div>
+    <div class="home__component">
+      <h1>Новая таблица</h1>
+      <p style="background-color: var(--background); border-radius: 50px">
+        <TableNew
+          :column-mapper="testCMapper"
+          v-model:page="page"
+          :pagination="test"
+          :head="{
+            date_created: 'bebra',
+            name: 'bobra',
+            department: 'barabobra',
+          }"
+          title="Основная образовательная программа"
+          subtitle="2023 год"
+        />
       </p>
     </div>
     <div class="home__component">
@@ -516,13 +536,13 @@
 </template>
 
 <script setup lang="ts">
-
 import { ArrowDirections, DocumentStatus, type ScheduleEvent } from "@/@types";
 import type { ProfileStatus } from "@/@types";
-
-import { onMounted, onUnmounted, ref, watch } from "vue";
+import { Directus } from "@directus/sdk";
+import type { CustomDirectusTypes, Teachers } from "@/@types/direbobus";
+import { defineComponent, onMounted, onUnmounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
-
+import TableNew from "@/components/TableV2/TableNew.vue";
 import EventScheduleIcon from "@/components/icons/schedule/EventScheduleIcon.vue";
 import DocumentStatusIcon from "@/components/icons/DocumentStatusIcon.vue";
 import ExitIcon from "@/components/icons/menu/ExitIcon.vue";
@@ -621,7 +641,48 @@ import ServiceHeader from "@/components/ServiceHeader.vue";
 import CustomInput from "@/components/CustomInput.vue";
 import FormsMultipleDropdown from "@/components/forms/FormsMultipleDropdown.vue";
 import CustomInputDropdown from "@/components/CustomInputDropdown.vue";
-import Test from "@/Test.vue";
+import type {
+  TableColumnMapper,
+  TablePaginationFunc,
+} from "@/components/TableV2/types";
+import type { DefaultItem } from "@directus/sdk";
+
+const testCMapper: TableColumnMapper<DefaultItem<Teachers>> | undefined = (
+  el,
+  col
+) => {
+  if (col.field != "department") {
+    console.log(col.mapped);
+    return col.mapped;
+  }
+
+  return new Promise(async (resolve, rej) => {
+    const dir = new Directus<CustomDirectusTypes>("http://localhost:8055/");
+    await dir.auth.static("A7_HCIbWbOuODbrXv4dV0bHKI_e-4wr5");
+    const dep = await dir.items("departments").readOne(el.department as string);
+    setTimeout(() => resolve(dep?.name ?? "aboba"), 1000);
+  });
+};
+
+const test: TablePaginationFunc<
+  DefaultItem<Teachers>,
+  Record<string, string>
+> = async (page, maxElements, search, order) => {
+  const dir = new Directus<CustomDirectusTypes>("http://localhost:8055/");
+  await dir.auth.static("A7_HCIbWbOuODbrXv4dV0bHKI_e-4wr5");
+  console.log("zalupa");
+  const zalupa = await dir
+    .items("teachers")
+    .readByQuery({ limit: maxElements, page, meta: "filter_count" });
+  const res = {
+    elements: zalupa.data ?? [],
+    pages: Math.ceil((zalupa.meta?.filter_count ?? 0) / maxElements),
+  };
+  console.log(res);
+  return new Promise((resolve, rej) => {
+    setTimeout(() => resolve(res), 1000);
+  });
+};
 
 const router = useRouter();
 
@@ -791,10 +852,7 @@ const arrayOfStatuses = ref<Array<ProfileStatus>>([
   },
 ]);
 
-function test() {
-  console.log("bebra");
-}
-
+const page = ref(1);
 
 onMounted(() => {
   const statuses = Object.keys(DocumentStatus).filter((v) => !isNaN(Number(v)));

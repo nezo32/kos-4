@@ -1,5 +1,8 @@
+@import "./skeleton.scss";
 body {
   --background: #f4f7fe;
+
+  --skeleton-accent: 238, 238, 238;
 
   --headers: #0b1440;
   --main-text: #2b3674;
