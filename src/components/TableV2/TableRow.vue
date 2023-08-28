@@ -1,9 +1,9 @@
 <script
   setup
   lang="ts"
-  generic="T extends Record<string, any>, R extends Record<keyof T, string | undefined | null>"
+  generic="T extends Record<string | number | symbol, any>, R extends Record<keyof T, string | undefined | null>"
 >
-import { computed, onMounted, onUpdated, ref, type StyleValue } from "vue";
+import { computed, onMounted, ref, type StyleValue } from "vue";
 import type {
   TableRowMapper,
   TableColumnMapper,
@@ -20,12 +20,14 @@ const props = defineProps<{
   rowMapper?: TableRowMapper<T, R>;
   columnMapper?: TableColumnMapper<T>;
 }>();
+const emit = defineEmits<{
+  (event: "elementClick", ev: MouseEvent, data: R[keyof R] | undefined): void;
+}>();
 
 const mapped = ref<R | null>();
 
 const isSkeleton = computed(() => mapped.value != undefined);
-//@ts-ignore
-const isSkeletonElement = (key: string) => mapped.value[key] == undefined;
+const isSkeletonElement = (key: keyof T) => mapped.value?.[key] == undefined;
 const columnStyle: (key: keyof T) => StyleValue = (key) => ({
   width: props.widths[key] ?? "unset",
 });
@@ -35,7 +37,6 @@ const setup = async () => {
   for (let key in props.head) {
     temp[key] = undefined;
   }
-  // mapped.value = temp as R;
 
   if (!props.data) return;
 
@@ -70,21 +71,19 @@ const setup = async () => {
       (async () => {
         try {
           const temp = props.columnMapper!(_data, {
-            field: _key as any,
+            field: _key,
             value: _value,
             mapped: _mapped,
           }) as Promise<R[keyof R]> | R[keyof R];
 
           if (temp instanceof Promise) {
             const result = await temp;
-            //@ts-ignore
-            mapped.value[_key] = result;
+            mapped.value![_key] = result;
           } else {
             tempMapped[_key] = temp;
           }
         } catch (err) {
-          //@ts-ignore
-          mapped.value[_key] = null;
+          (mapped.value![_key] as string | null | undefined) = null;
           throw err;
         }
       })();
@@ -92,13 +91,8 @@ const setup = async () => {
   }
 
   mapped.value = tempMapped as R;
-
-  console.log(tempMapped);
 };
 
-/* onUpdated(async () => {
-  await setup();
-}); */
 onMounted(async () => {
   await setup();
 });
@@ -109,10 +103,11 @@ onMounted(async () => {
     <p
       class="table__text"
       v-for="(v, k, i) in head"
-      :style="columnStyle(k as any)"
-      :class="{ skeleton: isSkeletonElement(k as any) }"
+      :style="columnStyle(k as keyof T)"
+      :class="{ skeleton: isSkeletonElement(k) }"
+      @click="(ev) => emit('elementClick', ev, mapped?.[k as keyof R])"
     >
-      {{ (mapped as any)[k] }}
+      {{ mapped?.[k as keyof R] }}
     </p>
   </div>
   <div class="table__row-skeleton skeleton" v-else></div>

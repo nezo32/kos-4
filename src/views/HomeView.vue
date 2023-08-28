@@ -499,6 +499,7 @@
       <h1>Новая таблица</h1>
       <p style="background-color: var(--background); border-radius: 50px">
         <TableNew
+          @row-click="testEmit"
           :column-mapper="testCMapper"
           v-model:page="page"
           :pagination="test"
@@ -652,7 +653,7 @@ const testCMapper: TableColumnMapper<DefaultItem<Teachers>> | undefined = (
   col
 ) => {
   if (col.field != "department") {
-    console.log(col.mapped);
+    //console.log(col.mapped);
     return col.mapped;
   }
 
@@ -664,13 +665,18 @@ const testCMapper: TableColumnMapper<DefaultItem<Teachers>> | undefined = (
   });
 };
 
+const testEmit = (data: DefaultItem<Teachers>) => {
+  console.log("bebra");
+  console.log(data);
+};
+
 const test: TablePaginationFunc<
   DefaultItem<Teachers>,
   Record<string, string>
 > = async (page, maxElements, search, order) => {
   const dir = new Directus<CustomDirectusTypes>("http://localhost:8055/");
   await dir.auth.static("A7_HCIbWbOuODbrXv4dV0bHKI_e-4wr5");
-  console.log("zalupa");
+  //console.log("zalupa");
   const zalupa = await dir
     .items("teachers")
     .readByQuery({ limit: maxElements, page, meta: "filter_count" });
@@ -678,7 +684,7 @@ const test: TablePaginationFunc<
     elements: zalupa.data ?? [],
     pages: Math.ceil((zalupa.meta?.filter_count ?? 0) / maxElements),
   };
-  console.log(res);
+  //console.log(res);
   return new Promise((resolve, rej) => {
     setTimeout(() => resolve(res), 1000);
   });
@@ -751,12 +757,12 @@ const url = ref("https://example.com");
 
 const tommorrow = new Date();
 tommorrow.setDate(tommorrow.getDate() + 6);
-console.log(tommorrow);
+//console.log(tommorrow);
 
 const checkDate = ref<string | Date[]>([new Date(), tommorrow]);
-console.log(checkDate.value);
+//console.log(checkDate.value);
 watch(checkDate, () => {
-  console.log(checkDate.value);
+  //console.log(checkDate.value);
 });
 
 const input1 = ref<string>("bebra");

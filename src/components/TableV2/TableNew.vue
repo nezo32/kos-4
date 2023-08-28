@@ -1,7 +1,7 @@
 <script
   setup
   lang="ts"
-  generic="T extends Record<string, any> & {id: string | number}, R extends Record<keyof T, string | undefined | null>"
+  generic="T extends Record<string | number | symbol, any> & {id: string | number}, R extends Record<keyof T, string | undefined | null>"
 >
 import ArrowSwipePagesIcon from "../icons/arrows/ArrowSwipePagesIcon.vue";
 import SearchFilter from "../SearchFilter.vue";
@@ -38,6 +38,11 @@ const props = defineProps<{
   rowMapper?: TableRowMapper<T, R>;
   columnMapper?: TableColumnMapper<T>;
   pagination: TablePaginationFunc<T, R>;
+}>();
+
+const emit = defineEmits<{
+  (event: "rowClick", ev: MouseEvent, data: T | undefined): void;
+  (event: "elementClick", ev: MouseEvent, data: R[keyof R]): void;
 }>();
 
 const getMaxElements = computed(() => props.maxElements ?? 15);
@@ -158,6 +163,8 @@ onMounted(async () => {
       </div>
       <div class="table__content__body">
         <TableRow
+          @element-click="(ev: MouseEvent, data: any) => emit('elementClick', ev, data)"
+          @click="(ev: MouseEvent) => emit('rowClick', ev, v)"
           v-for="(v, i) of content"
           :key="v?.id ?? i"
           :data="v"

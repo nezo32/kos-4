@@ -2,6 +2,11 @@
     "include": [
         "./src/lib.ts"
     ],
+    "exclude": [
+        "./src/Test.vue",
+        "./src/App.vue",
+        "./src/HomeView.vue"
+    ],
     "compilerOptions": {
         "emitDeclarationOnly": true,
         "declaration": true,
